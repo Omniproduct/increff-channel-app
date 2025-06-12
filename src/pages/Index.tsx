@@ -16,11 +16,24 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
-        <div className="container flex h-14 items-center">
-          <h1 className="text-lg font-semibold text-primary">Increff Channel App</h1>
+        <div className="container flex h-16 items-center">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/baed4694-6705-4b8a-9c7c-5a711fcda920.png" 
+                alt="Increff Logo" 
+                className="h-10 w-10 transition-transform duration-300 hover:scale-110"
+              />
+              <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse"></div>
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-primary">Increff Channel App</h1>
+              <p className="text-xs text-muted-foreground">Order Management System</p>
+            </div>
+          </div>
           <div className="ml-auto flex items-center gap-4">
             <Link to="/journey">
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform">
                 <MapIcon className="h-4 w-4" />
                 View Journey
               </Button>
