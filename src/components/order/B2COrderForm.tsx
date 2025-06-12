@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -150,7 +149,6 @@ export const B2COrderForm = () => {
             </CardHeader>
             <CardContent className="p-6">
               <CSVUploadSection 
-                title="Order Line Items"
                 onError={() => setHasUploadError(true)}
                 onFocus={() => setFocusedCard("order-items")}
                 onBlur={() => setFocusedCard(null)}

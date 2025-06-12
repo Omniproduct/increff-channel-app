@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -170,7 +169,6 @@ export const AddressForm = ({ type, onFocus, onBlur }: AddressFormProps) => {
           
           <TabsContent value="csv" className="mt-4">
             <CSVUploadSection
-              title={`${type === "shipping" ? "Shipping" : "Billing"} Address CSV`}
               onFocus={onFocus}
               onBlur={onBlur}
             />
