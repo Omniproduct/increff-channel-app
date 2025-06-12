@@ -1,4 +1,3 @@
-
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,9 +8,11 @@ import { useToast } from "@/hooks/use-toast";
 
 interface CSVUploadSectionProps {
   onError?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
-export const CSVUploadSection = ({ onError }: CSVUploadSectionProps) => {
+export const CSVUploadSection = ({ onError, onFocus, onBlur }: CSVUploadSectionProps) => {
   const [uploadedFiles, setUploadedFiles] = useState<any[]>([]);
   const [validationData, setValidationData] = useState<any[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -78,22 +79,24 @@ export const CSVUploadSection = ({ onError }: CSVUploadSectionProps) => {
     <div className="space-y-4">
       <Card
         className={`border-2 border-dashed p-8 text-center transition-colors ${
-          isDragOver ? "border-primary bg-primary/5" : "border-muted-foreground/25"
-        }`}
+          isDragOver ? "border-primary bg-primary/5" : "border-blue-300"
+        } bg-blue-50`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
         <div className="flex flex-col items-center space-y-4">
-          <Upload className="h-10 w-10 text-muted-foreground" />
+          <Upload className="h-10 w-10 text-primary" />
           <div>
-            <p className="text-lg font-medium">Drop your CSV file here</p>
+            <p className="text-lg font-medium text-primary">Drop your CSV file here</p>
             <p className="text-sm text-muted-foreground">or click to browse</p>
           </div>
           <Button
             variant="outline"
             onClick={() => fileInputRef.current?.click()}
-            className="rounded-lg"
+            className="rounded-lg border-primary text-primary hover:bg-primary hover:text-white"
           >
             <FileText className="mr-2 h-4 w-4" />
             Choose File
@@ -116,15 +119,15 @@ export const CSVUploadSection = ({ onError }: CSVUploadSectionProps) => {
       </div>
 
       {validationData.length > 0 && (
-        <Card className="p-4">
-          <h4 className="font-medium mb-4 flex items-center gap-2">
+        <Card className="p-4 border-blue-200">
+          <h4 className="font-medium mb-4 flex items-center gap-2 text-primary">
             <FileText className="h-4 w-4" />
             Validation Preview
           </h4>
-          <div className="border rounded-lg overflow-hidden">
+          <div className="border rounded-lg overflow-hidden border-blue-200">
             <Table>
               <TableHeader>
-                <TableRow>
+                <TableRow className="bg-blue-50">
                   <TableHead>Row</TableHead>
                   <TableHead>Field</TableHead>
                   <TableHead>Value</TableHead>
@@ -133,7 +136,7 @@ export const CSVUploadSection = ({ onError }: CSVUploadSectionProps) => {
               </TableHeader>
               <TableBody>
                 {validationData.map((item, index) => (
-                  <TableRow key={index} className={item.error ? "bg-destructive/5" : ""}>
+                  <TableRow key={index} className={item.error ? "bg-red-50" : "bg-green-50"}>
                     <TableCell>{item.row}</TableCell>
                     <TableCell>{item.field}</TableCell>
                     <TableCell>{item.value || <em className="text-muted-foreground">empty</em>}</TableCell>

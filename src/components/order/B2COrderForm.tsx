@@ -6,6 +6,7 @@ import { OrderInfoSection } from "./sections/OrderInfoSection";
 import { PartnerDetailsSection } from "./sections/PartnerDetailsSection";
 import { OrderTypeSection } from "./sections/OrderTypeSection";
 import { CSVUploadSection } from "./sections/CSVUploadSection";
+import { CustomOrderAttributes } from "./CustomOrderAttributes";
 import { AttributeDrawer } from "./AttributeDrawer";
 import { UploadSummaryModal } from "./UploadSummaryModal";
 import { UploadErrorCard } from "./UploadErrorCard";
@@ -17,6 +18,7 @@ export const B2COrderForm = () => {
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [hasUploadError, setHasUploadError] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<any[]>([]);
+  const [focusedCard, setFocusedCard] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleSubmit = () => {
@@ -55,11 +57,11 @@ export const B2COrderForm = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold">B2C Order</h2>
+        <h2 className="text-3xl font-bold text-primary">B2C Order</h2>
         <Button
           variant="outline"
           onClick={() => setIsDrawerOpen(true)}
-          className="text-primary"
+          className="text-primary border-primary hover:bg-primary hover:text-white"
         >
           Need Help?
         </Button>
@@ -82,48 +84,86 @@ export const B2COrderForm = () => {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
-          <Card>
-            <CardHeader>
+          <Card 
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "order-info" ? "card-focused" : ""
+            }`}
+          >
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
               <CardTitle>Order Information</CardTitle>
             </CardHeader>
-            <CardContent>
-              <OrderInfoSection />
+            <CardContent className="p-6">
+              <OrderInfoSection 
+                onFocus={() => setFocusedCard("order-info")}
+                onBlur={() => setFocusedCard(null)}
+              />
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
+          <Card 
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "partner" ? "card-focused" : ""
+            }`}
+          >
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
               <CardTitle>Partner Details</CardTitle>
             </CardHeader>
-            <CardContent>
-              <PartnerDetailsSection />
+            <CardContent className="p-6">
+              <PartnerDetailsSection 
+                onFocus={() => setFocusedCard("partner")}
+                onBlur={() => setFocusedCard(null)}
+              />
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
+          <Card 
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "order-type" ? "card-focused" : ""
+            }`}
+          >
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
               <CardTitle>Order Type & SLA</CardTitle>
             </CardHeader>
-            <CardContent>
-              <OrderTypeSection />
+            <CardContent className="p-6">
+              <OrderTypeSection 
+                onFocus={() => setFocusedCard("order-type")}
+                onBlur={() => setFocusedCard(null)}
+              />
             </CardContent>
           </Card>
+
+          <CustomOrderAttributes 
+            onFocus={() => setFocusedCard("attributes")}
+            onBlur={() => setFocusedCard(null)}
+          />
         </div>
 
         <div className="space-y-6">
-          <Card>
-            <CardHeader>
+          <Card 
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "upload" ? "card-focused" : ""
+            }`}
+          >
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
               <CardTitle>CSV Upload</CardTitle>
             </CardHeader>
-            <CardContent>
-              <CSVUploadSection onError={() => setHasUploadError(true)} />
+            <CardContent className="p-6">
+              <CSVUploadSection 
+                onError={() => setHasUploadError(true)}
+                onFocus={() => setFocusedCard("upload")}
+                onBlur={() => setFocusedCard(null)}
+              />
             </CardContent>
           </Card>
         </div>
       </div>
 
       <div className="sticky bottom-4 flex justify-center">
-        <Button onClick={handleSubmit} size="lg" className="min-w-40">
+        <Button 
+          onClick={handleSubmit} 
+          size="lg" 
+          className="min-w-40 bg-primary hover:bg-primary/90"
+        >
           Submit Order
         </Button>
       </div>

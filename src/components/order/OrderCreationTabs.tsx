@@ -1,28 +1,46 @@
 
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { OrderTypeSelector } from "./OrderTypeSelector";
 import { B2COrderForm } from "./B2COrderForm";
 import { B2BOrderForm } from "./B2BOrderForm";
+import { BulkUploadToggle } from "./BulkUploadToggle";
+import { BulkUploadForm } from "./BulkUploadForm";
 
 export const OrderCreationTabs = () => {
-  const [activeTab, setActiveTab] = useState("b2c");
+  const [orderType, setOrderType] = useState("b2c");
+  const [isBulkUpload, setIsBulkUpload] = useState(false);
+
+  const renderOrderForm = () => {
+    if (isBulkUpload) {
+      return <BulkUploadForm orderType={orderType} />;
+    }
+
+    switch (orderType) {
+      case "b2c":
+        return <B2COrderForm />;
+      case "b2b-inward":
+        return <B2BOrderForm variant="inward" />;
+      case "b2b-outward":
+        return <B2BOrderForm variant="outward" />;
+      default:
+        return <B2COrderForm />;
+    }
+  };
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
-          <TabsTrigger value="b2c">B2C Order</TabsTrigger>
-          <TabsTrigger value="b2b">B2B Order</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="b2c" className="space-y-6">
-          <B2COrderForm />
-        </TabsContent>
-        
-        <TabsContent value="b2b" className="space-y-6">
-          <B2BOrderForm />
-        </TabsContent>
-      </Tabs>
+    <div className="max-w-7xl mx-auto space-y-6">
+      <Card className="border-blue-200 shadow-sm">
+        <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
+          <CardTitle>Order Configuration</CardTitle>
+        </CardHeader>
+        <CardContent className="p-6 space-y-4">
+          <OrderTypeSelector value={orderType} onChange={setOrderType} />
+          <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+        </CardContent>
+      </Card>
+      
+      {renderOrderForm()}
     </div>
   );
 };

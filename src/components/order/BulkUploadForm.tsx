@@ -2,20 +2,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { OrderInfoSection } from "./sections/OrderInfoSection";
-import { PartnerDetailsSection } from "./sections/PartnerDetailsSection";
-import { OrderTypeSection } from "./sections/OrderTypeSection";
 import { CSVUploadSection } from "./sections/CSVUploadSection";
 import { CustomOrderAttributes } from "./CustomOrderAttributes";
 import { AttributeDrawer } from "./AttributeDrawer";
 import { UploadSummaryModal } from "./UploadSummaryModal";
 import { useToast } from "@/hooks/use-toast";
 
-interface B2BOrderFormProps {
-  variant: "inward" | "outward";
+interface BulkUploadFormProps {
+  orderType: string;
 }
 
-export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
+export const BulkUploadForm = ({ orderType }: BulkUploadFormProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [focusedCard, setFocusedCard] = useState<string | null>(null);
@@ -24,16 +21,25 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
   const handleSubmit = () => {
     setIsSummaryModalOpen(true);
     toast({
-      title: "🎉 Order uploaded successfully!",
-      description: `Your B2B ${variant} order has been processed.`,
+      title: "🎉 Bulk orders uploaded successfully!",
+      description: `Your ${orderType} bulk orders have been processed.`,
     });
+  };
+
+  const getOrderTypeDisplay = () => {
+    switch (orderType) {
+      case "b2c": return "B2C";
+      case "b2b-inward": return "B2B Inward";
+      case "b2b-outward": return "B2B Outward";
+      default: return "B2C";
+    }
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold text-primary">
-          B2B {variant.charAt(0).toUpperCase() + variant.slice(1)} Order
+          {getOrderTypeDisplay()} Bulk Upload
         </h2>
         <Button
           variant="outline"
@@ -48,72 +54,33 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
         <div className="space-y-6">
           <Card 
             className={`transition-all duration-300 border-blue-200 ${
-              focusedCard === "order-info" ? "card-focused" : ""
+              focusedCard === "attributes" ? "card-focused" : ""
             }`}
           >
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Order Information</CardTitle>
+              <CardTitle>Order Configuration</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <OrderInfoSection 
-                isB2B
-                variant={variant}
-                onFocus={() => setFocusedCard("order-info")}
+              <CustomOrderAttributes 
+                onFocus={() => setFocusedCard("attributes")}
                 onBlur={() => setFocusedCard(null)}
               />
             </CardContent>
           </Card>
-
-          <Card 
-            className={`transition-all duration-300 border-blue-200 ${
-              focusedCard === "partner" ? "card-focused" : ""
-            }`}
-          >
-            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Partner Details</CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <PartnerDetailsSection 
-                onFocus={() => setFocusedCard("partner")}
-                onBlur={() => setFocusedCard(null)}
-              />
-            </CardContent>
-          </Card>
-
-          <Card 
-            className={`transition-all duration-300 border-blue-200 ${
-              focusedCard === "order-type" ? "card-focused" : ""
-            }`}
-          >
-            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Order Type & SLA</CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <OrderTypeSection 
-                onFocus={() => setFocusedCard("order-type")}
-                onBlur={() => setFocusedCard(null)}
-              />
-            </CardContent>
-          </Card>
-
-          <CustomOrderAttributes 
-            onFocus={() => setFocusedCard("attributes")}
-            onBlur={() => setFocusedCard(null)}
-          />
         </div>
 
         <div className="space-y-6">
           <Card 
             className={`transition-all duration-300 border-blue-200 ${
-              focusedCard === "order-items" ? "card-focused" : ""
+              focusedCard === "upload" ? "card-focused" : ""
             }`}
           >
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Order Items</CardTitle>
+              <CardTitle>Bulk CSV Upload</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <CSVUploadSection 
-                onFocus={() => setFocusedCard("order-items")}
+                onFocus={() => setFocusedCard("upload")}
                 onBlur={() => setFocusedCard(null)}
               />
             </CardContent>
@@ -127,7 +94,7 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
           size="lg" 
           className="min-w-40 bg-primary hover:bg-primary/90"
         >
-          Submit
+          Submit Bulk Orders
         </Button>
       </div>
 
@@ -139,9 +106,9 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
       <UploadSummaryModal
         isOpen={isSummaryModalOpen}
         onClose={() => setIsSummaryModalOpen(false)}
-        orderType={`B2B ${variant.charAt(0).toUpperCase() + variant.slice(1)}`}
-        itemCount={24}
-        errorCount={2}
+        orderType={getOrderTypeDisplay()}
+        itemCount={150}
+        errorCount={3}
       />
     </div>
   );
