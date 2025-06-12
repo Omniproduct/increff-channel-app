@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown, ArrowRight, CheckCircle, Upload, FileText, Users, Package, ShoppingCart, Box } from "lucide-react";
@@ -25,12 +24,12 @@ export const OrderJourneyFlow = () => {
         variant === "warning" ? "border-orange-200 bg-orange-50 hover:bg-orange-100" : 
         "border-blue-200 bg-blue-50 hover:bg-blue-100"}
     `}>
-      <div className="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center font-bold animate-bounce">
+      <div className="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center font-bold">
         {stepNumber}
       </div>
       <div className="flex items-start gap-3">
         <div className={`
-          p-3 rounded-full transition-all duration-300 group-hover:scale-110 group-hover:rotate-12
+          p-3 rounded-full transition-all duration-300 group-hover:scale-110
           ${variant === "success" ? "bg-green-100 text-green-600 group-hover:bg-green-200" : 
             variant === "warning" ? "bg-orange-100 text-orange-600 group-hover:bg-orange-200" : 
             "bg-blue-100 text-blue-600 group-hover:bg-blue-200"}
@@ -41,7 +40,7 @@ export const OrderJourneyFlow = () => {
           <div className="flex items-center gap-2">
             <h4 className="font-semibold text-sm group-hover:text-primary transition-colors">{title}</h4>
             {isOptional && (
-              <Badge variant="outline" className="text-xs animate-pulse">Optional</Badge>
+              <Badge variant="outline" className="text-xs">Optional</Badge>
             )}
           </div>
           <p className="text-xs text-muted-foreground mt-1 group-hover:text-foreground transition-colors">{description}</p>
@@ -52,30 +51,28 @@ export const OrderJourneyFlow = () => {
 
   const FlowArrow = ({ direction = "down" }: { direction?: "down" | "right" }) => (
     <div className="flex justify-center my-3">
-      <div className="animate-bounce">
-        {direction === "down" ? (
-          <ArrowDown className="h-6 w-6 text-primary animate-pulse" />
-        ) : (
-          <ArrowRight className="h-6 w-6 text-primary animate-pulse" />
-        )}
-      </div>
+      {direction === "down" ? (
+        <ArrowDown className="h-6 w-6 text-primary" />
+      ) : (
+        <ArrowRight className="h-6 w-6 text-primary" />
+      )}
     </div>
   );
 
-  const AnimatedIcon = ({ icon: Icon, className }: { icon: any; className?: string }) => (
+  const StaticIcon = ({ icon: Icon, className }: { icon: any; className?: string }) => (
     <div className={`inline-flex p-2 rounded-full ${className}`}>
-      <Icon className="h-6 w-6 animate-bounce" style={{ animationDelay: `${Math.random() * 2}s` }} />
+      <Icon className="h-6 w-6" />
     </div>
   );
 
   return (
     <div className="space-y-6">
-      {/* Animated Header Section */}
+      {/* Header Section */}
       <div className="text-center space-y-4 mb-8">
         <div className="flex justify-center items-center gap-4 mb-4">
-          <AnimatedIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
-          <AnimatedIcon icon={Package} className="bg-green-100 text-green-600" />
-          <AnimatedIcon icon={Box} className="bg-orange-100 text-orange-600" />
+          <StaticIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
+          <StaticIcon icon={Package} className="bg-green-100 text-green-600" />
+          <StaticIcon icon={Box} className="bg-orange-100 text-orange-600" />
         </div>
         <h2 className="text-4xl font-bold text-primary animate-fade-in">
           Order Creation Journey
@@ -89,13 +86,12 @@ export const OrderJourneyFlow = () => {
         <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
           <CardTitle className="flex items-center gap-3">
             <div className="relative">
-              <Package className="h-6 w-6 text-primary animate-spin" style={{ animationDuration: '3s' }} />
-              <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping"></div>
+              <Package className="h-6 w-6 text-primary" />
             </div>
             Order Creation Journey Flow
             <div className="ml-auto flex gap-2">
-              <AnimatedIcon icon={ShoppingCart} className="bg-primary/10 text-primary" />
-              <AnimatedIcon icon={Box} className="bg-primary/10 text-primary" />
+              <StaticIcon icon={ShoppingCart} className="bg-primary/10 text-primary" />
+              <StaticIcon icon={Box} className="bg-primary/10 text-primary" />
             </div>
           </CardTitle>
         </CardHeader>
@@ -354,31 +350,31 @@ export const OrderJourneyFlow = () => {
             </div>
           </div>
 
-          {/* Enhanced Legend with Animations */}
+          {/* Legend */}
           <div className="mt-12 pt-8 border-t border-blue-200">
             <div className="text-center mb-6">
               <h4 className="font-bold text-xl mb-2 text-primary">Legend & Quick Reference</h4>
               <div className="flex justify-center gap-4 mb-4">
-                <AnimatedIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
-                <AnimatedIcon icon={Package} className="bg-green-100 text-green-600" />
-                <AnimatedIcon icon={Box} className="bg-orange-100 text-orange-600" />
+                <StaticIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
+                <StaticIcon icon={Package} className="bg-green-100 text-green-600" />
+                <StaticIcon icon={Box} className="bg-orange-100 text-orange-600" />
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <div className="w-6 h-6 rounded border-2 border-blue-200 bg-blue-50 animate-pulse"></div>
+                <div className="w-6 h-6 rounded border-2 border-blue-200 bg-blue-50"></div>
                 <span className="font-medium">Standard Step</span>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <div className="w-6 h-6 rounded border-2 border-orange-200 bg-orange-50 animate-pulse"></div>
+                <div className="w-6 h-6 rounded border-2 border-orange-200 bg-orange-50"></div>
                 <span className="font-medium">Required Field</span>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <div className="w-6 h-6 rounded border-2 border-green-200 bg-green-50 animate-pulse"></div>
+                <div className="w-6 h-6 rounded border-2 border-green-200 bg-green-50"></div>
                 <span className="font-medium">File Upload</span>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <Badge variant="outline" className="text-xs animate-bounce">Optional</Badge>
+                <Badge variant="outline" className="text-xs">Optional</Badge>
                 <span className="font-medium">Optional Step</span>
               </div>
             </div>
