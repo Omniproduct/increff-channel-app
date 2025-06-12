@@ -1,7 +1,7 @@
 
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SLADateTimePicker } from "../SLADateTimePicker";
 
 interface OrderTypeSectionProps {
   onFocus?: () => void;
@@ -45,17 +45,7 @@ export const OrderTypeSection = ({ onFocus, onBlur }: OrderTypeSectionProps) => 
         </Select>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="sla">SLA</Label>
-        <Input
-          id="sla"
-          placeholder="Number of Hours to Process the order"
-          className="rounded-lg bg-white border-blue-200 focus:border-primary"
-          type="number"
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
-      </div>
+      <SLADateTimePicker onFocus={onFocus} onBlur={onBlur} />
     </div>
   );
 };

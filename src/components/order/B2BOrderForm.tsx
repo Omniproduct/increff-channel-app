@@ -74,6 +74,8 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
             </CardHeader>
             <CardContent className="p-6">
               <PartnerDetailsSection 
+                isB2B
+                variant={variant}
                 onFocus={() => setFocusedCard("partner")}
                 onBlur={() => setFocusedCard(null)}
               />

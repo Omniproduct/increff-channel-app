@@ -11,6 +11,7 @@ import { AttributeDrawer } from "./AttributeDrawer";
 import { UploadSummaryModal } from "./UploadSummaryModal";
 import { UploadErrorCard } from "./UploadErrorCard";
 import { MultiFileUploadTracker } from "./MultiFileUploadTracker";
+import { AddressForm } from "./AddressForm";
 import { useToast } from "@/hooks/use-toast";
 
 export const B2COrderForm = () => {
@@ -141,20 +142,45 @@ export const B2COrderForm = () => {
         <div className="space-y-6">
           <Card 
             className={`transition-all duration-300 border-blue-200 ${
-              focusedCard === "upload" ? "card-focused" : ""
+              focusedCard === "order-items" ? "card-focused" : ""
             }`}
           >
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>CSV Upload</CardTitle>
+              <CardTitle>Order Items CSV Upload</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <CSVUploadSection 
+                title="Order Line Items"
                 onError={() => setHasUploadError(true)}
-                onFocus={() => setFocusedCard("upload")}
+                onFocus={() => setFocusedCard("order-items")}
                 onBlur={() => setFocusedCard(null)}
               />
             </CardContent>
           </Card>
+
+          <div 
+            className={`transition-all duration-300 ${
+              focusedCard === "shipping" ? "card-focused" : ""
+            }`}
+          >
+            <AddressForm 
+              type="shipping" 
+              onFocus={() => setFocusedCard("shipping")}
+              onBlur={() => setFocusedCard(null)}
+            />
+          </div>
+
+          <div 
+            className={`transition-all duration-300 ${
+              focusedCard === "billing" ? "card-focused" : ""
+            }`}
+          >
+            <AddressForm 
+              type="billing" 
+              onFocus={() => setFocusedCard("billing")}
+              onBlur={() => setFocusedCard(null)}
+            />
+          </div>
         </div>
       </div>
 

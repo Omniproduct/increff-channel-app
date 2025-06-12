@@ -9,9 +9,11 @@ interface OMSDropdownProps {
   label: string;
   placeholder: string;
   options: string[];
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
-export const OMSDropdown = ({ label, placeholder, options }: OMSDropdownProps) => {
+export const OMSDropdown = ({ label, placeholder, options, onFocus, onBlur }: OMSDropdownProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -57,19 +59,19 @@ export const OMSDropdown = ({ label, placeholder, options }: OMSDropdownProps) =
       
       {isLoading ? (
         <Select disabled>
-          <SelectTrigger className="rounded-lg">
+          <SelectTrigger className="rounded-lg" onFocus={onFocus} onBlur={onBlur}>
             <SelectValue placeholder="Loading..." />
           </SelectTrigger>
         </Select>
       ) : hasError ? (
         <Select disabled>
-          <SelectTrigger className="rounded-lg border-destructive">
+          <SelectTrigger className="rounded-lg border-destructive" onFocus={onFocus} onBlur={onBlur}>
             <SelectValue placeholder="Failed to load options" />
           </SelectTrigger>
         </Select>
       ) : (
         <Select>
-          <SelectTrigger className="rounded-lg">
+          <SelectTrigger className="rounded-lg" onFocus={onFocus} onBlur={onBlur}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>

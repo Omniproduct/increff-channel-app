@@ -1,12 +1,32 @@
 
 import { OMSDropdown } from "../OMSDropdown";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 interface PartnerDetailsSectionProps {
   onFocus?: () => void;
   onBlur?: () => void;
+  isB2B?: boolean;
+  variant?: "inward" | "outward";
 }
 
-export const PartnerDetailsSection = ({ onFocus, onBlur }: PartnerDetailsSectionProps) => {
+export const PartnerDetailsSection = ({ onFocus, onBlur, isB2B, variant }: PartnerDetailsSectionProps) => {
+  const getPartnerNameOptions = () => {
+    if (variant === "inward") {
+      return ["ABC Suppliers Ltd", "XYZ Trading Co", "Premium Goods Inc", "Quality Parts LLC"];
+    } else {
+      return ["Customer Corp", "Retail Chain Ltd", "Business Partners Inc", "Enterprise Solutions"];
+    }
+  };
+
+  const getUseCaseOptions = () => {
+    if (variant === "inward") {
+      return ["Purchase", "Return", "Open PO", "Open Return"];
+    } else {
+      return ["Sales", "Stock Transfer", "Return to Vendor"];
+    }
+  };
+
   return (
     <div className="space-y-4">
       <OMSDropdown
@@ -22,6 +42,7 @@ export const PartnerDetailsSection = ({ onFocus, onBlur }: PartnerDetailsSection
         onFocus={onFocus}
         onBlur={onBlur}
       />
+      
       <OMSDropdown
         label="Location Code"
         placeholder="Select Location Code"
@@ -29,20 +50,62 @@ export const PartnerDetailsSection = ({ onFocus, onBlur }: PartnerDetailsSection
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      <OMSDropdown
-        label="Partner Code"
-        placeholder="Select Partner Code"
-        options={["PART001", "PART002", "PART003"]}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <OMSDropdown
-        label="Partner Location Code"
-        placeholder="Select Partner Location Code"
-        options={["PARTLOC001", "PARTLOC002", "PARTLOC003"]}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
+      
+      {isB2B && (
+        <>
+          <div className="space-y-2">
+            <Label>
+              {variant === "inward" ? "Supplier Name" : "Customer Name"}
+            </Label>
+            <Select>
+              <SelectTrigger 
+                className="rounded-lg bg-white border-blue-200 focus:border-primary"
+                onFocus={onFocus}
+                onBlur={onBlur}
+              >
+                <SelectValue placeholder={`Select ${variant === "inward" ? "Supplier" : "Customer"}`} />
+              </SelectTrigger>
+              <SelectContent>
+                {getPartnerNameOptions().map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Use Case</Label>
+            <Select>
+              <SelectTrigger 
+                className="rounded-lg bg-white border-blue-200 focus:border-primary"
+                onFocus={onFocus}
+                onBlur={onBlur}
+              >
+                <SelectValue placeholder="Select Use Case" />
+              </SelectTrigger>
+              <SelectContent>
+                {getUseCaseOptions().map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      )}
+      
+      {!isB2B && (
+        <OMSDropdown
+          label="Partner Location Code"
+          placeholder="Select Partner Location Code"
+          options={["PARTLOC001", "PARTLOC002", "PARTLOC003"]}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      )}
     </div>
   );
 };
