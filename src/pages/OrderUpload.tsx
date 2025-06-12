@@ -1,10 +1,11 @@
 
-import { OrderJourneyFlow } from "@/components/order/OrderJourneyFlow";
+import { useState } from "react";
+import { OrderCreationTabs } from "@/components/order/OrderCreationTabs";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const OrderJourney = () => {
+const OrderUpload = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
@@ -27,20 +28,28 @@ const OrderJourney = () => {
               </div>
               <div>
                 <h1 className="text-lg font-bold text-primary">Increff Channel App</h1>
-                <p className="text-xs text-muted-foreground">Order Creation Journey</p>
+                <p className="text-xs text-muted-foreground">Order Management System</p>
               </div>
             </div>
           </div>
-          <div className="ml-auto text-sm text-muted-foreground">
-            dhl-ae-omni | raghav.mehta
+          <div className="ml-auto flex items-center gap-4">
+            <Link to="/journey">
+              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform">
+                <MapIcon className="h-4 w-4" />
+                View Journey
+              </Button>
+            </Link>
+            <div className="text-sm text-muted-foreground">
+              dhl-ae-omni | raghav.mehta
+            </div>
           </div>
         </div>
       </header>
       <main className="container py-6">
-        <OrderJourneyFlow />
+        <OrderCreationTabs />
       </main>
     </div>
   );
 };
 
-export default OrderJourney;
+export default OrderUpload;
