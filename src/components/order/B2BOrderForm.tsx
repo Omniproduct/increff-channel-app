@@ -32,13 +32,13 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-gray-900">
+        <h2 className="text-3xl font-bold text-primary">
           B2B {variant.charAt(0).toUpperCase() + variant.slice(1)} Order
         </h2>
         <Button
           variant="outline"
           onClick={() => setIsDrawerOpen(true)}
-          className="text-brand-blue border-brand-blue hover:bg-brand-blue hover:text-white"
+          className="text-primary border-primary hover:bg-primary hover:text-white"
         >
           Need Help?
         </Button>
@@ -47,12 +47,12 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
           <Card 
-            className={`transition-all duration-300 border-gray-200 bg-white ${
-              focusedCard === "order-info" ? "ring-2 ring-brand-blue ring-opacity-50 border-brand-blue shadow-lg" : ""
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "order-info" ? "card-focused" : ""
             }`}
           >
-            <CardHeader className="bg-gradient-to-r from-gray-50 to-blue-50">
-              <CardTitle className="text-gray-900">Order Information</CardTitle>
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
+              <CardTitle>Order Information</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <OrderInfoSection 
@@ -65,12 +65,12 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
           </Card>
 
           <Card 
-            className={`transition-all duration-300 border-gray-200 bg-white ${
-              focusedCard === "partner" ? "ring-2 ring-brand-blue ring-opacity-50 border-brand-blue shadow-lg" : ""
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "partner" ? "card-focused" : ""
             }`}
           >
-            <CardHeader className="bg-gradient-to-r from-gray-50 to-blue-50">
-              <CardTitle className="text-gray-900">Partner Details</CardTitle>
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
+              <CardTitle>Partner Details</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <PartnerDetailsSection 
@@ -83,12 +83,12 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
           </Card>
 
           <Card 
-            className={`transition-all duration-300 border-gray-200 bg-white ${
-              focusedCard === "order-type" ? "ring-2 ring-brand-blue ring-opacity-50 border-brand-blue shadow-lg" : ""
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "order-type" ? "card-focused" : ""
             }`}
           >
-            <CardHeader className="bg-gradient-to-r from-gray-50 to-blue-50">
-              <CardTitle className="text-gray-900">Order Type & SLA</CardTitle>
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
+              <CardTitle>Order Type & SLA</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <OrderTypeSection 
@@ -106,12 +106,12 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
 
         <div className="space-y-6">
           <Card 
-            className={`transition-all duration-300 border-gray-200 bg-white ${
-              focusedCard === "order-items" ? "ring-2 ring-brand-blue ring-opacity-50 border-brand-blue shadow-lg" : ""
+            className={`transition-all duration-300 border-blue-200 ${
+              focusedCard === "order-items" ? "card-focused" : ""
             }`}
           >
-            <CardHeader className="bg-gradient-to-r from-gray-50 to-blue-50">
-              <CardTitle className="text-gray-900">Order Items</CardTitle>
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
+              <CardTitle>Order Items</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <CSVUploadSection 
@@ -127,7 +127,7 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
         <Button 
           onClick={handleSubmit} 
           size="lg" 
-          className="min-w-40 bg-brand-blue hover:bg-brand-blue/90 text-white"
+          className="min-w-40 bg-primary hover:bg-primary/90"
         >
           Submit
         </Button>
