@@ -1,52 +1,14 @@
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Package, Box, Truck, Upload, FileText, Users, ArrowLeftRight, BookOpen } from "lucide-react";
+import { ShoppingCart, Users, ArrowLeftRight, Upload, BarChart3, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
-  const AnimatedIcon = ({ icon: Icon, className, delay = 0 }: { icon: any; className?: string; delay?: number }) => (
-    <div className={`inline-flex p-4 rounded-full ${className} transition-all duration-300 hover:scale-110`} style={{ animationDelay: `${delay}s` }}>
-      <Icon className="h-8 w-8" />
-    </div>
-  );
-
-  const FeatureCard = ({ 
-    icon: Icon, 
-    title, 
-    description, 
-    to, 
-    className 
-  }: { 
-    icon: any; 
-    title: string; 
-    description: string; 
-    to: string; 
-    className: string; 
-  }) => (
-    <Link to={to} className="group transition-all duration-300 hover:scale-105">
-      <Card className="h-full border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
-        <CardHeader className="text-center pb-4">
-          <div className={`${className} rounded-full p-4 inline-flex mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-            <Icon className="h-8 w-8" />
-          </div>
-          <CardTitle className="text-xl font-semibold">{title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription className="text-center text-muted-foreground leading-relaxed">
-            {description}
-          </CardDescription>
-        </CardContent>
-      </Card>
-    </Link>
-  );
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header with Logo */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm sticky top-0 z-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
+      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm sticky top-0 z-50">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -55,78 +17,127 @@ const Index = () => {
                 alt="Increff Logo" 
                 className="h-10 w-10 transition-transform duration-300 hover:scale-110 rounded-lg shadow-sm"
               />
-              <div className="absolute inset-0 rounded-lg bg-primary/10 animate-pulse"></div>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-foreground">Increff Channel App</h1>
-              <p className="text-xs text-muted-foreground">Order Management System</p>
+              <h1 className="text-xl font-bold text-gray-900">Increff Channel App</h1>
+              <p className="text-sm text-gray-600">Warehouse Management System</p>
             </div>
           </div>
-          <Badge variant="outline" className="font-mono text-xs">
+          <Badge variant="outline" className="font-mono text-sm border-brand-blue text-brand-blue">
             dhl-ae-omni | raghav.mehta
           </Badge>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container py-12 space-y-12">
-        {/* Animated Hero Icons */}
-        <div className="text-center">
-          <div className="flex justify-center items-center gap-8 mb-8">
-            <AnimatedIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600 shadow-lg border-2 border-blue-200" delay={0} />
-            <AnimatedIcon icon={Package} className="bg-emerald-100 text-emerald-600 shadow-lg border-2 border-emerald-200" delay={0.5} />
-            <AnimatedIcon icon={Box} className="bg-orange-100 text-orange-600 shadow-lg border-2 border-orange-200" delay={1} />
-            <AnimatedIcon icon={Truck} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1.5} />
+      <main className="container py-12">
+        <div className="space-y-12">
+          <div className="text-center space-y-6">
+            <div className="bg-brand-blue/10 text-brand-blue rounded-full p-8 inline-flex border border-brand-blue/20 shadow-lg">
+              <Package className="h-16 w-16" />
+            </div>
+            <div className="space-y-3">
+              <h1 className="text-5xl font-bold text-gray-900">Channel Operations Hub</h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Streamline your warehouse operations with comprehensive order management, 
+                partner coordination, and crossdocking solutions
+              </p>
+            </div>
           </div>
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground">Channel Management Hub</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Streamline your operations with our comprehensive order management and partner coordination platform
-            </p>
-          </div>
-        </div>
 
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <FeatureCard
-            icon={ShoppingCart}
-            title="Orders"
-            description="Create and manage B2B and B2C orders with comprehensive order processing and tracking capabilities"
-            to="/order-upload"
-            className="bg-blue-100 text-blue-600 border-2 border-blue-200"
-          />
-          
-          <FeatureCard
-            icon={Users}
-            title="Partners"
-            description="Manage partner relationships and partner location creation for seamless channel operations"
-            to="/partners"
-            className="bg-purple-100 text-purple-600 border-2 border-purple-200"
-          />
-          
-          <FeatureCard
-            icon={ArrowLeftRight}
-            title="Crossdocking"
-            description="Create item cross dock plans for efficient bulk and item crossdocking operations"
-            to="/crossdocking"
-            className="bg-orange-100 text-orange-600 border-2 border-orange-200"
-          />
-          
-          <FeatureCard
-            icon={Upload}
-            title="Bulk Upload"
-            description="Process multiple orders simultaneously using CSV file uploads for enhanced productivity"
-            to="/order-upload"
-            className="bg-red-100 text-red-600 border-2 border-red-200"
-          />
-          
-          <FeatureCard
-            icon={BookOpen}
-            title="User Guide"
-            description="View comprehensive user journey and application usage guidelines for optimal workflow"
-            to="/journey"
-            className="bg-indigo-100 text-indigo-600 border-2 border-indigo-200"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Link to="/order-upload">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-gray-200 bg-white">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-brand-blue/10 text-brand-blue rounded-full p-6 inline-flex mx-auto mb-4 border border-brand-blue/20 group-hover:bg-brand-blue/20 transition-colors">
+                    <ShoppingCart className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900">Orders</CardTitle>
+                  <CardDescription className="text-gray-600 text-base">
+                    Create and manage B2B and B2C orders with comprehensive tracking
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center pt-0">
+                  <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white shadow-md hover:shadow-lg transition-all">
+                    Manage Orders
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link to="/partners">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-gray-200 bg-white">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-brand-red/10 text-brand-red rounded-full p-6 inline-flex mx-auto mb-4 border border-brand-red/20 group-hover:bg-brand-red/20 transition-colors">
+                    <Users className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900">Partners</CardTitle>
+                  <CardDescription className="text-gray-600 text-base">
+                    Manage business partners and their distribution locations
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center pt-0">
+                  <Button variant="outline" className="w-full border-brand-red text-brand-red hover:bg-brand-red hover:text-white shadow-md hover:shadow-lg transition-all">
+                    Manage Partners
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link to="/crossdocking">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-gray-200 bg-white">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-gray-600/10 text-gray-700 rounded-full p-6 inline-flex mx-auto mb-4 border border-gray-300 group-hover:bg-gray-600/20 transition-colors">
+                    <ArrowLeftRight className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900">Crossdocking</CardTitle>
+                  <CardDescription className="text-gray-600 text-base">
+                    Efficient bulk and item crossdocking operations management
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center pt-0">
+                  <Button variant="outline" className="w-full border-gray-400 text-gray-700 hover:bg-gray-700 hover:text-white shadow-md hover:shadow-lg transition-all">
+                    Manage Operations
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link to="/order-journey">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-gray-200 bg-white">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-brand-blue/10 text-brand-blue rounded-full p-6 inline-flex mx-auto mb-4 border border-brand-blue/20 group-hover:bg-brand-blue/20 transition-colors">
+                    <Upload className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900">Order Journey</CardTitle>
+                  <CardDescription className="text-gray-600 text-base">
+                    Track and visualize the complete order fulfillment process
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center pt-0">
+                  <Button variant="outline" className="w-full border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white shadow-md hover:shadow-lg transition-all">
+                    View Journey
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-gray-200 bg-white lg:col-span-2">
+              <CardHeader className="text-center pb-4">
+                <div className="bg-gray-600/10 text-gray-700 rounded-full p-6 inline-flex mx-auto mb-4 border border-gray-300 group-hover:bg-gray-600/20 transition-colors">
+                  <BarChart3 className="h-8 w-8" />
+                </div>
+                <CardTitle className="text-2xl text-gray-900">Analytics & Reporting</CardTitle>
+                <CardDescription className="text-gray-600 text-base">
+                  Comprehensive insights and performance metrics for your channel operations
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <Button variant="outline" className="border-gray-400 text-gray-700 hover:bg-gray-700 hover:text-white shadow-md hover:shadow-lg transition-all">
+                  View Analytics
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
     </div>

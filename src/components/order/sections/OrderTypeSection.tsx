@@ -12,10 +12,10 @@ export const OrderTypeSection = ({ onFocus, onBlur }: OrderTypeSectionProps) => 
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="qc-status">QC Status</Label>
+        <Label htmlFor="qc-status" className="text-gray-700">QC Status</Label>
         <Select>
           <SelectTrigger 
-            className="rounded-lg bg-white border-blue-200 focus:border-primary"
+            className="rounded-lg bg-white border-gray-200 focus:border-brand-blue"
             onFocus={onFocus}
             onBlur={onBlur}
           >
@@ -29,10 +29,10 @@ export const OrderTypeSection = ({ onFocus, onBlur }: OrderTypeSectionProps) => 
       </div>
       
       <div className="space-y-2">
-        <Label htmlFor="payment-type">Payment Type</Label>
+        <Label htmlFor="payment-type" className="text-gray-700">Payment Type</Label>
         <Select>
           <SelectTrigger 
-            className="rounded-lg bg-white border-blue-200 focus:border-primary"
+            className="rounded-lg bg-white border-gray-200 focus:border-brand-blue"
             onFocus={onFocus}
             onBlur={onBlur}
           >
