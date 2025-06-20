@@ -78,18 +78,10 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <FeatureCard
             icon={ShoppingCart}
-            title="B2C Orders"
-            description="Create and manage direct customer orders with comprehensive order processing"
+            title="Orders"
+            description="Create and manage B2B and B2C orders with comprehensive order processing"
             to="/order-upload"
             className="bg-blue-100 text-blue-600"
-          />
-          
-          <FeatureCard
-            icon={Package}
-            title="B2B Orders"
-            description="Handle business-to-business orders with bulk processing capabilities"
-            to="/order-upload"
-            className="bg-green-100 text-green-600"
           />
           
           <FeatureCard
