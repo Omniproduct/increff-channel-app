@@ -21,12 +21,11 @@ interface AddressData {
 interface AddressSectionProps {
   title: string;
   prefix: string;
-  showCopyOptions?: boolean;
   onCopyFrom?: (source: 'billing' | 'shipping', checked: boolean) => void;
   isHidden?: boolean;
 }
 
-export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFrom, isHidden = false }: AddressSectionProps) => {
+export const AddressSection = ({ title, prefix, onCopyFrom, isHidden = false }: AddressSectionProps) => {
   const [addressData, setAddressData] = useState<AddressData>({
     name: '',
     phone: '',
@@ -40,16 +39,33 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
     country: ''
   });
 
-  const handleCopyToggle = (source: 'billing' | 'shipping', checked: boolean) => {
+  const handleCopyToggle = (checked: boolean) => {
     if (onCopyFrom) {
-      onCopyFrom(source, checked);
+      const source = prefix === 'billing' ? 'shipping' : 'billing';
+      onCopyFrom(source as 'billing' | 'shipping', checked);
     }
+  };
+
+  const getToggleLabel = () => {
+    return prefix === 'billing' ? 'Same as Shipping Address' : 'Same as Billing Address';
   };
 
   if (isHidden) {
     return (
-      <div className="bg-slate-50/50 rounded-lg p-3">
-        <h3 className="text-sm font-medium text-foreground mb-2">{title}</h3>
+      <div className="bg-slate-50/50 rounded-lg p-3 border">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-sm font-medium text-foreground">{title}</h3>
+          <div className="flex items-center gap-2">
+            <Label htmlFor={`copy-toggle-${prefix}`} className="text-xs text-muted-foreground">
+              {getToggleLabel()}
+            </Label>
+            <Switch
+              id={`copy-toggle-${prefix}`}
+              checked={true}
+              onCheckedChange={handleCopyToggle}
+            />
+          </div>
+        </div>
         <p className="text-xs text-muted-foreground">
           Using same address as {prefix === 'billing' ? 'shipping' : 'billing'} address
         </p>
@@ -58,42 +74,22 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
   }
 
   return (
-    <div className="bg-slate-50/50 rounded-lg p-3">
-      <div className="mb-3">
-        <h3 className="text-sm font-medium text-foreground mb-2">{title}</h3>
-        {showCopyOptions && (
-          <div className="space-y-1.5 border-t pt-2">
-            <p className="text-xs text-muted-foreground">Copy address from:</p>
-            <div className="space-y-1.5">
-              {prefix === 'billing' && (
-                <div className="flex items-center justify-between">
-                  <Label htmlFor={`copy-from-shipping-${prefix}`} className="text-xs">
-                    Same as Shipping Address
-                  </Label>
-                  <Switch
-                    id={`copy-from-shipping-${prefix}`}
-                    onCheckedChange={(checked) => handleCopyToggle('shipping', checked)}
-                  />
-                </div>
-              )}
-              {prefix === 'shipping' && (
-                <div className="flex items-center justify-between">
-                  <Label htmlFor={`copy-from-billing-${prefix}`} className="text-xs">
-                    Same as Billing Address
-                  </Label>
-                  <Switch
-                    id={`copy-from-billing-${prefix}`}
-                    onCheckedChange={(checked) => handleCopyToggle('billing', checked)}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+    <div className="bg-slate-50/50 rounded-lg p-3 border">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-medium text-foreground">{title}</h3>
+        <div className="flex items-center gap-2">
+          <Label htmlFor={`copy-toggle-${prefix}`} className="text-xs text-muted-foreground">
+            {getToggleLabel()}
+          </Label>
+          <Switch
+            id={`copy-toggle-${prefix}`}
+            onCheckedChange={handleCopyToggle}
+          />
+        </div>
       </div>
       
-      <div className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+      <div className="space-y-2">
+        <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
             <Label htmlFor={`${prefix}-name`} className="text-xs">
               Name <span className="text-brand-red">*</span>
@@ -102,7 +98,7 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               id={`${prefix}-name`} 
               placeholder="Enter name" 
               required 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
 
@@ -114,7 +110,7 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               id={`${prefix}-phone`} 
               placeholder="Enter phone number" 
               required 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
         </div>
@@ -128,7 +124,7 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
             type="email" 
             placeholder="Enter email address" 
             required 
-            className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+            className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
           />
         </div>
 
@@ -140,17 +136,17 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
             id={`${prefix}-address1`} 
             placeholder="Enter address line 1" 
             required 
-            className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+            className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
             <Label htmlFor={`${prefix}-address2`} className="text-xs">Address Line 2</Label>
             <Input 
               id={`${prefix}-address2`} 
               placeholder="Enter address line 2" 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
           <div className="space-y-1">
@@ -158,12 +154,12 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
             <Input 
               id={`${prefix}-address3`} 
               placeholder="Enter address line 3" 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
             <Label htmlFor={`${prefix}-city`} className="text-xs">
               City <span className="text-brand-red">*</span>
@@ -172,7 +168,7 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               id={`${prefix}-city`} 
               placeholder="Enter city" 
               required 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
           <div className="space-y-1">
@@ -183,12 +179,12 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               id={`${prefix}-state`} 
               placeholder="Enter state" 
               required 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
             <Label htmlFor={`${prefix}-zipcode`} className="text-xs">
               Zip Code <span className="text-brand-red">*</span>
@@ -197,7 +193,7 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               id={`${prefix}-zipcode`} 
               placeholder="Enter zip code" 
               required 
-              className="border-gray-200 focus:border-brand-blue h-8 text-xs" 
+              className="border-gray-200 focus:border-brand-blue h-7 text-xs" 
             />
           </div>
           <div className="space-y-1">
@@ -205,7 +201,7 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               Country <span className="text-brand-red">*</span>
             </Label>
             <Select>
-              <SelectTrigger className="border-gray-200 focus:border-brand-blue h-8">
+              <SelectTrigger className="border-gray-200 focus:border-brand-blue h-7">
                 <SelectValue placeholder="Select country" />
               </SelectTrigger>
               <SelectContent>
