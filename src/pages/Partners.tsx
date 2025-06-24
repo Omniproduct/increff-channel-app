@@ -1,6 +1,5 @@
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft } from "lucide-react";
@@ -27,7 +26,7 @@ const Partners = () => {
                   alt="Increff Logo" 
                   className="h-10 w-10 transition-transform duration-300 hover:scale-110 rounded-lg shadow-sm"
                 />
-                <div className="absolute inset-0 rounded-lg bg-primary/10 animate-pulse"></div>
+                <div className="absolute inset-0 rounded-lg bg-brand-blue/10 animate-pulse"></div>
               </div>
               <div>
                 <h1 className="text-lg font-bold text-foreground">Increff Channel App</h1>
@@ -41,41 +40,33 @@ const Partners = () => {
         </div>
       </header>
 
-      <main className="container py-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Partner Management</h1>
-            <p className="text-muted-foreground">Create and manage your business partners and their locations</p>
-          </div>
+      <main className="container-fluid px-6 py-6">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-foreground mb-2">Partner Management</h1>
+          <p className="text-muted-foreground">Create and manage your business partners and their locations</p>
+        </div>
 
-          <Card className="shadow-lg border-0">
-            <CardHeader className="border-b bg-slate-50/50">
-              <CardTitle className="text-xl">Partner & Location Management</CardTitle>
-              <CardDescription>
-                Create new partners or add locations to existing partners
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-0">
-              <Tabs defaultValue="partner-creation" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 rounded-none border-b">
-                  <TabsTrigger value="partner-creation" className="data-[state=active]:bg-brand-blue/10 data-[state=active]:text-brand-blue">
-                    Partner Creation
-                  </TabsTrigger>
-                  <TabsTrigger value="partner-location" className="data-[state=active]:bg-brand-blue/10 data-[state=active]:text-brand-blue">
-                    Partner Location Creation
-                  </TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="partner-creation" className="p-6 mt-0">
-                  <PartnerCreationForm />
-                </TabsContent>
-                
-                <TabsContent value="partner-location" className="p-6 mt-0">
-                  <PartnerLocationForm />
-                </TabsContent>
-              </Tabs>
-            </CardContent>
-          </Card>
+        <div className="bg-white rounded-lg shadow-sm border">
+          <Tabs defaultValue="partner-creation" className="w-full">
+            <div className="border-b bg-slate-50/50 px-6 py-4">
+              <TabsList className="grid w-full max-w-md grid-cols-2">
+                <TabsTrigger value="partner-creation" className="data-[state=active]:bg-brand-blue/10 data-[state=active]:text-brand-blue">
+                  Partner Creation
+                </TabsTrigger>
+                <TabsTrigger value="partner-location" className="data-[state=active]:bg-brand-blue/10 data-[state=active]:text-brand-blue">
+                  Partner Location Creation
+                </TabsTrigger>
+              </TabsList>
+            </div>
+            
+            <TabsContent value="partner-creation" className="p-6 mt-0">
+              <PartnerCreationForm />
+            </TabsContent>
+            
+            <TabsContent value="partner-location" className="p-6 mt-0">
+              <PartnerLocationForm />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </div>

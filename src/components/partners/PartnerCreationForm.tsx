@@ -39,228 +39,239 @@ export const PartnerCreationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="partner-code">
-            Partner Code <span className="text-brand-red">*</span>
-          </Label>
-          <Input
-            id="partner-code"
-            placeholder="Enter partner code"
-            required
-            className="border-gray-200 focus:border-brand-blue"
-          />
-        </div>
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      {/* Left Column - Basic Information */}
+      <div className="xl:col-span-1">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-slate-50/50 rounded-lg p-6">
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Basic Information</h3>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="partner-code">
+                  Partner Code <span className="text-brand-red">*</span>
+                </Label>
+                <Input
+                  id="partner-code"
+                  placeholder="Enter partner code"
+                  required
+                  className="border-gray-200 focus:border-brand-blue"
+                />
+              </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="channel">Channel</Label>
-          <Select>
-            <SelectTrigger className="border-gray-200 focus:border-brand-blue">
-              <SelectValue placeholder="Select channel" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="retail">Retail</SelectItem>
-              <SelectItem value="wholesale">Wholesale</SelectItem>
-              <SelectItem value="online">Online</SelectItem>
-              <SelectItem value="b2b">B2B</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+              <div className="space-y-2">
+                <Label htmlFor="channel">Channel</Label>
+                <Select>
+                  <SelectTrigger className="border-gray-200 focus:border-brand-blue">
+                    <SelectValue placeholder="Select channel" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="retail">Retail</SelectItem>
+                    <SelectItem value="wholesale">Wholesale</SelectItem>
+                    <SelectItem value="online">Online</SelectItem>
+                    <SelectItem value="b2b">B2B</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="gstin" className="flex items-center gap-2">
-            GSTIN
-            <Info className="h-4 w-4 text-muted-foreground" />
-          </Label>
-          <Input
-            id="gstin"
-            placeholder="Enter GSTIN"
-            disabled={!gstApplicable}
-            className="border-gray-200 focus:border-brand-blue"
-          />
-          <div className="flex items-center space-x-2 mt-2">
-            <Checkbox
-              id="gst-not-applicable"
-              checked={!gstApplicable}
-              onCheckedChange={(checked) => setGstApplicable(!checked)}
-            />
-            <Label htmlFor="gst-not-applicable" className="text-sm text-muted-foreground">
-              GST Not Applicable
-            </Label>
+              <div className="space-y-2">
+                <Label htmlFor="gstin" className="flex items-center gap-2">
+                  GSTIN
+                  <Info className="h-4 w-4 text-muted-foreground" />
+                </Label>
+                <Input
+                  id="gstin"
+                  placeholder="Enter GSTIN"
+                  disabled={!gstApplicable}
+                  className="border-gray-200 focus:border-brand-blue"
+                />
+                <div className="flex items-center space-x-2 mt-2">
+                  <Checkbox
+                    id="gst-not-applicable"
+                    checked={!gstApplicable}
+                    onCheckedChange={(checked) => setGstApplicable(!checked)}
+                  />
+                  <Label htmlFor="gst-not-applicable" className="text-sm text-muted-foreground">
+                    GST Not Applicable
+                  </Label>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <Label>Partner Type <span className="text-brand-red">*</span></Label>
+                <RadioGroup value={partnerType} onValueChange={setPartnerType} className="flex gap-6">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="supplier" id="supplier" />
+                    <Label htmlFor="supplier">Supplier</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="customer" id="customer" />
+                    <Label htmlFor="customer">Customer</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="space-y-3">
-          <Label>Partner Type <span className="text-brand-red">*</span></Label>
-          <RadioGroup value={partnerType} onValueChange={setPartnerType} className="flex gap-6">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="supplier" id="supplier" />
-              <Label htmlFor="supplier">Supplier</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="customer" id="customer" />
-              <Label htmlFor="customer">Customer</Label>
-            </div>
-          </RadioGroup>
-        </div>
+          {/* Action Buttons */}
+          <div className="flex justify-end gap-3 pt-4 border-t">
+            <Button type="button" variant="outline">
+              Cancel
+            </Button>
+            <Button type="submit" className="bg-brand-blue hover:bg-brand-blue/90">
+              Create Partner
+            </Button>
+          </div>
+        </form>
       </div>
 
-      {/* Billing Address Section */}
-      <Collapsible open={billingExpanded} onOpenChange={setBillingExpanded}>
-        <CollapsibleTrigger className="flex items-center justify-between w-full p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-          <h3 className="text-lg font-semibold">Billing Address</h3>
-          <ChevronDown className={cn("h-5 w-5 transition-transform", billingExpanded && "rotate-180")} />
-        </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg">
-            <div className="space-y-2">
-              <Label htmlFor="billing-name">
-                Name <span className="text-brand-red">*</span>
+      {/* Right Column - Address Information */}
+      <div className="xl:col-span-2 space-y-6">
+        {/* Billing Address Section */}
+        <Collapsible open={billingExpanded} onOpenChange={setBillingExpanded}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+            <h3 className="text-lg font-semibold">Billing Address</h3>
+            <ChevronDown className={cn("h-5 w-5 transition-transform", billingExpanded && "rotate-180")} />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6 border rounded-lg bg-white">
+              <div className="space-y-2">
+                <Label htmlFor="billing-name">
+                  Name <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-name" placeholder="Enter name" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="billing-phone">
+                  Phone <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-phone" placeholder="Enter phone number" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2 lg:col-span-2">
+                <Label htmlFor="billing-address1">
+                  Address Line 1 <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-address1" placeholder="Enter address line 1" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2 lg:col-span-2">
+                <Label htmlFor="billing-address2">Address Line 2</Label>
+                <Input id="billing-address2" placeholder="Enter address line 2" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="billing-city">
+                  City <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-city" placeholder="Enter city" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="billing-state">
+                  State <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-state" placeholder="Enter state" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="billing-zipcode">
+                  Zip Code <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-zipcode" placeholder="Enter zip code" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="billing-country">
+                  Country <span className="text-brand-red">*</span>
+                </Label>
+                <Select>
+                  <SelectTrigger className="border-gray-200 focus:border-brand-blue">
+                    <SelectValue placeholder="Select country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="in">India</SelectItem>
+                    <SelectItem value="us">United States</SelectItem>
+                    <SelectItem value="uk">United Kingdom</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2 lg:col-span-2">
+                <Label htmlFor="billing-email">
+                  Email <span className="text-brand-red">*</span>
+                </Label>
+                <Input id="billing-email" type="email" placeholder="Enter email address" required className="border-gray-200 focus:border-brand-blue" />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 mt-4">
+              <Checkbox
+                id="shipping-same"
+                checked={shippingSameAsBilling}
+                onCheckedChange={handleShippingSameChange}
+              />
+              <Label htmlFor="shipping-same" className="text-sm">
+                Shipping Address same as Billing Address
               </Label>
-              <Input id="billing-name" placeholder="Enter name" required className="border-gray-200 focus:border-brand-blue" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="billing-phone">
-                Phone <span className="text-brand-red">*</span>
-              </Label>
-              <Input id="billing-phone" placeholder="Enter phone number" required className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="billing-address1">
-                Address Line 1 <span className="text-brand-red">*</span>
-              </Label>
-              <Input id="billing-address1" placeholder="Enter address line 1" required className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="billing-address2">Address Line 2</Label>
-              <Input id="billing-address2" placeholder="Enter address line 2" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="billing-city">
-                City <span className="text-brand-red">*</span>
-              </Label>
-              <Input id="billing-city" placeholder="Enter city" required className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="billing-state">
-                State <span className="text-brand-red">*</span>
-              </Label>
-              <Input id="billing-state" placeholder="Enter state" required className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="billing-zipcode">
-                Zip Code <span className="text-brand-red">*</span>
-              </Label>
-              <Input id="billing-zipcode" placeholder="Enter zip code" required className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="billing-country">
-                Country <span className="text-brand-red">*</span>
-              </Label>
-              <Select>
-                <SelectTrigger className="border-gray-200 focus:border-brand-blue">
-                  <SelectValue placeholder="Select country" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="in">India</SelectItem>
-                  <SelectItem value="us">United States</SelectItem>
-                  <SelectItem value="uk">United Kingdom</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="billing-email">
-                Email <span className="text-brand-red">*</span>
-              </Label>
-              <Input id="billing-email" type="email" placeholder="Enter email address" required className="border-gray-200 focus:border-brand-blue" />
-            </div>
-          </div>
-          <div className="flex items-center space-x-2 mt-4">
-            <Checkbox
-              id="shipping-same"
-              checked={shippingSameAsBilling}
-              onCheckedChange={handleShippingSameChange}
-            />
-            <Label htmlFor="shipping-same" className="text-sm">
-              Shipping Address same as Billing Address
-            </Label>
-          </div>
-        </CollapsibleContent>
-      </Collapsible>
+          </CollapsibleContent>
+        </Collapsible>
 
-      {/* Shipping Address Section */}
-      <Collapsible open={shippingExpanded} onOpenChange={setShippingExpanded}>
-        <CollapsibleTrigger 
-          className="flex items-center justify-between w-full p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
-          disabled={shippingSameAsBilling}
-        >
-          <h3 className={cn("text-lg font-semibold", shippingSameAsBilling && "text-muted-foreground")}>
-            Shipping Address
-          </h3>
-          <ChevronDown className={cn("h-5 w-5 transition-transform", shippingExpanded && "rotate-180")} />
-        </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg">
-            {/* Same fields as billing address */}
-            <div className="space-y-2">
-              <Label htmlFor="shipping-name">Name</Label>
-              <Input id="shipping-name" placeholder="Enter name" className="border-gray-200 focus:border-brand-blue" />
+        {/* Shipping Address Section */}
+        <Collapsible open={shippingExpanded} onOpenChange={setShippingExpanded}>
+          <CollapsibleTrigger 
+            className="flex items-center justify-between w-full p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
+            disabled={shippingSameAsBilling}
+          >
+            <h3 className={cn("text-lg font-semibold", shippingSameAsBilling && "text-muted-foreground")}>
+              Shipping Address
+            </h3>
+            <ChevronDown className={cn("h-5 w-5 transition-transform", shippingExpanded && "rotate-180")} />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6 border rounded-lg bg-white">
+              {/* Same fields as billing address */}
+              <div className="space-y-2">
+                <Label htmlFor="shipping-name">Name</Label>
+                <Input id="shipping-name" placeholder="Enter name" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="shipping-phone">Phone</Label>
+                <Input id="shipping-phone" placeholder="Enter phone number" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2 lg:col-span-2">
+                <Label htmlFor="shipping-address1">Address Line 1</Label>
+                <Input id="shipping-address1" placeholder="Enter address line 1" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2 lg:col-span-2">
+                <Label htmlFor="shipping-address2">Address Line 2</Label>
+                <Input id="shipping-address2" placeholder="Enter address line 2" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="shipping-city">City</Label>
+                <Input id="shipping-city" placeholder="Enter city" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="shipping-state">State</Label>
+                <Input id="shipping-state" placeholder="Enter state" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="shipping-zipcode">Zip Code</Label>
+                <Input id="shipping-zipcode" placeholder="Enter zip code" className="border-gray-200 focus:border-brand-blue" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="shipping-country">Country</Label>
+                <Select>
+                  <SelectTrigger className="border-gray-200 focus:border-brand-blue">
+                    <SelectValue placeholder="Select country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="in">India</SelectItem>
+                    <SelectItem value="us">United States</SelectItem>
+                    <SelectItem value="uk">United Kingdom</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2 lg:col-span-2">
+                <Label htmlFor="shipping-email">Email</Label>
+                <Input id="shipping-email" type="email" placeholder="Enter email address" className="border-gray-200 focus:border-brand-blue" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="shipping-phone">Phone</Label>
-              <Input id="shipping-phone" placeholder="Enter phone number" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="shipping-address1">Address Line 1</Label>
-              <Input id="shipping-address1" placeholder="Enter address line 1" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="shipping-address2">Address Line 2</Label>
-              <Input id="shipping-address2" placeholder="Enter address line 2" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="shipping-city">City</Label>
-              <Input id="shipping-city" placeholder="Enter city" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="shipping-state">State</Label>
-              <Input id="shipping-state" placeholder="Enter state" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="shipping-zipcode">Zip Code</Label>
-              <Input id="shipping-zipcode" placeholder="Enter zip code" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="shipping-country">Country</Label>
-              <Select>
-                <SelectTrigger className="border-gray-200 focus:border-brand-blue">
-                  <SelectValue placeholder="Select country" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="in">India</SelectItem>
-                  <SelectItem value="us">United States</SelectItem>
-                  <SelectItem value="uk">United Kingdom</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="shipping-email">Email</Label>
-              <Input id="shipping-email" type="email" placeholder="Enter email address" className="border-gray-200 focus:border-brand-blue" />
-            </div>
-          </div>
-        </CollapsibleContent>
-      </Collapsible>
-
-      {/* Sticky Footer */}
-      <div className="sticky bottom-0 bg-white border-t p-4 flex justify-end gap-3 shadow-lg">
-        <Button type="button" variant="outline">
-          Cancel
-        </Button>
-        <Button type="submit" className="bg-brand-blue hover:bg-brand-blue/90">
-          Create Partner
-        </Button>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
-    </form>
+    </div>
   );
 };
