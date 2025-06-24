@@ -26,16 +26,24 @@ export const PartnerCreationForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <BasicInfoSection
-        channel={channel}
-        setChannel={setChannel}
-        excessGrnAllowed={excessGrnAllowed}
-        setExcessGrnAllowed={setExcessGrnAllowed}
-        partnerType={partnerType}
-        setPartnerType={setPartnerType}
-      />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Column - Basic Information */}
+        <div>
+          <BasicInfoSection
+            channel={channel}
+            setChannel={setChannel}
+            excessGrnAllowed={excessGrnAllowed}
+            setExcessGrnAllowed={setExcessGrnAllowed}
+            partnerType={partnerType}
+            setPartnerType={setPartnerType}
+          />
+        </div>
 
-      <AddressInfoSection />
+        {/* Right Column - Address Information */}
+        <div>
+          <AddressInfoSection />
+        </div>
+      </div>
 
       <FormActions />
     </form>

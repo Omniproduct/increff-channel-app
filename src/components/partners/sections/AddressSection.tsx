@@ -3,8 +3,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Copy } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 interface AddressData {
   name: string;
@@ -40,66 +39,65 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
     country: ''
   });
 
-  const handleCopyAddress = (source: 'billing' | 'shipping' | 'partner') => {
-    if (onCopyFrom) {
+  const handleCopyToggle = (source: 'billing' | 'shipping' | 'partner', checked: boolean) => {
+    if (checked && onCopyFrom) {
       onCopyFrom(source);
     }
   };
 
   return (
     <div className="bg-slate-50/50 rounded-lg p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-foreground mb-4">{title}</h3>
         {showCopyOptions && (
-          <div className="flex gap-2">
-            {prefix === 'billing' && (
-              <>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleCopyAddress('shipping')}
-                  className="text-xs"
-                >
-                  <Copy className="h-3 w-3 mr-1" />
-                  Copy from Shipping
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleCopyAddress('partner')}
-                  className="text-xs"
-                >
-                  <Copy className="h-3 w-3 mr-1" />
-                  Copy from Partner
-                </Button>
-              </>
-            )}
-            {prefix === 'shipping' && (
-              <>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleCopyAddress('billing')}
-                  className="text-xs"
-                >
-                  <Copy className="h-3 w-3 mr-1" />
-                  Copy from Billing
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleCopyAddress('partner')}
-                  className="text-xs"
-                >
-                  <Copy className="h-3 w-3 mr-1" />
-                  Copy from Partner
-                </Button>
-              </>
-            )}
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm text-muted-foreground mb-3">Copy address from:</p>
+            <div className="space-y-3">
+              {prefix === 'billing' && (
+                <>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor={`copy-from-shipping-${prefix}`} className="text-sm">
+                      Use same as Shipping Address
+                    </Label>
+                    <Switch
+                      id={`copy-from-shipping-${prefix}`}
+                      onCheckedChange={(checked) => handleCopyToggle('shipping', checked)}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor={`copy-from-partner-${prefix}`} className="text-sm">
+                      Use same as Partner Address
+                    </Label>
+                    <Switch
+                      id={`copy-from-partner-${prefix}`}
+                      onCheckedChange={(checked) => handleCopyToggle('partner', checked)}
+                    />
+                  </div>
+                </>
+              )}
+              {prefix === 'shipping' && (
+                <>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor={`copy-from-billing-${prefix}`} className="text-sm">
+                      Use same as Billing Address
+                    </Label>
+                    <Switch
+                      id={`copy-from-billing-${prefix}`}
+                      onCheckedChange={(checked) => handleCopyToggle('billing', checked)}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor={`copy-from-partner-${prefix}`} className="text-sm">
+                      Use same as Partner Address
+                    </Label>
+                    <Switch
+                      id={`copy-from-partner-${prefix}`}
+                      onCheckedChange={(checked) => handleCopyToggle('partner', checked)}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         )}
       </div>
