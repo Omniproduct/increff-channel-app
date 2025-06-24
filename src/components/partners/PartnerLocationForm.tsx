@@ -55,18 +55,26 @@ export const PartnerLocationForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <LocationBasicInfoSection
-        selectedPartner={selectedPartner}
-        setSelectedPartner={setSelectedPartner}
-        partnerType={partnerType}
-        setPartnerType={setPartnerType}
-        gstApplicable={gstApplicable}
-        setGstApplicable={setGstApplicable}
-        existingPartners={existingPartners}
-        channelOptions={channelOptions}
-      />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Column - Basic Information */}
+        <div>
+          <LocationBasicInfoSection
+            selectedPartner={selectedPartner}
+            setSelectedPartner={setSelectedPartner}
+            partnerType={partnerType}
+            setPartnerType={setPartnerType}
+            gstApplicable={gstApplicable}
+            setGstApplicable={setGstApplicable}
+            existingPartners={existingPartners}
+            channelOptions={channelOptions}
+          />
+        </div>
 
-      <LocationAddressInfoSection />
+        {/* Right Column - Address Information */}
+        <div>
+          <LocationAddressInfoSection />
+        </div>
+      </div>
 
       <FormActions submitButtonText="Add Location" />
     </form>
