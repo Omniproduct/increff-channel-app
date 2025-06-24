@@ -46,18 +46,18 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
   };
 
   return (
-    <div className="bg-slate-50/50 rounded-lg p-6">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-foreground mb-4">{title}</h3>
+    <div className="bg-slate-50/50 rounded-lg p-4">
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>
         {showCopyOptions && (
-          <div className="space-y-3 border-t pt-4">
-            <p className="text-sm text-muted-foreground mb-3">Copy address from:</p>
-            <div className="space-y-3">
+          <div className="space-y-2 border-t pt-3">
+            <p className="text-xs text-muted-foreground mb-2">Copy address from:</p>
+            <div className="space-y-2">
               {prefix === 'billing' && (
                 <>
                   <div className="flex items-center justify-between">
-                    <Label htmlFor={`copy-from-shipping-${prefix}`} className="text-sm">
-                      Use same as Shipping Address
+                    <Label htmlFor={`copy-from-shipping-${prefix}`} className="text-xs">
+                      Same as Shipping Address
                     </Label>
                     <Switch
                       id={`copy-from-shipping-${prefix}`}
@@ -65,8 +65,8 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label htmlFor={`copy-from-partner-${prefix}`} className="text-sm">
-                      Use same as Partner Address
+                    <Label htmlFor={`copy-from-partner-${prefix}`} className="text-xs">
+                      Same as Partner Address
                     </Label>
                     <Switch
                       id={`copy-from-partner-${prefix}`}
@@ -78,8 +78,8 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
               {prefix === 'shipping' && (
                 <>
                   <div className="flex items-center justify-between">
-                    <Label htmlFor={`copy-from-billing-${prefix}`} className="text-sm">
-                      Use same as Billing Address
+                    <Label htmlFor={`copy-from-billing-${prefix}`} className="text-xs">
+                      Same as Billing Address
                     </Label>
                     <Switch
                       id={`copy-from-billing-${prefix}`}
@@ -87,8 +87,8 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label htmlFor={`copy-from-partner-${prefix}`} className="text-sm">
-                      Use same as Partner Address
+                    <Label htmlFor={`copy-from-partner-${prefix}`} className="text-xs">
+                      Same as Partner Address
                     </Label>
                     <Switch
                       id={`copy-from-partner-${prefix}`}
@@ -103,32 +103,34 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
       </div>
       
       <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor={`${prefix}-name`}>
-            Name <span className="text-brand-red">*</span>
-          </Label>
-          <Input 
-            id={`${prefix}-name`} 
-            placeholder="Enter name" 
-            required 
-            className="border-gray-200 focus:border-brand-blue" 
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-1">
+            <Label htmlFor={`${prefix}-name`} className="text-sm">
+              Name <span className="text-brand-red">*</span>
+            </Label>
+            <Input 
+              id={`${prefix}-name`} 
+              placeholder="Enter name" 
+              required 
+              className="border-gray-200 focus:border-brand-blue h-9" 
+            />
+          </div>
+
+          <div className="space-y-1">
+            <Label htmlFor={`${prefix}-phone`} className="text-sm">
+              Phone <span className="text-brand-red">*</span>
+            </Label>
+            <Input 
+              id={`${prefix}-phone`} 
+              placeholder="Enter phone number" 
+              required 
+              className="border-gray-200 focus:border-brand-blue h-9" 
+            />
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor={`${prefix}-phone`}>
-            Phone <span className="text-brand-red">*</span>
-          </Label>
-          <Input 
-            id={`${prefix}-phone`} 
-            placeholder="Enter phone number" 
-            required 
-            className="border-gray-200 focus:border-brand-blue" 
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor={`${prefix}-email`}>
+        <div className="space-y-1">
+          <Label htmlFor={`${prefix}-email`} className="text-sm">
             Email <span className="text-brand-red">*</span>
           </Label>
           <Input 
@@ -136,83 +138,83 @@ export const AddressSection = ({ title, prefix, showCopyOptions = true, onCopyFr
             type="email" 
             placeholder="Enter email address" 
             required 
-            className="border-gray-200 focus:border-brand-blue" 
+            className="border-gray-200 focus:border-brand-blue h-9" 
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor={`${prefix}-address1`}>
+        <div className="space-y-1">
+          <Label htmlFor={`${prefix}-address1`} className="text-sm">
             Address Line 1 <span className="text-brand-red">*</span>
           </Label>
           <Input 
             id={`${prefix}-address1`} 
             placeholder="Enter address line 1" 
             required 
-            className="border-gray-200 focus:border-brand-blue" 
+            className="border-gray-200 focus:border-brand-blue h-9" 
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor={`${prefix}-address2`}>Address Line 2</Label>
+        <div className="space-y-1">
+          <Label htmlFor={`${prefix}-address2`} className="text-sm">Address Line 2</Label>
           <Input 
             id={`${prefix}-address2`} 
             placeholder="Enter address line 2" 
-            className="border-gray-200 focus:border-brand-blue" 
+            className="border-gray-200 focus:border-brand-blue h-9" 
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor={`${prefix}-address3`}>Address Line 3</Label>
+        <div className="space-y-1">
+          <Label htmlFor={`${prefix}-address3`} className="text-sm">Address Line 3</Label>
           <Input 
             id={`${prefix}-address3`} 
             placeholder="Enter address line 3" 
-            className="border-gray-200 focus:border-brand-blue" 
+            className="border-gray-200 focus:border-brand-blue h-9" 
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor={`${prefix}-city`}>
+          <div className="space-y-1">
+            <Label htmlFor={`${prefix}-city`} className="text-sm">
               City <span className="text-brand-red">*</span>
             </Label>
             <Input 
               id={`${prefix}-city`} 
               placeholder="Enter city" 
               required 
-              className="border-gray-200 focus:border-brand-blue" 
+              className="border-gray-200 focus:border-brand-blue h-9" 
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor={`${prefix}-state`}>
+          <div className="space-y-1">
+            <Label htmlFor={`${prefix}-state`} className="text-sm">
               State <span className="text-brand-red">*</span>
             </Label>
             <Input 
               id={`${prefix}-state`} 
               placeholder="Enter state" 
               required 
-              className="border-gray-200 focus:border-brand-blue" 
+              className="border-gray-200 focus:border-brand-blue h-9" 
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor={`${prefix}-zipcode`}>
+          <div className="space-y-1">
+            <Label htmlFor={`${prefix}-zipcode`} className="text-sm">
               Zip Code <span className="text-brand-red">*</span>
             </Label>
             <Input 
               id={`${prefix}-zipcode`} 
               placeholder="Enter zip code" 
               required 
-              className="border-gray-200 focus:border-brand-blue" 
+              className="border-gray-200 focus:border-brand-blue h-9" 
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor={`${prefix}-country`}>
+          <div className="space-y-1">
+            <Label htmlFor={`${prefix}-country`} className="text-sm">
               Country <span className="text-brand-red">*</span>
             </Label>
             <Select>
-              <SelectTrigger className="border-gray-200 focus:border-brand-blue">
+              <SelectTrigger className="border-gray-200 focus:border-brand-blue h-9">
                 <SelectValue placeholder="Select country" />
               </SelectTrigger>
               <SelectContent>

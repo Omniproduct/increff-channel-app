@@ -28,27 +28,27 @@ export const LocationBasicInfoSection = ({
   channelOptions
 }: LocationBasicInfoSectionProps) => {
   return (
-    <div className="bg-slate-50/50 rounded-lg p-6 h-fit">
-      <h3 className="text-lg font-semibold mb-6 text-foreground">Basic Information</h3>
-      <div className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="partner-location-code">
+    <div className="bg-slate-50/50 rounded-lg p-4">
+      <h3 className="text-lg font-semibold mb-4 text-foreground">Basic Information</h3>
+      <div className="space-y-4">
+        <div className="space-y-1">
+          <Label htmlFor="partner-location-code" className="text-sm">
             Partner Location Code <span className="text-brand-red">*</span>
           </Label>
           <Input
             id="partner-location-code"
             placeholder="Enter location code"
             required
-            className="border-gray-200 focus:border-brand-blue"
+            className="border-gray-200 focus:border-brand-blue h-9"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="partner-code">
+        <div className="space-y-1">
+          <Label htmlFor="partner-code" className="text-sm">
             Partner Code <span className="text-brand-red">*</span>
           </Label>
           <Select value={selectedPartner} onValueChange={setSelectedPartner}>
-            <SelectTrigger className="border-gray-200 focus:border-brand-blue">
+            <SelectTrigger className="border-gray-200 focus:border-brand-blue h-9">
               <SelectValue placeholder="Select existing partner" />
             </SelectTrigger>
             <SelectContent>
@@ -61,65 +61,67 @@ export const LocationBasicInfoSection = ({
           </Select>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="channel">Channel</Label>
-          <Select>
-            <SelectTrigger className="border-gray-200 focus:border-brand-blue">
-              <SelectValue placeholder="Select channel" />
-            </SelectTrigger>
-            <SelectContent>
-              {channelOptions.map((option) => (
-                <SelectItem key={option} value={option.toLowerCase()}>
-                  {option}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-1">
+            <Label htmlFor="channel" className="text-sm">Channel</Label>
+            <Select>
+              <SelectTrigger className="border-gray-200 focus:border-brand-blue h-9">
+                <SelectValue placeholder="Select channel" />
+              </SelectTrigger>
+              <SelectContent>
+                {channelOptions.map((option) => (
+                  <SelectItem key={option} value={option.toLowerCase()}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-1">
+            <Label htmlFor="priority" className="text-sm">Priority</Label>
+            <Input
+              id="priority"
+              type="number"
+              placeholder="Enter priority"
+              className="border-gray-200 focus:border-brand-blue h-9"
+            />
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="priority">Priority</Label>
-          <Input
-            id="priority"
-            type="number"
-            placeholder="Enter priority"
-            className="border-gray-200 focus:border-brand-blue"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="gstin" className="flex items-center gap-2">
+        <div className="space-y-1">
+          <Label htmlFor="gstin" className="flex items-center gap-2 text-sm">
             GSTIN
-            <Info className="h-4 w-4 text-muted-foreground" />
+            <Info className="h-3 w-3 text-muted-foreground" />
           </Label>
           <Input
             id="gstin"
             placeholder="Enter GSTIN"
             disabled={!gstApplicable}
-            className="border-gray-200 focus:border-brand-blue"
+            className="border-gray-200 focus:border-brand-blue h-9"
           />
-          <div className="flex items-center space-x-2 mt-2">
+          <div className="flex items-center space-x-2 mt-1">
             <Checkbox
               id="gst-not-applicable"
               checked={!gstApplicable}
               onCheckedChange={(checked) => setGstApplicable(!checked)}
             />
-            <Label htmlFor="gst-not-applicable" className="text-sm text-muted-foreground">
+            <Label htmlFor="gst-not-applicable" className="text-xs text-muted-foreground">
               GST Not Applicable
             </Label>
           </div>
         </div>
 
-        <div className="space-y-3">
-          <Label>Partner Type <span className="text-brand-red">*</span></Label>
+        <div className="space-y-2">
+          <Label className="text-sm">Partner Type <span className="text-brand-red">*</span></Label>
           <RadioGroup value={partnerType} onValueChange={setPartnerType} disabled={!!selectedPartner} className="flex gap-6">
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="supplier" id="location-supplier" />
-              <Label htmlFor="location-supplier">Supplier</Label>
+              <Label htmlFor="location-supplier" className="text-sm">Supplier</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="customer" id="location-customer" />
-              <Label htmlFor="location-customer">Customer</Label>
+              <Label htmlFor="location-customer" className="text-sm">Customer</Label>
             </div>
           </RadioGroup>
           {selectedPartner && (
