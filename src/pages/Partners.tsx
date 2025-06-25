@@ -9,8 +9,8 @@ import { PartnerLocationForm } from "@/components/partners/PartnerLocationForm";
 
 const Partners = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50">
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm sticky top-0 z-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
+      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm sticky top-0 z-50">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
             <Link to="/main">
@@ -26,21 +26,21 @@ const Partners = () => {
                   alt="Increff Logo" 
                   className="h-10 w-10 transition-transform duration-300 hover:scale-110 rounded-lg shadow-sm"
                 />
-                <div className="absolute inset-0 rounded-lg bg-brand-blue/10 animate-pulse"></div>
+                <div className="absolute inset-0 rounded-lg bg-primary/10 animate-pulse"></div>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-foreground">Increff Channel App</h1>
+                <h1 className="text-lg font-bold text-primary">Increff Channel App</h1>
                 <p className="text-xs text-muted-foreground">Partner Management</p>
               </div>
             </div>
           </div>
-          <Badge variant="outline" className="font-mono text-xs">
+          <div className="text-sm text-muted-foreground">
             dhl-ae-omni | raghav.mehta
-          </Badge>
+          </div>
         </div>
       </header>
 
-      <main className="container-fluid px-6 py-6">
+      <main className="container py-6">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-foreground mb-2">Partner Management</h1>
           <p className="text-muted-foreground">Create and manage your business partners and their locations</p>
@@ -50,10 +50,10 @@ const Partners = () => {
           <Tabs defaultValue="partner-creation" className="w-full">
             <div className="border-b bg-slate-50/50 px-6 py-4">
               <TabsList className="grid w-full max-w-md grid-cols-2">
-                <TabsTrigger value="partner-creation" className="data-[state=active]:bg-brand-blue/10 data-[state=active]:text-brand-blue">
+                <TabsTrigger value="partner-creation" className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary">
                   Partner Creation
                 </TabsTrigger>
-                <TabsTrigger value="partner-location" className="data-[state=active]:bg-brand-blue/10 data-[state=active]:text-brand-blue">
+                <TabsTrigger value="partner-location" className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary">
                   Partner Location Creation
                 </TabsTrigger>
               </TabsList>
