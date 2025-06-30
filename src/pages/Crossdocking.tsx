@@ -37,8 +37,21 @@ const Crossdocking = () => {
         </div>
       </header>
 
-      <main className="container py-6">
-        <CrossdockingTabs />
+      <main className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">
+              Crossdocking Operations
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Create and manage crossdocking plans for efficient item and box transfers across your warehouse operations
+            </p>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 overflow-hidden">
+            <CrossdockingTabs />
+          </div>
+        </div>
       </main>
     </div>
   );
