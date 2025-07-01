@@ -107,7 +107,7 @@ export const B2COrderForm = () => {
             }`}
           >
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Partner Details</CardTitle>
+              <CardTitle>Channel and Location Information</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <PartnerDetailsSection 

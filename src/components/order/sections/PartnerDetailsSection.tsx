@@ -96,16 +96,6 @@ export const PartnerDetailsSection = ({ onFocus, onBlur, isB2B, variant }: Partn
           </div>
         </>
       )}
-      
-      {!isB2B && (
-        <OMSDropdown
-          label="Partner Location Code"
-          placeholder="Select Partner Location Code"
-          options={["PARTLOC001", "PARTLOC002", "PARTLOC003"]}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
-      )}
     </div>
   );
 };
