@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { OrderTypeSelector } from "./OrderTypeSelector";
 import { B2COrderForm } from "./B2COrderForm";
 import { B2BOrderForm } from "./B2BOrderForm";
@@ -10,6 +12,7 @@ import { BulkUploadForm } from "./BulkUploadForm";
 export const OrderCreationTabs = () => {
   const [orderType, setOrderType] = useState("b2c");
   const [isBulkUpload, setIsBulkUpload] = useState(false);
+  const [purpose, setPurpose] = useState("");
 
   const renderOrderForm = () => {
     if (isBulkUpload) {
@@ -36,6 +39,20 @@ export const OrderCreationTabs = () => {
         </CardHeader>
         <CardContent className="p-6 space-y-4">
           <OrderTypeSelector value={orderType} onChange={setOrderType} />
+          
+          <div className="space-y-2">
+            <Label htmlFor="purpose">Purpose</Label>
+            <Select value={purpose} onValueChange={setPurpose}>
+              <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
+                <SelectValue placeholder="Select Purpose" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="cross-dock">Cross dock</SelectItem>
+                <SelectItem value="storage">Storage</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
         </CardContent>
       </Card>
