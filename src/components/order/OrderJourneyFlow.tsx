@@ -1,6 +1,7 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowDown, ArrowRight, CheckCircle, Upload, FileText, Users, Package, ShoppingCart, Box } from "lucide-react";
+import { ArrowDown, ArrowRight, CheckCircle, Upload, FileText, Users, Package, ShoppingCart, Box, Building, ArrowLeftRight } from "lucide-react";
 
 export const OrderJourneyFlow = () => {
   const FlowStep = ({ 
@@ -66,27 +67,28 @@ export const OrderJourneyFlow = () => {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header Section */}
       <div className="text-center space-y-4 mb-8">
         <div className="flex justify-center items-center gap-4 mb-4">
           <StaticIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
-          <StaticIcon icon={Package} className="bg-green-100 text-green-600" />
-          <StaticIcon icon={Box} className="bg-orange-100 text-orange-600" />
+          <StaticIcon icon={Users} className="bg-purple-100 text-purple-600" />
+          <StaticIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600" />
         </div>
         <h2 className="text-4xl font-bold text-primary animate-fade-in">
-          Order Creation Journey
+          Application User Guide
         </h2>
         <p className="text-lg text-muted-foreground animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          Complete workflow visualization for all order types
+          Complete workflow visualization for all application modules
         </p>
       </div>
 
+      {/* Orders Section */}
       <Card className="border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300">
         <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
           <CardTitle className="flex items-center gap-3">
             <div className="relative">
-              <Package className="h-6 w-6 text-primary" />
+              <ShoppingCart className="h-6 w-6 text-primary" />
             </div>
             Order Creation Journey Flow
             <div className="ml-auto flex gap-2">
@@ -107,18 +109,18 @@ export const OrderJourneyFlow = () => {
               </div>
               
               <FlowStep
-                icon={FileText}
-                title="Order Configuration"
-                description="Select B2C order type and set bulk upload preference"
+                icon={ShoppingCart}
+                title="Open Orders Screen"
+                description="Navigate to the orders screen from main dashboard"
                 stepNumber={1}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Package}
-                title="Order Information"
-                description="Enter Parent Order ID and Order ID (required)"
+                icon={FileText}
+                title="Select Order Type & Purpose"
+                description="Choose B2C from dropdown and select purpose (storage or crossdock)"
                 variant="warning"
                 stepNumber={2}
               />
@@ -126,28 +128,28 @@ export const OrderJourneyFlow = () => {
               <FlowArrow />
               
               <FlowStep
-                icon={Users}
-                title="Partner Details"
-                description="Select Channel, Location Code, and Partner Location Code"
+                icon={Package}
+                title="Enter Order Information"
+                description="Fill Parent Order ID and Channel Order ID (required)"
+                variant="warning"
                 stepNumber={3}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={CheckCircle}
-                title="Order Type & SLA"
-                description="Set QC Status, Payment Type, and SLA Date/Time"
+                icon={Building}
+                title="Select Channel & Location"
+                description="Choose channel name and warehouse/store location from dropdown"
                 stepNumber={4}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Upload}
-                title="Upload Order Items"
-                description="Upload CSV file with order line items"
-                variant="success"
+                icon={CheckCircle}
+                title="Additional Configurations"
+                description="Set QC type, SLA/Customer Promised time, Pool name for inventory allocation"
                 stepNumber={5}
               />
               
@@ -155,29 +157,39 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={FileText}
-                title="Shipping Address"
-                description="Fill form manually or upload CSV"
-                variant="warning"
+                title="Custom Attributes"
+                description="Add required custom attribute values for the order"
                 stepNumber={6}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={FileText}
-                title="Billing Address"
-                description="Fill form or use same as shipping address"
+                icon={Upload}
+                title="Upload Order Items CSV"
+                description="Upload CSV file containing order/product details"
+                variant="success"
                 stepNumber={7}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={CheckCircle}
-                title="Submit Order"
-                description="Review and submit the complete B2C order"
-                variant="success"
+                icon={FileText}
+                title="Add Customer Addresses"
+                description="Fill shipping and billing address details of customer"
+                variant="warning"
                 stepNumber={8}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Review & Submit"
+                description="Review all details and submit the complete B2C order"
+                variant="success"
+                stepNumber={9}
               />
             </div>
 
@@ -190,57 +202,56 @@ export const OrderJourneyFlow = () => {
               </div>
               
               <FlowStep
-                icon={FileText}
-                title="Order Configuration"
-                description="Select B2B Inward order type and bulk upload preference"
+                icon={ShoppingCart}
+                title="Open Orders Screen"
+                description="Navigate to the orders screen from main dashboard"
                 stepNumber={1}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Package}
-                title="Order Information"
-                description="Enter Parent Order ID and Order Code"
+                icon={FileText}
+                title="Select Order Type & Purpose"
+                description="Choose B2B Inward from dropdown and select purpose (storage or crossdock)"
+                variant="warning"
                 stepNumber={2}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Users}
-                title="Partner Details"
-                description="Select Channel, Location Code, and Supplier Name"
-                variant="warning"
+                icon={Package}
+                title="Enter Order Information"
+                description="Fill Parent Order ID and Channel Order ID"
                 stepNumber={3}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={FileText}
-                title="Use Case Selection"
-                description="Choose from Purchase, Return, Open PO, Open Return"
-                variant="warning"
+                icon={Building}
+                title="Select Channel & Location"
+                description="Choose channel name and warehouse/store location from dropdown"
                 stepNumber={4}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={CheckCircle}
-                title="Order Type & SLA"
-                description="Set QC Status, Payment Type, and SLA Date/Time"
+                icon={Users}
+                title="Supplier Details & Use Case"
+                description="Add supplier information and select use case (Purchase, Return, Open PO, Open Return)"
+                variant="warning"
                 stepNumber={5}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Upload}
-                title="Upload Order Items"
-                description="Upload CSV file with inward order items"
-                variant="success"
+                icon={CheckCircle}
+                title="Additional Configurations"
+                description="Set QC type, SLA, Pool strategy for inventory allocation"
                 stepNumber={6}
               />
               
@@ -249,19 +260,28 @@ export const OrderJourneyFlow = () => {
               <FlowStep
                 icon={FileText}
                 title="Custom Attributes"
-                description="Configure combo order, gift order, priority settings"
-                isOptional
+                description="Add required custom attribute values for the order"
                 stepNumber={7}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={CheckCircle}
-                title="Submit Order"
-                description="Review and submit the complete B2B inward order"
+                icon={Upload}
+                title="Upload Order Items CSV"
+                description="Upload CSV file containing inward order/product details"
                 variant="success"
                 stepNumber={8}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Review & Submit"
+                description="Review all details and submit the complete B2B inward order"
+                variant="success"
+                stepNumber={9}
               />
             </div>
 
@@ -274,57 +294,56 @@ export const OrderJourneyFlow = () => {
               </div>
               
               <FlowStep
-                icon={FileText}
-                title="Order Configuration"
-                description="Select B2B Outward order type and bulk upload preference"
+                icon={ShoppingCart}
+                title="Open Orders Screen"
+                description="Navigate to the orders screen from main dashboard"
                 stepNumber={1}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Package}
-                title="Order Information"
-                description="Enter Parent Order ID and Order Code"
+                icon={FileText}
+                title="Select Order Type & Purpose"
+                description="Choose B2B Outward from dropdown and select purpose (storage or crossdock)"
+                variant="warning"
                 stepNumber={2}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Users}
-                title="Partner Details"
-                description="Select Channel, Location Code, and Customer Name"
-                variant="warning"
+                icon={Package}
+                title="Enter Order Information"
+                description="Fill Parent Order ID and Channel Order ID"
                 stepNumber={3}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={FileText}
-                title="Use Case Selection"
-                description="Choose from Sales, Stock Transfer, Return to Vendor"
-                variant="warning"
+                icon={Building}
+                title="Select Channel & Location"
+                description="Choose channel name and warehouse/store location from dropdown"
                 stepNumber={4}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={CheckCircle}
-                title="Order Type & SLA"
-                description="Set QC Status, Payment Type, and SLA Date/Time"
+                icon={Users}
+                title="Customer Details & Use Case"
+                description="Add customer information and select use case (Sales, Stock Transfer, Return to Vendor)"
+                variant="warning"
                 stepNumber={5}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Upload}
-                title="Upload Order Items"
-                description="Upload CSV file with outward order items"
-                variant="success"
+                icon={CheckCircle}
+                title="Additional Configurations"
+                description="Set QC type, SLA/Customer Promised time, Pool strategy for inventory allocation"
                 stepNumber={6}
               />
               
@@ -333,70 +352,333 @@ export const OrderJourneyFlow = () => {
               <FlowStep
                 icon={FileText}
                 title="Custom Attributes"
-                description="Configure combo order, gift order, priority settings"
-                isOptional
+                description="Add required custom attribute values for the order"
                 stepNumber={7}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={CheckCircle}
-                title="Submit Order"
-                description="Review and submit the complete B2B outward order"
+                icon={Upload}
+                title="Upload Order Items CSV"
+                description="Upload CSV file containing outward order/product details"
                 variant="success"
                 stepNumber={8}
               />
-            </div>
-          </div>
-
-          {/* Legend */}
-          <div className="mt-12 pt-8 border-t border-blue-200">
-            <div className="text-center mb-6">
-              <h4 className="font-bold text-xl mb-2 text-primary">Legend & Quick Reference</h4>
-              <div className="flex justify-center gap-4 mb-4">
-                <StaticIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
-                <StaticIcon icon={Package} className="bg-green-100 text-green-600" />
-                <StaticIcon icon={Box} className="bg-orange-100 text-orange-600" />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <div className="w-6 h-6 rounded border-2 border-blue-200 bg-blue-50"></div>
-                <span className="font-medium">Standard Step</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <div className="w-6 h-6 rounded border-2 border-orange-200 bg-orange-50"></div>
-                <span className="font-medium">Required Field</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <div className="w-6 h-6 rounded border-2 border-green-200 bg-green-50"></div>
-                <span className="font-medium">File Upload</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
-                <Badge variant="outline" className="text-xs">Optional</Badge>
-                <span className="font-medium">Optional Step</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats Section */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-              <div className="text-2xl font-bold text-blue-600">8</div>
-              <div className="text-sm text-blue-700">Steps per Flow</div>
-            </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-              <div className="text-2xl font-bold text-green-600">3</div>
-              <div className="text-sm text-green-700">Order Types</div>
-            </div>
-            <div className="text-center p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
-              <div className="text-2xl font-bold text-orange-600">2</div>
-              <div className="text-sm text-orange-700">Upload Methods</div>
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Review & Submit"
+                description="Review all details and submit the complete B2B outward order"
+                variant="success"
+                stepNumber={9}
+              />
             </div>
           </div>
         </CardContent>
       </Card>
+
+      {/* Partners Section */}
+      <Card className="border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+          <CardTitle className="flex items-center gap-3">
+            <div className="relative">
+              <Users className="h-6 w-6 text-purple-600" />
+            </div>
+            Partner Management Journey Flow
+            <div className="ml-auto flex gap-2">
+              <StaticIcon icon={Users} className="bg-purple-100 text-purple-600" />
+              <StaticIcon icon={Building} className="bg-purple-100 text-purple-600" />
+            </div>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-8">
+          <div className="grid gap-12 lg:grid-cols-2">
+            
+            {/* Partner Creation Flow */}
+            <div className="space-y-6 animate-fade-in">
+              <div className="text-center">
+                <Badge className="bg-purple-600 text-white px-6 py-3 text-base font-bold shadow-lg hover:scale-105 transition-transform">
+                  👥 Partner Creation Flow
+                </Badge>
+              </div>
+              
+              <FlowStep
+                icon={Users}
+                title="Open Partners Screen"
+                description="Navigate to partners screen and select Partner Creation tab"
+                stepNumber={1}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={FileText}
+                title="Basic Information"
+                description="Fill partner name, type, and contact details"
+                variant="warning"
+                stepNumber={2}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Building}
+                title="Address Information"
+                description="Complete partner's business address details"
+                stepNumber={3}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Review & Create Partner"
+                description="Review all information and create the partner"
+                variant="success"
+                stepNumber={4}
+              />
+            </div>
+
+            {/* Partner Location Creation Flow */}
+            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="text-center">
+                <Badge className="bg-indigo-600 text-white px-6 py-3 text-base font-bold shadow-lg hover:scale-105 transition-transform">
+                  📍 Partner Location Creation Flow
+                </Badge>
+              </div>
+              
+              <FlowStep
+                icon={Users}
+                title="Open Partners Screen"
+                description="Navigate to partners screen and select Partner Location Creation tab"
+                stepNumber={1}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Building}
+                title="Select Existing Partner"
+                description="Choose from existing partners or create new partner first"
+                variant="warning"
+                stepNumber={2}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={FileText}
+                title="Location Basic Information"
+                description="Fill location name, code, and operational details"
+                variant="warning"
+                stepNumber={3}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Building}
+                title="Location Address"
+                description="Complete specific address for this partner location"
+                stepNumber={4}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Review & Create Location"
+                description="Review all information and create the partner location"
+                variant="success"
+                stepNumber={5}
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Crossdocking Section */}
+      <Card className="border-orange-200 shadow-lg hover:shadow-xl transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-orange-50 to-red-50">
+          <CardTitle className="flex items-center gap-3">
+            <div className="relative">
+              <ArrowLeftRight className="h-6 w-6 text-orange-600" />
+            </div>
+            Crossdocking Operations Journey Flow
+            <div className="ml-auto flex gap-2">
+              <StaticIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600" />
+              <StaticIcon icon={Box} className="bg-orange-100 text-orange-600" />
+            </div>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-8">
+          <div className="grid gap-12 lg:grid-cols-2">
+            
+            {/* Item Crossdocking Flow */}
+            <div className="space-y-6 animate-fade-in">
+              <div className="text-center">
+                <Badge className="bg-orange-600 text-white px-6 py-3 text-base font-bold shadow-lg hover:scale-105 transition-transform">
+                  📦 Item Crossdocking Flow
+                </Badge>
+              </div>
+              
+              <FlowStep
+                icon={ArrowLeftRight}
+                title="Open Crossdocking Screen"
+                description="Navigate to crossdocking screen and select Item Crossdocking tab"
+                stepNumber={1}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={FileText}
+                title="Plan Configuration"
+                description="Set crossdocking plan details and operational parameters"
+                variant="warning"
+                stepNumber={2}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Building}
+                title="Source & Destination"
+                description="Select source location and destination warehouse details"
+                stepNumber={3}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Upload}
+                title="Upload Item Details"
+                description="Upload CSV with item specifications for crossdocking"
+                variant="success"
+                stepNumber={4}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Create Crossdocking Plan"
+                description="Review and create the item crossdocking plan"
+                variant="success"
+                stepNumber={5}
+              />
+            </div>
+
+            {/* Box Crossdocking Flow */}
+            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="text-center">
+                <Badge className="bg-red-600 text-white px-6 py-3 text-base font-bold shadow-lg hover:scale-105 transition-transform">
+                  📫 Box Crossdocking Flow
+                </Badge>
+              </div>
+              
+              <FlowStep
+                icon={ArrowLeftRight}
+                title="Open Crossdocking Screen"
+                description="Navigate to crossdocking screen and select Box Crossdocking tab"
+                stepNumber={1}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={FileText}
+                title="Plan Configuration"
+                description="Set bulk crossdocking plan details and operational parameters"
+                variant="warning"
+                stepNumber={2}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Building}
+                title="Source & Destination"
+                description="Select source location and destination warehouse for bulk transfer"
+                stepNumber={3}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Upload}
+                title="Upload Box Details"
+                description="Upload CSV with box/container specifications for bulk crossdocking"
+                variant="success"
+                stepNumber={4}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={CheckCircle}
+                title="Create Bulk Crossdocking Plan"
+                description="Review and create the box crossdocking plan"
+                variant="success"
+                stepNumber={5}
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Legend */}
+      <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="text-center mb-6">
+          <h4 className="font-bold text-xl mb-2 text-primary">Legend & Quick Reference</h4>
+          <div className="flex justify-center gap-4 mb-4">
+            <StaticIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600" />
+            <StaticIcon icon={Users} className="bg-purple-100 text-purple-600" />
+            <StaticIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
+            <div className="w-6 h-6 rounded border-2 border-blue-200 bg-blue-50"></div>
+            <span className="font-medium">Standard Step</span>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
+            <div className="w-6 h-6 rounded border-2 border-orange-200 bg-orange-50"></div>
+            <span className="font-medium">Required Field</span>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
+            <div className="w-6 h-6 rounded border-2 border-green-200 bg-green-50"></div>
+            <span className="font-medium">File Upload</span>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 hover:bg-white transition-colors">
+            <Badge variant="outline" className="text-xs">Optional</Badge>
+            <span className="font-medium">Optional Step</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="text-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+          <div className="text-2xl font-bold text-blue-600">3</div>
+          <div className="text-sm text-blue-700">Order Types</div>
+        </div>
+        <div className="text-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+          <div className="text-2xl font-bold text-purple-600">2</div>
+          <div className="text-sm text-purple-700">Partner Workflows</div>
+        </div>
+        <div className="text-center p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
+          <div className="text-2xl font-bold text-orange-600">2</div>
+          <div className="text-sm text-orange-700">Crossdocking Types</div>
+        </div>
+        <div className="text-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+          <div className="text-2xl font-bold text-green-600">7</div>
+          <div className="text-sm text-green-700">Total Modules</div>
+        </div>
+      </div>
     </div>
   );
 };
