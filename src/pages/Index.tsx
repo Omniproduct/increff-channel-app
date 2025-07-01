@@ -62,9 +62,17 @@ const Index = () => {
               <p className="text-xs text-muted-foreground">Order Management System</p>
             </div>
           </div>
-          <Badge variant="outline" className="font-mono text-xs">
-            dhl-ae-omni | raghav.mehta
-          </Badge>
+          <div className="flex items-center gap-4">
+            <Link to="/journey">
+              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform">
+                <BookOpen className="h-4 w-4" />
+                User Guide
+              </Button>
+            </Link>
+            <Badge variant="outline" className="font-mono text-xs">
+              dhl-ae-omni | raghav.mehta
+            </Badge>
+          </div>
         </div>
       </header>
 
@@ -74,9 +82,8 @@ const Index = () => {
         <div className="text-center">
           <div className="flex justify-center items-center gap-8 mb-8">
             <AnimatedIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600 shadow-lg border-2 border-blue-200" delay={0} />
-            <AnimatedIcon icon={Package} className="bg-emerald-100 text-emerald-600 shadow-lg border-2 border-emerald-200" delay={0.5} />
-            <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1} />
-            <AnimatedIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600 shadow-lg border-2 border-orange-200" delay={1.5} />
+            <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={0.5} />
+            <AnimatedIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600 shadow-lg border-2 border-orange-200" delay={1} />
           </div>
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tight text-foreground">Channel Management Hub</h2>
@@ -87,7 +94,7 @@ const Index = () => {
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <FeatureCard
             icon={ShoppingCart}
             title="Orders"
@@ -110,14 +117,6 @@ const Index = () => {
             description="Create item cross dock plans for efficient bulk and item crossdocking operations"
             to="/crossdocking"
             className="bg-orange-100 text-orange-600 border-2 border-orange-200"
-          />
-          
-          <FeatureCard
-            icon={BookOpen}
-            title="User Guide"
-            description="View comprehensive user journey and application usage guidelines for optimal workflow"
-            to="/journey"
-            className="bg-indigo-100 text-indigo-600 border-2 border-indigo-200"
           />
         </div>
       </main>
