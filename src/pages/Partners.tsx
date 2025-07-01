@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PartnerCreationForm } from "@/components/partners/PartnerCreationForm";
 import { PartnerLocationForm } from "@/components/partners/PartnerLocationForm";
+import { ScreenHeader } from "@/components/ui/screen-header";
 
 const Partners = () => {
   return (
@@ -41,19 +42,19 @@ const Partners = () => {
       </header>
 
       <main className="container py-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Partner Management</h1>
-          <p className="text-muted-foreground">Create and manage your business partners and their locations</p>
-        </div>
+        <ScreenHeader 
+          title="Partner Management"
+          subtitle="Create and manage your business partners and their locations"
+        />
 
-        <div className="bg-white rounded-lg shadow-sm border">
+        <div className="bg-white rounded-xl shadow-lg border border-white/20 overflow-hidden">
           <Tabs defaultValue="partner-creation" className="w-full">
             <div className="border-b bg-slate-50/50 px-6 py-4">
-              <TabsList className="grid w-full max-w-md grid-cols-2">
-                <TabsTrigger value="partner-creation" className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary">
+              <TabsList className="grid w-full max-w-md grid-cols-2 bg-white">
+                <TabsTrigger value="partner-creation" className="data-[state=active]:bg-primary data-[state=active]:text-white">
                   Partner Creation
                 </TabsTrigger>
-                <TabsTrigger value="partner-location" className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary">
+                <TabsTrigger value="partner-location" className="data-[state=active]:bg-primary data-[state=active]:text-white">
                   Partner Location Creation
                 </TabsTrigger>
               </TabsList>

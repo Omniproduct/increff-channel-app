@@ -3,6 +3,7 @@ import { OrderJourneyFlow } from "@/components/order/OrderJourneyFlow";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ScreenHeader } from "@/components/ui/screen-header";
 
 const OrderJourney = () => {
   return (
@@ -37,6 +38,10 @@ const OrderJourney = () => {
         </div>
       </header>
       <main className="container py-6">
+        <ScreenHeader 
+          title="Order Creation Journey"
+          subtitle="Follow the step-by-step process for creating and managing orders"
+        />
         <OrderJourneyFlow />
       </main>
     </div>

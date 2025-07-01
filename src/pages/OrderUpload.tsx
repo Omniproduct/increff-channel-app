@@ -4,6 +4,7 @@ import { OrderCreationTabs } from "@/components/order/OrderCreationTabs";
 import { Button } from "@/components/ui/button";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ScreenHeader } from "@/components/ui/screen-header";
 
 const OrderUpload = () => {
   return (
@@ -46,6 +47,10 @@ const OrderUpload = () => {
         </div>
       </header>
       <main className="container py-6">
+        <ScreenHeader 
+          title="Order Management"
+          subtitle="Create and manage your orders with comprehensive processing capabilities"
+        />
         <OrderCreationTabs />
       </main>
     </div>

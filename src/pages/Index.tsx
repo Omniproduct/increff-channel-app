@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Package, Box, Truck, Upload, FileText, Users, ArrowLeftRight, BookOpen } from "lucide-react";
+import { ShoppingCart, Package, Users, ArrowLeftRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -27,12 +27,12 @@ const Index = () => {
     className: string; 
   }) => (
     <Link to={to} className="group transition-all duration-300 hover:scale-105">
-      <Card className="h-full border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
+      <Card className="h-full border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-white">
         <CardHeader className="text-center pb-4">
           <div className={`${className} rounded-full p-4 inline-flex mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
             <Icon className="h-8 w-8" />
           </div>
-          <CardTitle className="text-xl font-semibold">{title}</CardTitle>
+          <CardTitle className="text-xl font-semibold text-foreground">{title}</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription className="text-center text-muted-foreground leading-relaxed">
@@ -75,8 +75,8 @@ const Index = () => {
           <div className="flex justify-center items-center gap-8 mb-8">
             <AnimatedIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600 shadow-lg border-2 border-blue-200" delay={0} />
             <AnimatedIcon icon={Package} className="bg-emerald-100 text-emerald-600 shadow-lg border-2 border-emerald-200" delay={0.5} />
-            <AnimatedIcon icon={Box} className="bg-orange-100 text-orange-600 shadow-lg border-2 border-orange-200" delay={1} />
-            <AnimatedIcon icon={Truck} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1.5} />
+            <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1} />
+            <AnimatedIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600 shadow-lg border-2 border-orange-200" delay={1.5} />
           </div>
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tight text-foreground">Channel Management Hub</h2>
@@ -110,14 +110,6 @@ const Index = () => {
             description="Create item cross dock plans for efficient bulk and item crossdocking operations"
             to="/crossdocking"
             className="bg-orange-100 text-orange-600 border-2 border-orange-200"
-          />
-          
-          <FeatureCard
-            icon={Upload}
-            title="Bulk Upload"
-            description="Process multiple orders simultaneously using CSV file uploads for enhanced productivity"
-            to="/order-upload"
-            className="bg-red-100 text-red-600 border-2 border-red-200"
           />
           
           <FeatureCard
