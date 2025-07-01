@@ -88,10 +88,11 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
             }`}
           >
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Order Type & SLA</CardTitle>
+              <CardTitle>Additional Configurations</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <OrderTypeSection 
+                orderType={variant === "inward" ? "b2b-inward" : "b2b-outward"}
                 onFocus={() => setFocusedCard("order-type")}
                 onBlur={() => setFocusedCard(null)}
               />

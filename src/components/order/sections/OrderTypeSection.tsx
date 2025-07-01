@@ -4,11 +4,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { SLADateTimePicker } from "../SLADateTimePicker";
 
 interface OrderTypeSectionProps {
+  orderType?: string;
   onFocus?: () => void;
   onBlur?: () => void;
 }
 
-export const OrderTypeSection = ({ onFocus, onBlur }: OrderTypeSectionProps) => {
+export const OrderTypeSection = ({ orderType, onFocus, onBlur }: OrderTypeSectionProps) => {
+  const showPoolName = orderType === "b2c" || orderType === "b2b-outward";
+  const showPoolStrategy = orderType === "b2b-inward";
+
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -44,6 +48,46 @@ export const OrderTypeSection = ({ onFocus, onBlur }: OrderTypeSectionProps) => 
           </SelectContent>
         </Select>
       </div>
+
+      {showPoolName && (
+        <div className="space-y-2">
+          <Label htmlFor="pool-name">Pool Name</Label>
+          <Select>
+            <SelectTrigger 
+              className="rounded-lg bg-white border-blue-200 focus:border-primary"
+              onFocus={onFocus}
+              onBlur={onBlur}
+            >
+              <SelectValue placeholder="Select Pool Name" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="common-pool">Common pool</SelectItem>
+              <SelectItem value="reserve-pool-a">Reserve pool A</SelectItem>
+              <SelectItem value="reserve-pool-b">Reserve pool B</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+
+      {showPoolStrategy && (
+        <div className="space-y-2">
+          <Label htmlFor="pool-strategy">Pool Strategy</Label>
+          <Select>
+            <SelectTrigger 
+              className="rounded-lg bg-white border-blue-200 focus:border-primary"
+              onFocus={onFocus}
+              onBlur={onBlur}
+            >
+              <SelectValue placeholder="Select Pool Strategy" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="strategy-1">Strategy 1</SelectItem>
+              <SelectItem value="strategy-2">Strategy 2</SelectItem>
+              <SelectItem value="strategy-3">Strategy 3</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      )}
 
       <SLADateTimePicker onFocus={onFocus} onBlur={onBlur} />
     </div>

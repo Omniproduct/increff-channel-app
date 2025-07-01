@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -122,10 +123,11 @@ export const B2COrderForm = () => {
             }`}
           >
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Order Type & SLA</CardTitle>
+              <CardTitle>Additional Configurations</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <OrderTypeSection 
+                orderType="b2c"
                 onFocus={() => setFocusedCard("order-type")}
                 onBlur={() => setFocusedCard(null)}
               />
