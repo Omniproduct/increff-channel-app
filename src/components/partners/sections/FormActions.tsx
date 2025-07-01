@@ -12,7 +12,7 @@ export const FormActions = ({ onCancel, submitButtonText = "Create Partner" }: F
       <Button type="button" variant="outline" onClick={onCancel}>
         Cancel
       </Button>
-      <Button type="submit" className="bg-brand-blue hover:bg-brand-blue/90">
+      <Button type="submit" className="bg-primary hover:bg-primary/90">
         {submitButtonText}
       </Button>
     </div>

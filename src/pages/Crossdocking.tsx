@@ -11,7 +11,7 @@ const Crossdocking = () => {
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
             <Link to="/main">
-              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform">
+              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Main
               </Button>

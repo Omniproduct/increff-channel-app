@@ -20,7 +20,7 @@ export const EmptyState = ({ onStartOrder }: EmptyStateProps) => {
             Create your first order to get started with the Increff Channel App.
           </p>
         </div>
-        <Button onClick={onStartOrder} size="lg" className="w-full">
+        <Button onClick={onStartOrder} size="lg" className="w-full bg-primary hover:bg-primary/90">
           Start New Order
         </Button>
       </Card>

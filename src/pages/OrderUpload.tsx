@@ -12,7 +12,7 @@ const OrderUpload = () => {
         <div className="container flex h-16 items-center">
           <div className="flex items-center gap-4">
             <Link to="/main">
-              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform">
+              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Main
               </Button>
@@ -34,7 +34,7 @@ const OrderUpload = () => {
           </div>
           <div className="ml-auto flex items-center gap-4">
             <Link to="/journey">
-              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform">
+              <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white">
                 <MapIcon className="h-4 w-4" />
                 View Journey
               </Button>
