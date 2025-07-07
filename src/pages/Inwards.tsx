@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { B2BOrderForm } from "@/components/order/B2BOrderForm";
+import { InwardB2BOrderForm } from "@/components/order/InwardB2BOrderForm";
 import { BulkUploadToggle } from "@/components/order/BulkUploadToggle";
 import { BulkUploadForm } from "@/components/order/BulkUploadForm";
 import { MapIcon, ArrowLeft } from "lucide-react";
@@ -18,7 +16,7 @@ const Inwards = () => {
     if (isBulkUpload) {
       return <BulkUploadForm orderType="b2b-inward" />;
     }
-    return <B2BOrderForm variant="inward" />;
+    return <InwardB2BOrderForm purpose={purpose} setPurpose={setPurpose} />;
   };
 
   return (
@@ -72,20 +70,7 @@ const Inwards = () => {
             <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
               <CardTitle>Inward Order Configuration</CardTitle>
             </CardHeader>
-            <CardContent className="p-6 space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="purpose">Purpose</Label>
-                <Select value={purpose} onValueChange={setPurpose}>
-                  <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
-                    <SelectValue placeholder="Select Purpose" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="cross-dock">Cross dock</SelectItem>
-                    <SelectItem value="storage">Storage</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
+            <CardContent className="p-6">
               <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
             </CardContent>
           </Card>
