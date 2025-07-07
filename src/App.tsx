@@ -7,8 +7,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import OrderUpload from "./pages/OrderUpload";
 import OrderJourney from "./pages/OrderJourney";
-import Partners from "./pages/Partners";
+import Masters from "./pages/Masters";
 import Crossdocking from "./pages/Crossdocking";
+import Inwards from "./pages/Inwards";
+import Outwards from "./pages/Outwards";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,8 +25,10 @@ const App = () => (
           <Route path="/main" element={<Index />} />
           <Route path="/order-upload" element={<OrderUpload />} />
           <Route path="/journey" element={<OrderJourney />} />
-          <Route path="/partners" element={<Partners />} />
+          <Route path="/masters" element={<Masters />} />
           <Route path="/crossdocking" element={<Crossdocking />} />
+          <Route path="/inwards" element={<Inwards />} />
+          <Route path="/outwards" element={<Outwards />} />
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

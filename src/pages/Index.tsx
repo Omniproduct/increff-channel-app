@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Package, Users, ArrowLeftRight, BookOpen } from "lucide-react";
+import { Inbox, Send, Users, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -81,9 +81,9 @@ const Index = () => {
         {/* Animated Hero Icons */}
         <div className="text-center">
           <div className="flex justify-center items-center gap-8 mb-8">
-            <AnimatedIcon icon={ShoppingCart} className="bg-blue-100 text-blue-600 shadow-lg border-2 border-blue-200" delay={0} />
-            <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={0.5} />
-            <AnimatedIcon icon={ArrowLeftRight} className="bg-orange-100 text-orange-600 shadow-lg border-2 border-orange-200" delay={1} />
+            <AnimatedIcon icon={Inbox} className="bg-blue-100 text-blue-600 shadow-lg border-2 border-blue-200" delay={0} />
+            <AnimatedIcon icon={Send} className="bg-green-100 text-green-600 shadow-lg border-2 border-green-200" delay={0.5} />
+            <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1} />
           </div>
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tight text-foreground">Channel Management Hub</h2>
@@ -96,27 +96,27 @@ const Index = () => {
         {/* Feature Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <FeatureCard
-            icon={ShoppingCart}
-            title="Orders"
-            description="Create and manage B2B and B2C orders with comprehensive order processing and tracking capabilities"
-            to="/order-upload"
+            icon={Inbox}
+            title="Inwards"
+            description="Create and manage B2B inward orders for purchase, returns, and open PO operations"
+            to="/inwards"
             className="bg-blue-100 text-blue-600 border-2 border-blue-200"
           />
           
           <FeatureCard
-            icon={Users}
-            title="Partners"
-            description="Manage partner relationships and partner location creation for seamless channel operations"
-            to="/partners"
-            className="bg-purple-100 text-purple-600 border-2 border-purple-200"
+            icon={Send}
+            title="Outwards"
+            description="Create and manage B2C and B2B outward orders for sales and distribution"
+            to="/outwards"
+            className="bg-green-100 text-green-600 border-2 border-green-200"
           />
           
           <FeatureCard
-            icon={ArrowLeftRight}
-            title="Crossdocking"
-            description="Create item cross dock plans for efficient bulk and item crossdocking operations"
-            to="/crossdocking"
-            className="bg-orange-100 text-orange-600 border-2 border-orange-200"
+            icon={Users}
+            title="Masters"
+            description="Manage master data including partner relationships and location creation"
+            to="/masters"
+            className="bg-purple-100 text-purple-600 border-2 border-purple-200"
           />
         </div>
       </main>
