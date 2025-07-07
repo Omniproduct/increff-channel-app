@@ -57,8 +57,8 @@ export const ASNManagement = () => {
         </div>
       </CardHeader>
       <CardContent className="p-4 space-y-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Left Column */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {/* ASN Code */}
           <div className="space-y-3">
             <div className="space-y-2">
               {isUpdateMode && (
@@ -85,7 +85,7 @@ export const ASNManagement = () => {
             </div>
           </div>
 
-          {/* Middle Column */}
+          {/* Order Code */}
           <div className="space-y-3">
             <div className="space-y-2">
               {isUpdateMode && (
@@ -119,7 +119,7 @@ export const ASNManagement = () => {
             </div>
           </div>
 
-          {/* Right Column */}
+          {/* Location */}
           <div className="space-y-3">
             <div className="space-y-2">
               {isUpdateMode && (
@@ -151,10 +151,8 @@ export const ASNManagement = () => {
               </Select>
             </div>
           </div>
-        </div>
 
-        {/* Second Row - Invoice and Shipment Time */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Invoice No */}
           {!isBoxItemUpload && (
             <div className="space-y-2">
               {isUpdateMode && (
@@ -180,27 +178,28 @@ export const ASNManagement = () => {
               />
             </div>
           )}
-
-          {!isBoxItemUpload && (
-            <div className="space-y-2">
-              {isUpdateMode && (
-                <div className="flex items-center space-x-2 mb-1">
-                  <Checkbox
-                    id="update-shipment-time"
-                    checked={updateFields.shipmentTime}
-                    onCheckedChange={(checked) => handleFieldUpdate('shipmentTime', checked as boolean)}
-                  />
-                  <Label htmlFor="update-shipment-time" className="text-xs text-muted-foreground">
-                    Update Shipment Time
-                  </Label>
-                </div>
-              )}
-              <div className={isUpdateMode && !updateFields.shipmentTime ? "opacity-50 pointer-events-none" : ""}>
-                <SLADateTimePicker />
-              </div>
-            </div>
-          )}
         </div>
+
+        {/* Second Row - Shipment Time */}
+        {!isBoxItemUpload && (
+          <div className="space-y-2">
+            {isUpdateMode && (
+              <div className="flex items-center space-x-2 mb-1">
+                <Checkbox
+                  id="update-shipment-time"
+                  checked={updateFields.shipmentTime}
+                  onCheckedChange={(checked) => handleFieldUpdate('shipmentTime', checked as boolean)}
+                />
+                <Label htmlFor="update-shipment-time" className="text-xs text-muted-foreground">
+                  Update Shipment Time
+                </Label>
+              </div>
+            )}
+            <div className={isUpdateMode && !updateFields.shipmentTime ? "opacity-50 pointer-events-none" : ""}>
+              <SLADateTimePicker />
+            </div>
+          </div>
+        )}
 
         {/* Upload Configuration */}
         <div className="flex items-center gap-2 py-1 border-t border-blue-100 pt-3">
