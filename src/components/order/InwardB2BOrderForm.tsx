@@ -94,6 +94,16 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose, progressState, setProg
               />
             </CardContent>
           </Card>
+
+          <CustomOrderAttributes 
+            onFocus={() => setFocusedCard("attributes")}
+            onBlur={() => {
+              setFocusedCard(null);
+              if (progressState && setProgressState) {
+                setProgressState(prev => ({ ...prev, customAttributes: true }));
+              }
+            }}
+          />
         </div>
 
         <div className="space-y-6">
@@ -141,16 +151,6 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose, progressState, setProg
           </Card>
         </div>
       </div>
-
-      <CustomOrderAttributes 
-        onFocus={() => setFocusedCard("attributes")}
-        onBlur={() => {
-          setFocusedCard(null);
-          if (progressState && setProgressState) {
-            setProgressState(prev => ({ ...prev, customAttributes: true }));
-          }
-        }}
-      />
 
       <div className="sticky bottom-4 flex justify-center">
         <Button 
