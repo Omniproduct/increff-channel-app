@@ -3,12 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderTypeSelector } from "@/components/order/OrderTypeSelector";
 import { B2COrderForm } from "@/components/order/B2COrderForm";
 import { B2BOrderForm } from "@/components/order/B2BOrderForm";
 import { BulkUploadToggle } from "@/components/order/BulkUploadToggle";
 import { BulkUploadForm } from "@/components/order/BulkUploadForm";
-import { MapIcon, ArrowLeft } from "lucide-react";
+import { ItemCrossdockingForm } from "@/components/crossdocking/ItemCrossdockingForm";
+import { BoxCrossdockingForm } from "@/components/crossdocking/BoxCrossdockingForm";
+import { MapIcon, ArrowLeft, Package, Box, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
 
@@ -29,6 +32,17 @@ const Outwards = () => {
         return <B2BOrderForm variant="outward" />;
       default:
         return <B2COrderForm />;
+    }
+  };
+
+  const renderCrossdockingForm = () => {
+    switch (orderType) {
+      case "b2c":
+        return <ItemCrossdockingForm />;
+      case "b2b-outward":
+        return <BoxCrossdockingForm />;
+      default:
+        return <ItemCrossdockingForm />;
     }
   };
 
@@ -78,43 +92,83 @@ const Outwards = () => {
           subtitle="Create and manage B2C and B2B outward orders for sales and distribution"
         />
         
-        <div className="max-w-7xl mx-auto space-y-6">
-          <Card className="border-blue-200 shadow-sm">
-            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Outward Order Configuration</CardTitle>
-            </CardHeader>
-            <CardContent className="p-6 space-y-4">
-              <div className="space-y-2">
-                <Label>Order Type</Label>
-                <Select value={orderType} onValueChange={setOrderType}>
-                  <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
-                    <SelectValue placeholder="Select Order Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="b2c">B2C</SelectItem>
-                    <SelectItem value="b2b-outward">B2B Outward</SelectItem>
-                  </SelectContent>
-                </Select>
+        <div className="max-w-7xl mx-auto">
+          <Tabs defaultValue="order-creation" className="w-full">
+            <div className="border-b bg-gradient-to-r from-blue-50 to-orange-50 px-6 py-4 rounded-t-lg">
+              <TabsList className="grid w-full max-w-lg grid-cols-2 h-12">
+                <TabsTrigger 
+                  value="order-creation" 
+                  className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md flex items-center gap-2 text-sm font-medium"
+                >
+                  <ShoppingCart className="h-4 w-4" />
+                  Order Creation
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="crossdocking" 
+                  className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md flex items-center gap-2 text-sm font-medium"
+                >
+                  {orderType === "b2c" ? <Package className="h-4 w-4" /> : <Box className="h-4 w-4" />}
+                  {orderType === "b2c" ? "Item Crossdocking" : "Box Crossdocking"}
+                </TabsTrigger>
+              </TabsList>
+            </div>
+            
+            <TabsContent value="order-creation" className="mt-0">
+              <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 p-6 space-y-6">
+                {/* Configuration Section with Two Column Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <Card className="border-blue-200 shadow-sm">
+                    <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 pb-3">
+                      <CardTitle className="text-lg">Order Configuration</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label>Order Type</Label>
+                          <Select value={orderType} onValueChange={setOrderType}>
+                            <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
+                              <SelectValue placeholder="Select Order Type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="b2c">B2C</SelectItem>
+                              <SelectItem value="b2b-outward">B2B Outward</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="purpose">Purpose</Label>
+                          <Select value={purpose} onValueChange={setPurpose}>
+                            <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
+                              <SelectValue placeholder="Select Purpose" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="cross-dock">Cross dock</SelectItem>
+                              <SelectItem value="storage">Storage</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  <div className="flex items-end justify-end">
+                    <div className="flex flex-col gap-3">
+                      <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Order Form */}
+                {renderOrderForm()}
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="purpose">Purpose</Label>
-                <Select value={purpose} onValueChange={setPurpose}>
-                  <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
-                    <SelectValue placeholder="Select Purpose" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="cross-dock">Cross dock</SelectItem>
-                    <SelectItem value="storage">Storage</SelectItem>
-                  </SelectContent>
-                </Select>
+            </TabsContent>
+            
+            <TabsContent value="crossdocking" className="mt-0">
+              <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 p-6">
+                {renderCrossdockingForm()}
               </div>
-
-              <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
-            </CardContent>
-          </Card>
-          
-          {renderOrderForm()}
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </div>
