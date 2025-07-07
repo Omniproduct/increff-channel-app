@@ -15,12 +15,33 @@ import { ScreenHeader } from "@/components/ui/screen-header";
 const Inwards = () => {
   const [isBulkUpload, setIsBulkUpload] = useState(false);
   const [purpose, setPurpose] = useState("");
+  const [progressState, setProgressState] = useState({
+    orderInfo: false,
+    channelLocation: false,
+    additionalConfig: false,
+    uploadItems: false,
+    customAttributes: false
+  });
+
+  const getCurrentStep = () => {
+    if (!progressState.orderInfo) return 1;
+    if (!progressState.channelLocation) return 2;
+    if (!progressState.additionalConfig) return 3;
+    if (!progressState.uploadItems) return 4;
+    if (!progressState.customAttributes) return 5;
+    return 5;
+  };
 
   const renderOrderForm = () => {
     if (isBulkUpload) {
       return <BulkUploadForm orderType="b2b-inward" />;
     }
-    return <InwardB2BOrderForm purpose={purpose} setPurpose={setPurpose} />;
+    return <InwardB2BOrderForm 
+      purpose={purpose} 
+      setPurpose={setPurpose} 
+      progressState={progressState}
+      setProgressState={setProgressState}
+    />;
   };
 
   return (
@@ -81,7 +102,7 @@ const Inwards = () => {
               <div className="bg-white rounded-lg border border-blue-200">
                 {/* Progress Bar */}
                 <div className="border-b border-blue-200">
-                  <OrderProgressBar currentStep={1} />
+                  <OrderProgressBar currentStep={getCurrentStep()} />
                 </div>
                 
                 <div className="p-6 space-y-6">

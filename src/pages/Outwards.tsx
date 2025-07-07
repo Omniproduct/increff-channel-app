@@ -20,6 +20,22 @@ const Outwards = () => {
   const [orderType, setOrderType] = useState("b2c");
   const [isBulkUpload, setIsBulkUpload] = useState(false);
   const [purpose, setPurpose] = useState("");
+  const [progressState, setProgressState] = useState({
+    orderInfo: false,
+    channelLocation: false,
+    additionalConfig: false,
+    uploadItems: false,
+    customAttributes: false
+  });
+
+  const getCurrentStep = () => {
+    if (!progressState.orderInfo) return 1;
+    if (!progressState.channelLocation) return 2;
+    if (!progressState.additionalConfig) return 3;
+    if (!progressState.uploadItems) return 4;
+    if (!progressState.customAttributes) return 5;
+    return 5;
+  };
 
   const renderOrderForm = () => {
     if (isBulkUpload) {
@@ -28,11 +44,33 @@ const Outwards = () => {
 
     switch (orderType) {
       case "b2c":
-        return <B2COrderForm orderType={orderType} onOrderTypeChange={setOrderType} purpose={purpose} onPurposeChange={setPurpose} />;
+        return <B2COrderForm 
+          orderType={orderType} 
+          onOrderTypeChange={setOrderType} 
+          purpose={purpose} 
+          onPurposeChange={setPurpose}
+          progressState={progressState}
+          setProgressState={setProgressState}
+        />;
       case "b2b-outward":
-        return <B2BOrderForm variant="outward" orderType={orderType} onOrderTypeChange={setOrderType} purpose={purpose} onPurposeChange={setPurpose} />;
+        return <B2BOrderForm 
+          variant="outward" 
+          orderType={orderType} 
+          onOrderTypeChange={setOrderType} 
+          purpose={purpose} 
+          onPurposeChange={setPurpose}
+          progressState={progressState}
+          setProgressState={setProgressState}
+        />;
       default:
-        return <B2COrderForm orderType={orderType} onOrderTypeChange={setOrderType} purpose={purpose} onPurposeChange={setPurpose} />;
+        return <B2COrderForm 
+          orderType={orderType} 
+          onOrderTypeChange={setOrderType} 
+          purpose={purpose} 
+          onPurposeChange={setPurpose}
+          progressState={progressState}
+          setProgressState={setProgressState}
+        />;
     }
   };
 
@@ -118,7 +156,7 @@ const Outwards = () => {
               <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 space-y-6">
                 {/* Progress Bar */}
                 <div className="border-b border-blue-200">
-                  <OrderProgressBar currentStep={1} />
+                  <OrderProgressBar currentStep={getCurrentStep()} />
                 </div>
                 
                 <div className="p-6 space-y-6">

@@ -17,9 +17,19 @@ interface B2BOrderFormProps {
   onOrderTypeChange?: (value: string) => void;
   purpose?: string;
   onPurposeChange?: (value: string) => void;
+  progressState?: any;
+  setProgressState?: (state: any) => void;
 }
 
-export const B2BOrderForm = ({ variant, orderType, onOrderTypeChange, purpose, onPurposeChange }: B2BOrderFormProps) => {
+export const B2BOrderForm = ({ 
+  variant, 
+  orderType, 
+  onOrderTypeChange, 
+  purpose, 
+  onPurposeChange, 
+  progressState, 
+  setProgressState 
+}: B2BOrderFormProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [focusedCard, setFocusedCard] = useState<string | null>(null);
@@ -67,7 +77,12 @@ export const B2BOrderForm = ({ variant, orderType, onOrderTypeChange, purpose, o
                 purpose={purpose}
                 onPurposeChange={onPurposeChange}
                 onFocus={() => setFocusedCard("order-info")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, orderInfo: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -85,7 +100,12 @@ export const B2BOrderForm = ({ variant, orderType, onOrderTypeChange, purpose, o
                 isB2B
                 variant={variant}
                 onFocus={() => setFocusedCard("partner")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, channelLocation: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -102,14 +122,24 @@ export const B2BOrderForm = ({ variant, orderType, onOrderTypeChange, purpose, o
               <OrderTypeSection 
                 orderType={variant === "inward" ? "b2b-inward" : "b2b-outward"}
                 onFocus={() => setFocusedCard("order-type")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, additionalConfig: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
 
           <CustomOrderAttributes 
             onFocus={() => setFocusedCard("attributes")}
-            onBlur={() => setFocusedCard(null)}
+            onBlur={() => {
+              setFocusedCard(null);
+              if (progressState && setProgressState) {
+                setProgressState(prev => ({ ...prev, customAttributes: true }));
+              }
+            }}
           />
         </div>
 
@@ -125,7 +155,12 @@ export const B2BOrderForm = ({ variant, orderType, onOrderTypeChange, purpose, o
             <CardContent className="p-6">
               <CSVUploadSection 
                 onFocus={() => setFocusedCard("order-items")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, uploadItems: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>

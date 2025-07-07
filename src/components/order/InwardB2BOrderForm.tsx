@@ -13,9 +13,11 @@ import { useToast } from "@/hooks/use-toast";
 interface InwardB2BOrderFormProps {
   purpose: string;
   setPurpose: (value: string) => void;
+  progressState?: any;
+  setProgressState?: (state: any) => void;
 }
 
-export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormProps) => {
+export const InwardB2BOrderForm = ({ purpose, setPurpose, progressState, setProgressState }: InwardB2BOrderFormProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [focusedCard, setFocusedCard] = useState<string | null>(null);
@@ -60,7 +62,12 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
                 purpose={purpose}
                 setPurpose={setPurpose}
                 onFocus={() => setFocusedCard("order-info")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, orderInfo: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -78,7 +85,12 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
                 isB2B
                 variant="inward"
                 onFocus={() => setFocusedCard("partner")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, channelLocation: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -97,7 +109,12 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
               <OrderTypeSection 
                 orderType="b2b-inward"
                 onFocus={() => setFocusedCard("order-type")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, additionalConfig: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -113,7 +130,12 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
             <CardContent className="p-6">
               <CSVUploadSection 
                 onFocus={() => setFocusedCard("order-items")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, uploadItems: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -122,7 +144,12 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
 
       <CustomOrderAttributes 
         onFocus={() => setFocusedCard("attributes")}
-        onBlur={() => setFocusedCard(null)}
+        onBlur={() => {
+          setFocusedCard(null);
+          if (progressState && setProgressState) {
+            setProgressState(prev => ({ ...prev, customAttributes: true }));
+          }
+        }}
       />
 
       <div className="sticky bottom-4 flex justify-center">

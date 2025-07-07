@@ -14,7 +14,21 @@ import { MultiFileUploadTracker } from "./MultiFileUploadTracker";
 import { AddressForm } from "./AddressForm";
 import { useToast } from "@/hooks/use-toast";
 
-export const B2COrderForm = ({ orderType, onOrderTypeChange, purpose, onPurposeChange }: { orderType?: string; onOrderTypeChange?: (value: string) => void; purpose?: string; onPurposeChange?: (value: string) => void; }) => {
+export const B2COrderForm = ({ 
+  orderType, 
+  onOrderTypeChange, 
+  purpose, 
+  onPurposeChange, 
+  progressState, 
+  setProgressState 
+}: { 
+  orderType?: string; 
+  onOrderTypeChange?: (value: string) => void; 
+  purpose?: string; 
+  onPurposeChange?: (value: string) => void; 
+  progressState?: any;
+  setProgressState?: (state: any) => void;
+}) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [hasUploadError, setHasUploadError] = useState(false);
@@ -101,7 +115,12 @@ export const B2COrderForm = ({ orderType, onOrderTypeChange, purpose, onPurposeC
                 purpose={purpose}
                 onPurposeChange={onPurposeChange}
                 onFocus={() => setFocusedCard("order-info")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, orderInfo: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -117,7 +136,12 @@ export const B2COrderForm = ({ orderType, onOrderTypeChange, purpose, onPurposeC
             <CardContent className="p-6">
               <PartnerDetailsSection 
                 onFocus={() => setFocusedCard("partner")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, channelLocation: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
@@ -134,14 +158,24 @@ export const B2COrderForm = ({ orderType, onOrderTypeChange, purpose, onPurposeC
               <OrderTypeSection 
                 orderType="b2c"
                 onFocus={() => setFocusedCard("order-type")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, additionalConfig: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
 
           <CustomOrderAttributes 
             onFocus={() => setFocusedCard("attributes")}
-            onBlur={() => setFocusedCard(null)}
+            onBlur={() => {
+              setFocusedCard(null);
+              if (progressState && setProgressState) {
+                setProgressState(prev => ({ ...prev, customAttributes: true }));
+              }
+            }}
           />
         </div>
 
@@ -158,7 +192,12 @@ export const B2COrderForm = ({ orderType, onOrderTypeChange, purpose, onPurposeC
               <CSVUploadSection 
                 onError={() => setHasUploadError(true)}
                 onFocus={() => setFocusedCard("order-items")}
-                onBlur={() => setFocusedCard(null)}
+                onBlur={() => {
+                  setFocusedCard(null);
+                  if (progressState && setProgressState) {
+                    setProgressState(prev => ({ ...prev, uploadItems: true }));
+                  }
+                }}
               />
             </CardContent>
           </Card>
