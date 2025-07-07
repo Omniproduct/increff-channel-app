@@ -13,7 +13,7 @@ interface AddressFormProps {
 }
 
 export const AddressForm = ({ type, onFocus, onBlur }: AddressFormProps) => {
-  const [useSameAddress, setUseSameAddress] = useState(false);
+  const [useSameAddress, setUseSameAddress] = useState(type === "billing");
 
   if (type === "billing" && useSameAddress) {
     return (

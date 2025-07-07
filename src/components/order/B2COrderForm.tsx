@@ -14,7 +14,7 @@ import { MultiFileUploadTracker } from "./MultiFileUploadTracker";
 import { AddressForm } from "./AddressForm";
 import { useToast } from "@/hooks/use-toast";
 
-export const B2COrderForm = () => {
+export const B2COrderForm = ({ orderType, onOrderTypeChange, purpose, onPurposeChange }: { orderType?: string; onOrderTypeChange?: (value: string) => void; purpose?: string; onPurposeChange?: (value: string) => void; }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [hasUploadError, setHasUploadError] = useState(false);
@@ -95,6 +95,11 @@ export const B2COrderForm = () => {
             </CardHeader>
             <CardContent className="p-6">
               <OrderInfoSection 
+                variant="outward"
+                orderType={orderType}
+                onOrderTypeChange={onOrderTypeChange}
+                purpose={purpose}
+                onPurposeChange={onPurposeChange}
                 onFocus={() => setFocusedCard("order-info")}
                 onBlur={() => setFocusedCard(null)}
               />

@@ -1,17 +1,61 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface OrderInfoSectionProps {
   isB2B?: boolean;
   variant?: "inward" | "outward";
   onFocus?: () => void;
   onBlur?: () => void;
+  orderType?: string;
+  onOrderTypeChange?: (value: string) => void;
+  purpose?: string;
+  onPurposeChange?: (value: string) => void;
 }
 
-export const OrderInfoSection = ({ isB2B, variant, onFocus, onBlur }: OrderInfoSectionProps) => {
+export const OrderInfoSection = ({ 
+  isB2B, 
+  variant, 
+  onFocus, 
+  onBlur, 
+  orderType, 
+  onOrderTypeChange, 
+  purpose, 
+  onPurposeChange 
+}: OrderInfoSectionProps) => {
   return (
     <div className="space-y-4">
+      {/* Order Type and Purpose - Only for outward orders */}
+      {variant === "outward" && (
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label>Order Type</Label>
+            <Select value={orderType} onValueChange={onOrderTypeChange}>
+              <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
+                <SelectValue placeholder="Select Order Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="b2c">B2C</SelectItem>
+                <SelectItem value="b2b-outward">B2B Outward</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="purpose">Purpose</Label>
+            <Select value={purpose} onValueChange={onPurposeChange}>
+              <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
+                <SelectValue placeholder="Select Purpose" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="cross-dock">Cross dock</SelectItem>
+                <SelectItem value="storage">Storage</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      )}
+      
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="parent-order-id">Parent Order ID</Label>

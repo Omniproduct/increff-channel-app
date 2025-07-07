@@ -13,9 +13,13 @@ import { useToast } from "@/hooks/use-toast";
 
 interface B2BOrderFormProps {
   variant: "inward" | "outward";
+  orderType?: string;
+  onOrderTypeChange?: (value: string) => void;
+  purpose?: string;
+  onPurposeChange?: (value: string) => void;
 }
 
-export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
+export const B2BOrderForm = ({ variant, orderType, onOrderTypeChange, purpose, onPurposeChange }: B2BOrderFormProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [focusedCard, setFocusedCard] = useState<string | null>(null);
@@ -58,6 +62,10 @@ export const B2BOrderForm = ({ variant }: B2BOrderFormProps) => {
               <OrderInfoSection 
                 isB2B
                 variant={variant}
+                orderType={orderType}
+                onOrderTypeChange={onOrderTypeChange}
+                purpose={purpose}
+                onPurposeChange={onPurposeChange}
                 onFocus={() => setFocusedCard("order-info")}
                 onBlur={() => setFocusedCard(null)}
               />
