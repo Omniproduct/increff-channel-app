@@ -7,6 +7,7 @@ import { BulkUploadToggle } from "@/components/order/BulkUploadToggle";
 import { BulkUploadForm } from "@/components/order/BulkUploadForm";
 import { ASNManagement } from "@/components/order/ASNManagement";
 import { InwardOrderActions } from "@/components/order/InwardOrderActions";
+import { OrderProgressBar } from "@/components/order/OrderProgressBar";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
@@ -77,10 +78,19 @@ const Inwards = () => {
             </TabsList>
             
             <TabsContent value="order-creation" className="space-y-6">
-              <div className="flex justify-end mb-4">
-                <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+              <div className="bg-white rounded-lg border border-blue-200">
+                {/* Progress Bar */}
+                <div className="border-b border-blue-200">
+                  <OrderProgressBar currentStep={1} />
+                </div>
+                
+                <div className="p-6 space-y-6">
+                  <div className="flex justify-end">
+                    <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+                  </div>
+                  {renderOrderForm()}
+                </div>
               </div>
-              {renderOrderForm()}
             </TabsContent>
             
             <TabsContent value="asn-management" className="space-y-6">

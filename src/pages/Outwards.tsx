@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderTypeSelector } from "@/components/order/OrderTypeSelector";
 import { B2COrderForm } from "@/components/order/B2COrderForm";
 import { B2BOrderForm } from "@/components/order/B2BOrderForm";
+import { OrderProgressBar } from "@/components/order/OrderProgressBar";
 import { BulkUploadToggle } from "@/components/order/BulkUploadToggle";
 import { BulkUploadForm } from "@/components/order/BulkUploadForm";
 import { ItemCrossdockingForm } from "@/components/crossdocking/ItemCrossdockingForm";
@@ -114,14 +115,21 @@ const Outwards = () => {
             </div>
             
             <TabsContent value="order-creation" className="mt-0">
-              <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 p-6 space-y-6">
-                {/* Bulk Upload Toggle */}
-                <div className="flex justify-end">
-                  <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+              <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 space-y-6">
+                {/* Progress Bar */}
+                <div className="border-b border-blue-200">
+                  <OrderProgressBar currentStep={1} />
                 </div>
                 
-                {/* Order Form */}
-                {renderOrderForm()}
+                <div className="p-6 space-y-6">
+                  {/* Bulk Upload Toggle */}
+                  <div className="flex justify-end">
+                    <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+                  </div>
+                  
+                  {/* Order Form */}
+                  {renderOrderForm()}
+                </div>
               </div>
             </TabsContent>
             
