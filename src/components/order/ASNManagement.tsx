@@ -56,13 +56,13 @@ export const ASNManagement = () => {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="p-6 space-y-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <CardContent className="p-4 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Left Column */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="space-y-2">
               {isUpdateMode && (
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center space-x-2 mb-1">
                   <Checkbox
                     id="update-asn-code"
                     checked={updateFields.asnCode}
@@ -73,20 +73,23 @@ export const ASNManagement = () => {
                   </Label>
                 </div>
               )}
-              <Label htmlFor="asn-code">ASN Code</Label>
+              <Label htmlFor="asn-code" className="text-sm font-medium">ASN Code</Label>
               <Input
                 id="asn-code"
                 placeholder="Enter ASN Code"
                 value={asnCode}
                 onChange={(e) => setAsnCode(e.target.value)}
-                className="rounded-lg bg-white border-blue-200 focus:border-primary"
+                className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary"
                 disabled={isUpdateMode && !updateFields.asnCode}
               />
             </div>
-            
+          </div>
+
+          {/* Middle Column */}
+          <div className="space-y-3">
             <div className="space-y-2">
               {isUpdateMode && (
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center space-x-2 mb-1">
                   <Checkbox
                     id="update-order-code"
                     checked={updateFields.orderCode}
@@ -97,23 +100,30 @@ export const ASNManagement = () => {
                   </Label>
                 </div>
               )}
-              <Label htmlFor="order-code">Order Code</Label>
-              <Input
-                id="order-code"
-                placeholder="Enter Order Code"
-                value={orderCode}
-                onChange={(e) => setOrderCode(e.target.value)}
-                className="rounded-lg bg-white border-blue-200 focus:border-primary"
+              <Label htmlFor="order-code" className="text-sm font-medium">Order Code</Label>
+              <Select 
+                value={orderCode} 
+                onValueChange={setOrderCode}
                 disabled={isUpdateMode && !updateFields.orderCode}
-              />
+              >
+                <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
+                  <SelectValue placeholder="Search & Select Order" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ORD001">ORD001 - Purchase Order A</SelectItem>
+                  <SelectItem value="ORD002">ORD002 - Return Order B</SelectItem>
+                  <SelectItem value="ORD003">ORD003 - Open PO C</SelectItem>
+                  <SelectItem value="ORD004">ORD004 - Purchase Order D</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
           {/* Right Column */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="space-y-2">
               {isUpdateMode && (
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center space-x-2 mb-1">
                   <Checkbox
                     id="update-location-code"
                     checked={updateFields.locationCode}
@@ -124,13 +134,13 @@ export const ASNManagement = () => {
                   </Label>
                 </div>
               )}
-              <Label htmlFor="location-code">Location</Label>
+              <Label htmlFor="location-code" className="text-sm font-medium">Location</Label>
               <Select 
                 value={locationCode} 
                 onValueChange={setLocationCode}
                 disabled={isUpdateMode && !updateFields.locationCode}
               >
-                <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
+                <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
                   <SelectValue placeholder="Select Location" />
                 </SelectTrigger>
                 <SelectContent>
@@ -140,79 +150,82 @@ export const ASNManagement = () => {
                 </SelectContent>
               </Select>
             </div>
-            
-            {!isBoxItemUpload && (
-              <div className="space-y-2">
-                {isUpdateMode && (
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Checkbox
-                      id="update-invoice-no"
-                      checked={updateFields.invoiceNo}
-                      onCheckedChange={(checked) => handleFieldUpdate('invoiceNo', checked as boolean)}
-                    />
-                    <Label htmlFor="update-invoice-no" className="text-xs text-muted-foreground">
-                      Update Invoice No
-                    </Label>
-                  </div>
-                )}
-                <Label htmlFor="invoice-no">Invoice No</Label>
-                <Input
-                  id="invoice-no"
-                  placeholder="Enter Invoice Number"
-                  value={invoiceNo}
-                  onChange={(e) => setInvoiceNo(e.target.value)}
-                  className="rounded-lg bg-white border-blue-200 focus:border-primary"
-                  disabled={isUpdateMode && !updateFields.invoiceNo}
-                />
-              </div>
-            )}
           </div>
         </div>
 
-        {!isBoxItemUpload && (
-          <div className="space-y-2">
-            {isUpdateMode && (
-              <div className="flex items-center space-x-2 mb-2">
-                <Checkbox
-                  id="update-shipment-time"
-                  checked={updateFields.shipmentTime}
-                  onCheckedChange={(checked) => handleFieldUpdate('shipmentTime', checked as boolean)}
-                />
-                <Label htmlFor="update-shipment-time" className="text-xs text-muted-foreground">
-                  Update Shipment Time
-                </Label>
-              </div>
-            )}
-            <div className={isUpdateMode && !updateFields.shipmentTime ? "opacity-50 pointer-events-none" : ""}>
-              <SLADateTimePicker />
+        {/* Second Row - Invoice and Shipment Time */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {!isBoxItemUpload && (
+            <div className="space-y-2">
+              {isUpdateMode && (
+                <div className="flex items-center space-x-2 mb-1">
+                  <Checkbox
+                    id="update-invoice-no"
+                    checked={updateFields.invoiceNo}
+                    onCheckedChange={(checked) => handleFieldUpdate('invoiceNo', checked as boolean)}
+                  />
+                  <Label htmlFor="update-invoice-no" className="text-xs text-muted-foreground">
+                    Update Invoice No
+                  </Label>
+                </div>
+              )}
+              <Label htmlFor="invoice-no" className="text-sm font-medium">Invoice No</Label>
+              <Input
+                id="invoice-no"
+                placeholder="Enter Invoice Number"
+                value={invoiceNo}
+                onChange={(e) => setInvoiceNo(e.target.value)}
+                className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary"
+                disabled={isUpdateMode && !updateFields.invoiceNo}
+              />
             </div>
-          </div>
-        )}
+          )}
 
-        <div className="flex items-center gap-2 py-2">
+          {!isBoxItemUpload && (
+            <div className="space-y-2">
+              {isUpdateMode && (
+                <div className="flex items-center space-x-2 mb-1">
+                  <Checkbox
+                    id="update-shipment-time"
+                    checked={updateFields.shipmentTime}
+                    onCheckedChange={(checked) => handleFieldUpdate('shipmentTime', checked as boolean)}
+                  />
+                  <Label htmlFor="update-shipment-time" className="text-xs text-muted-foreground">
+                    Update Shipment Time
+                  </Label>
+                </div>
+              )}
+              <div className={isUpdateMode && !updateFields.shipmentTime ? "opacity-50 pointer-events-none" : ""}>
+                <SLADateTimePicker />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Upload Configuration */}
+        <div className="flex items-center gap-2 py-1 border-t border-blue-100 pt-3">
           <Switch
             id="box-item-upload"
             checked={isBoxItemUpload}
             onCheckedChange={setIsBoxItemUpload}
           />
-          <Label htmlFor="box-item-upload">Box-Item Code Mapping</Label>
+          <Label htmlFor="box-item-upload" className="text-sm">Box-Item Code Mapping</Label>
         </div>
         <Card className="border-blue-200">
-          <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 py-3">
-            <CardTitle className="text-base">
+          <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 py-2">
+            <CardTitle className="text-sm">
               {isBoxItemUpload ? "Box-Item Code Mapping" : "Items CSV Upload"}
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-4">
+          <CardContent className="p-3">
             <OrderCSVUploadSection />
           </CardContent>
         </Card>
 
-        <div className="flex justify-center pt-2">
+        <div className="flex justify-center pt-3">
           <Button 
             onClick={handleSubmit}
-            size="lg"
-            className="min-w-40 bg-primary hover:bg-primary/90"
+            className="px-8 bg-primary hover:bg-primary/90"
           >
             {isUpdateMode ? 'Update ASN' : 'Create ASN'}
           </Button>

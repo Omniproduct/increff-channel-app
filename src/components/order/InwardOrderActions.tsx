@@ -41,11 +41,11 @@ export const InwardOrderActions = () => {
     if (!activeAction) return null;
 
     return (
-      <div className="space-y-4 mt-4 p-4 border border-blue-200 rounded-lg bg-blue-50/30">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="space-y-3 mt-3 p-3 border border-blue-200 rounded-lg bg-blue-50/30">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="space-y-2">
             {activeAction === 'update' && (
-              <div className="flex items-center space-x-2 mb-2">
+              <div className="flex items-center space-x-2 mb-1">
                 <Checkbox
                   id="update-order-id"
                   checked={updateFields.orderID}
@@ -56,25 +56,26 @@ export const InwardOrderActions = () => {
                 </Label>
               </div>
             )}
-            <Label htmlFor="action-order-id">Order ID</Label>
-            <div className="relative">
-              <Input
-                id="action-order-id"
-                placeholder="Enter Order ID"
-                value={orderID}
-                onChange={(e) => setOrderID(e.target.value)}
-                className="rounded-lg bg-white border-blue-200 focus:border-primary pr-8"
-                disabled={activeAction === 'update' && !updateFields.orderID}
-              />
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-muted-foreground">
-                ⌄
-              </div>
-            </div>
+            <Label htmlFor="action-order-id" className="text-sm font-medium">Order ID</Label>
+            <Select 
+              value={orderID} 
+              onValueChange={setOrderID}
+              disabled={activeAction === 'update' && !updateFields.orderID}
+            >
+              <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
+                <SelectValue placeholder="Search & Select Order" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ORD001">ORD001 - Purchase Order A</SelectItem>
+                <SelectItem value="ORD002">ORD002 - Return Order B</SelectItem>
+                <SelectItem value="ORD003">ORD003 - Open PO C</SelectItem>
+                <SelectItem value="ORD004">ORD004 - Purchase Order D</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-          
           <div className="space-y-2">
             {activeAction === 'update' && (
-              <div className="flex items-center space-x-2 mb-2">
+              <div className="flex items-center space-x-2 mb-1">
                 <Checkbox
                   id="update-location"
                   checked={updateFields.location}
@@ -85,13 +86,13 @@ export const InwardOrderActions = () => {
                 </Label>
               </div>
             )}
-            <Label htmlFor="action-location">Location</Label>
+            <Label htmlFor="action-location" className="text-sm font-medium">Location</Label>
             <Select 
               value={locationName} 
               onValueChange={setLocationName}
               disabled={activeAction === 'update' && !updateFields.location}
             >
-              <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
+              <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
                 <SelectValue placeholder="Select Location" />
               </SelectTrigger>
               <SelectContent>
@@ -105,7 +106,7 @@ export const InwardOrderActions = () => {
 
         {activeAction === 'update' && (
           <div className="space-y-2">
-            <div className="flex items-center space-x-2 mb-2">
+            <div className="flex items-center space-x-2 mb-1">
               <Checkbox
                 id="update-items"
                 checked={updateFields.items}
@@ -117,10 +118,10 @@ export const InwardOrderActions = () => {
             </div>
             <div className={!updateFields.items ? "opacity-50 pointer-events-none" : ""}>
               <Card className="border-blue-200">
-                <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 py-3">
-                  <CardTitle className="text-base">Item Details</CardTitle>
+                <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 py-2">
+                  <CardTitle className="text-sm">Item Details</CardTitle>
                 </CardHeader>
-                <CardContent className="p-4">
+                <CardContent className="p-3">
                   <OrderCSVUploadSection />
                 </CardContent>
               </Card>
@@ -149,7 +150,7 @@ export const InwardOrderActions = () => {
           </div>
         )}
 
-        <div className="flex gap-2 justify-end">
+        <div className="flex gap-2 justify-end pt-2">
           <Button
             variant="outline"
             onClick={() => setActiveAction(null)}
@@ -235,8 +236,8 @@ export const InwardOrderActions = () => {
       <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
         <CardTitle>Inward Order Actions</CardTitle>
       </CardHeader>
-      <CardContent className="p-6 space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <CardContent className="p-4 space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <Button
             variant={activeAction === 'update' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'update' ? null : 'update')}
