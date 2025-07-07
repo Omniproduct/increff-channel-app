@@ -122,40 +122,41 @@ const Outwards = () => {
                       <CardTitle className="text-lg">Order Configuration</CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label>Order Type</Label>
-                          <Select value={orderType} onValueChange={setOrderType}>
-                            <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
-                              <SelectValue placeholder="Select Order Type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="b2c">B2C</SelectItem>
-                              <SelectItem value="b2b-outward">B2B Outward</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="purpose">Purpose</Label>
-                          <Select value={purpose} onValueChange={setPurpose}>
-                            <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
-                              <SelectValue placeholder="Select Purpose" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="cross-dock">Cross dock</SelectItem>
-                              <SelectItem value="storage">Storage</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
+                      <div className="space-y-2">
+                        <Label>Order Type</Label>
+                        <Select value={orderType} onValueChange={setOrderType}>
+                          <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
+                            <SelectValue placeholder="Select Order Type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="b2c">B2C</SelectItem>
+                            <SelectItem value="b2b-outward">B2B Outward</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     </CardContent>
                   </Card>
                   
-                  <div className="flex items-end justify-end">
-                    <div className="flex flex-col gap-3">
+                  <Card className="border-blue-200 shadow-sm">
+                    <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 pb-3">
+                      <CardTitle className="text-lg">Additional Settings</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="purpose">Purpose</Label>
+                        <Select value={purpose} onValueChange={setPurpose}>
+                          <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary h-9">
+                            <SelectValue placeholder="Select Purpose" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="cross-dock">Cross dock</SelectItem>
+                            <SelectItem value="storage">Storage</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                       <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 </div>
                 
                 {/* Order Form */}
