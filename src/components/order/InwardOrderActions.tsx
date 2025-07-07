@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { CSVUploadSection } from "./sections/CSVUploadSection";
+import { OrderCSVUploadSection } from "./sections/OrderCSVUploadSection";
 import { useToast } from "@/hooks/use-toast";
 import { Edit, Lock, X, AlertTriangle } from "lucide-react";
 
@@ -42,7 +42,7 @@ export const InwardOrderActions = () => {
 
     return (
       <div className="space-y-4 mt-4 p-4 border border-blue-200 rounded-lg bg-blue-50/30">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             {activeAction === 'update' && (
               <div className="flex items-center space-x-2 mb-2">
@@ -121,7 +121,7 @@ export const InwardOrderActions = () => {
                   <CardTitle className="text-base">Item Details</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CSVUploadSection />
+                  <OrderCSVUploadSection />
                 </CardContent>
               </Card>
             </div>
@@ -236,11 +236,11 @@ export const InwardOrderActions = () => {
         <CardTitle>Inward Order Actions</CardTitle>
       </CardHeader>
       <CardContent className="p-6 space-y-4">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <Button
             variant={activeAction === 'update' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'update' ? null : 'update')}
-            className="h-12 border-primary text-primary hover:bg-primary hover:text-white"
+            className="h-10 border-primary text-primary hover:bg-primary hover:text-white"
           >
             <Edit className="h-4 w-4 mr-2" />
             Update Order
@@ -249,7 +249,7 @@ export const InwardOrderActions = () => {
           <Button
             variant={activeAction === 'lock' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'lock' ? null : 'lock')}
-            className="h-12 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+            className="h-10 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
           >
             <Lock className="h-4 w-4 mr-2" />
             Lock Order
@@ -258,7 +258,7 @@ export const InwardOrderActions = () => {
           <Button
             variant={activeAction === 'close' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'close' ? null : 'close')}
-            className="h-12 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+            className="h-10 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
           >
             <X className="h-4 w-4 mr-2" />
             Close Order

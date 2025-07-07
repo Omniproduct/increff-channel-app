@@ -49,7 +49,6 @@ const Inwards = () => {
             </div>
           </div>
           <div className="ml-auto flex items-center gap-4">
-            <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
             <Link to="/journey">
               <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white">
                 <MapIcon className="h-4 w-4" />
@@ -78,6 +77,9 @@ const Inwards = () => {
             </TabsList>
             
             <TabsContent value="order-creation" className="space-y-6">
+              <div className="flex justify-end mb-4">
+                <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+              </div>
               {renderOrderForm()}
             </TabsContent>
             
