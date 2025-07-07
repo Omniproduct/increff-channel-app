@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InwardB2BOrderForm } from "@/components/order/InwardB2BOrderForm";
 import { BulkUploadToggle } from "@/components/order/BulkUploadToggle";
 import { BulkUploadForm } from "@/components/order/BulkUploadForm";
+import { ASNManagement } from "@/components/order/ASNManagement";
+import { InwardOrderActions } from "@/components/order/InwardOrderActions";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
@@ -66,16 +69,34 @@ const Inwards = () => {
         />
         
         <div className="max-w-7xl mx-auto space-y-6">
-          <Card className="border-blue-200 shadow-sm">
-            <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
-              <CardTitle>Inward Order Configuration</CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
-            </CardContent>
-          </Card>
-          
-          {renderOrderForm()}
+          <Tabs defaultValue="order-creation" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="order-creation">Order Creation</TabsTrigger>
+              <TabsTrigger value="asn-management">ASN Management</TabsTrigger>
+              <TabsTrigger value="order-actions">Order Actions</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="order-creation" className="space-y-6">
+              <Card className="border-blue-200 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
+                  <CardTitle>Inward Order Configuration</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
+                </CardContent>
+              </Card>
+              
+              {renderOrderForm()}
+            </TabsContent>
+            
+            <TabsContent value="asn-management" className="space-y-6">
+              <ASNManagement />
+            </TabsContent>
+            
+            <TabsContent value="order-actions" className="space-y-6">
+              <InwardOrderActions />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </div>

@@ -8,8 +8,6 @@ import { CSVUploadSection } from "./sections/CSVUploadSection";
 import { CustomOrderAttributes } from "./CustomOrderAttributes";
 import { AttributeDrawer } from "./AttributeDrawer";
 import { UploadSummaryModal } from "./UploadSummaryModal";
-import { ASNManagement } from "./ASNManagement";
-import { InwardOrderActions } from "./InwardOrderActions";
 import { useToast } from "@/hooks/use-toast";
 
 interface InwardB2BOrderFormProps {
@@ -21,12 +19,10 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
   const [focusedCard, setFocusedCard] = useState<string | null>(null);
-  const [isOrderCreated, setIsOrderCreated] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = () => {
     setIsSummaryModalOpen(true);
-    setIsOrderCreated(true);
     toast({
       title: "🎉 Inward Order uploaded successfully!",
       description: "Your B2B inward order has been processed.",
@@ -138,19 +134,6 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose }: InwardB2BOrderFormPr
           Submit Order
         </Button>
       </div>
-
-      {/* Post-Order Creation Actions */}
-      {isOrderCreated && (
-        <div className="space-y-6 pt-8 border-t border-blue-200">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-primary mb-2">Post-Order Actions</h3>
-            <p className="text-muted-foreground">Manage your created inward order with additional operations</p>
-          </div>
-          
-          <ASNManagement />
-          <InwardOrderActions />
-        </div>
-      )}
 
       <AttributeDrawer 
         isOpen={isDrawerOpen} 
