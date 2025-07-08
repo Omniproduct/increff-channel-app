@@ -71,16 +71,7 @@ export const B2COrderForm = ({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-primary">B2C Order</h2>
-        <Button
-          variant="outline"
-          onClick={() => setIsDrawerOpen(true)}
-          className="text-primary border-primary hover:bg-primary hover:text-white"
-        >
-          Need Help?
-        </Button>
-      </div>
+      <h2 className="text-3xl font-bold text-primary">B2C Order</h2>
 
       {hasUploadError && (
         <UploadErrorCard onDismiss={() => setHasUploadError(false)} />

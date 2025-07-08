@@ -33,15 +33,6 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose, progressState, setProg
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-end">
-        <Button
-          variant="outline"
-          onClick={() => setIsDrawerOpen(true)}
-          className="text-primary border-primary hover:bg-primary hover:text-white"
-        >
-          Need Help?
-        </Button>
-      </div>
 
       {/* Order Creation Section */}
       <div className="grid gap-6 lg:grid-cols-2">

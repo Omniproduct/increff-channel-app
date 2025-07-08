@@ -45,18 +45,9 @@ export const B2BOrderForm = ({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-primary">
-          B2B {variant.charAt(0).toUpperCase() + variant.slice(1)} Order
-        </h2>
-        <Button
-          variant="outline"
-          onClick={() => setIsDrawerOpen(true)}
-          className="text-primary border-primary hover:bg-primary hover:text-white"
-        >
-          Need Help?
-        </Button>
-      </div>
+      <h2 className="text-3xl font-bold text-primary">
+        B2B {variant.charAt(0).toUpperCase() + variant.slice(1)} Order
+      </h2>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
