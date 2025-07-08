@@ -105,8 +105,8 @@ const Inwards = () => {
                   <OrderProgressBar currentStep={getCurrentStep()} />
                 </div>
                 
-                <div className="p-6 space-y-6">
-                  <div className="flex justify-end">
+                <div className="p-6">
+                  <div className="flex justify-end mb-4">
                     <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
                   </div>
                   {renderOrderForm()}
