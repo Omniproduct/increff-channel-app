@@ -159,9 +159,9 @@ const Outwards = () => {
                   <OrderProgressBar currentStep={getCurrentStep()} />
                 </div>
                 
-                <div className="p-6 space-y-6">
+                <div className="p-6">
                   {/* Bulk Upload Toggle */}
-                  <div className="flex justify-end">
+                  <div className="flex justify-end mb-4">
                     <BulkUploadToggle value={isBulkUpload} onChange={setIsBulkUpload} />
                   </div>
                   
