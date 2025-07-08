@@ -43,14 +43,11 @@ export const CustomOrderAttributes = ({ onFocus, onBlur }: CustomOrderAttributes
         <CollapsibleContent>
           <CardContent className="space-y-4">
             {orderAttributes.map((attr) => (
-              <div key={attr.name} className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor={attr.name} className="text-right text-sm">
-                  {attr.label}
-                </Label>
+              <div key={attr.name} className="space-y-2">
                 <Input
                   id={attr.name}
                   placeholder={attr.placeholder}
-                  className="col-span-3 rounded-lg bg-white border-blue-200 focus:border-primary"
+                  className="w-full rounded-lg bg-white border-blue-200 focus:border-primary"
                   onFocus={onFocus}
                   onBlur={onBlur}
                 />
