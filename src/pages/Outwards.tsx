@@ -112,13 +112,6 @@ const Outwards = () => {
             </div>
           </div>
           <div className="ml-auto flex items-center gap-4">
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              Need Help?
-            </Button>
             <Link to="/journey">
               <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white">
                 <MapIcon className="h-4 w-4" />
@@ -136,7 +129,15 @@ const Outwards = () => {
         <ScreenHeader 
           title="Outward Order Management"
           subtitle="Create and manage B2C and B2B outward orders for sales and distribution"
-        />
+        >
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
+          >
+            Need Help?
+          </Button>
+        </ScreenHeader>
         
         <div className="max-w-7xl mx-auto">
           <Tabs defaultValue="order-creation" className="w-full">
