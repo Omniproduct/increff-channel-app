@@ -33,10 +33,7 @@ export const InwardB2BOrderForm = ({ purpose, setPurpose, progressState, setProg
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-primary">
-          B2B Inward Order Creation
-        </h2>
+      <div className="flex justify-end">
         <Button
           variant="outline"
           onClick={() => setIsDrawerOpen(true)}
