@@ -71,8 +71,6 @@ export const B2COrderForm = ({
 
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-primary">B2C Order</h2>
-
       {hasUploadError && (
         <UploadErrorCard onDismiss={() => setHasUploadError(false)} />
       )}
