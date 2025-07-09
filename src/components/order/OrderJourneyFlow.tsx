@@ -408,7 +408,7 @@ export const OrderJourneyFlow = () => {
               <FlowStep
                 icon={Users}
                 title="Open Masters Screen"
-                description="Navigate to Masters page and select 'Create New Partner' or 'Add Location' from existing partner"
+                description="Navigate to Masters page. Click 'Create New Partner' or 'Add Location' from existing partner list"
                 stepNumber={1}
               />
               
@@ -416,8 +416,8 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={FileText}
-                title="Step 1: Partner Selection/Creation"
-                description="If from 'Add Location', partner auto-selected. If new, create partner with basic details & address"
+                title="Smart Partner Selection"
+                description="System intelligently detects context: auto-selects partner if from 'Add Location', or creates new partner with details"
                 variant="warning"
                 stepNumber={2}
               />
@@ -426,8 +426,8 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={Building}
-                title="Step 2: Add Locations"
-                description="Create multiple locations with toggle for bulk upload via CSV. Add locations to live list"
+                title="Enhanced Location Management"
+                description="Add multiple locations with real-time validation. Toggle bulk CSV upload for efficiency"
                 variant="warning"
                 stepNumber={3}
               />
@@ -436,8 +436,8 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={CheckCircle}
-                title="Step 3: Review & Confirm"
-                description="Review partner details and all location codes. Confirm creation of partner with locations"
+                title="Comprehensive Review"
+                description="Review complete partner summary with all locations. Enhanced validation prevents duplicate entries"
                 variant="success"
                 stepNumber={4}
               />
@@ -446,9 +446,9 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={Upload}
-                title="Bulk Creation (Optional)"
-                description="Use toggle to enable bulk partner & location creation via CSV file upload"
-                variant="warning"
+                title="Bulk Operations"
+                description="Enhanced CSV upload with validation, error handling, and progress tracking for bulk operations"
+                variant="success"
                 isOptional={true}
                 stepNumber={5}
               />
