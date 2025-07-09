@@ -139,8 +139,8 @@ export const MastersHelpDrawer = ({ isOpen, onClose }: MastersHelpDrawerProps) =
             <div className="flex items-start gap-2">
               <HelpCircle className="h-4 w-4 mt-0.5 text-muted-foreground" />
               <div className="text-sm text-muted-foreground">
-                <p className="font-medium mb-1">Creating Partners & Locations</p>
-                <p>Use "Single Location" for simple setups or "Multiple Locations" for complex partner hierarchies. Enable bulk upload for large datasets.</p>
+                <p className="font-medium mb-1">Still stuck?</p>
+                <p>Feel free to reach out to Increff customer support with your concerns</p>
               </div>
             </div>
           </div>

@@ -136,8 +136,8 @@ export const InwardHelpDrawer = ({ isOpen, onClose }: InwardHelpDrawerProps) => 
             <div className="flex items-start gap-2">
               <HelpCircle className="h-4 w-4 mt-0.5 text-muted-foreground" />
               <div className="text-sm text-muted-foreground">
-                <p className="font-medium mb-1">Need more help?</p>
-                <p>Fill in all required fields marked with red asterisks (*) to proceed through the workflow</p>
+                <p className="font-medium mb-1">Still stuck?</p>
+                <p>Feel free to reach out to Increff customer support with your concerns</p>
               </div>
             </div>
           </div>

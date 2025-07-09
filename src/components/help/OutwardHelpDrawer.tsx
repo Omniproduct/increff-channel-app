@@ -174,8 +174,8 @@ export const OutwardHelpDrawer = ({ isOpen, onClose }: OutwardHelpDrawerProps) =
             <div className="flex items-start gap-2">
               <HelpCircle className="h-4 w-4 mt-0.5 text-muted-foreground" />
               <div className="text-sm text-muted-foreground">
-                <p className="font-medium mb-1">Order Types & Crossdocking</p>
-                <p>B2C orders use item-level crossdocking while B2B orders support box-level operations. Choose the appropriate tab for your workflow.</p>
+                <p className="font-medium mb-1">Still stuck?</p>
+                <p>Feel free to reach out to Increff customer support with your concerns</p>
               </div>
             </div>
           </div>
