@@ -1,12 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { 
   Home, 
-  Upload, 
   Users, 
-  ArrowRightLeft, 
   ArrowDown, 
-  ArrowUp, 
-  MapIcon 
+  ArrowUp
 } from "lucide-react";
 
 import {
@@ -22,12 +19,9 @@ import {
 
 const navigationItems = [
   { title: "Home", url: "/main", icon: Home },
-  { title: "Order Upload", url: "/order-upload", icon: Upload },
-  { title: "Journey", url: "/journey", icon: MapIcon },
-  { title: "Masters", url: "/masters", icon: Users },
-  { title: "Crossdocking", url: "/crossdocking", icon: ArrowRightLeft },
   { title: "Inwards", url: "/inwards", icon: ArrowDown },
   { title: "Outwards", url: "/outwards", icon: ArrowUp },
+  { title: "Masters", url: "/masters", icon: Users },
 ];
 
 export function AppSidebar() {
