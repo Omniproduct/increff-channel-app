@@ -2,8 +2,10 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppSidebar } from "./components/AppSidebar";
 import Index from "./pages/Index";
 import OrderUpload from "./pages/OrderUpload";
 import OrderJourney from "./pages/OrderJourney";
@@ -21,18 +23,30 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/main" element={<Index />} />
-          <Route path="/order-upload" element={<OrderUpload />} />
-          <Route path="/journey" element={<OrderJourney />} />
-          <Route path="/masters" element={<Masters />} />
-          <Route path="/crossdocking" element={<Crossdocking />} />
-          <Route path="/inwards" element={<Inwards />} />
-          <Route path="/outwards" element={<Outwards />} />
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <SidebarProvider>
+          <div className="min-h-screen flex w-full">
+            <AppSidebar />
+            <div className="flex-1">
+              <header className="h-12 flex items-center border-b bg-background">
+                <SidebarTrigger className="ml-2" />
+              </header>
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/main" element={<Index />} />
+                  <Route path="/order-upload" element={<OrderUpload />} />
+                  <Route path="/journey" element={<OrderJourney />} />
+                  <Route path="/masters" element={<Masters />} />
+                  <Route path="/crossdocking" element={<Crossdocking />} />
+                  <Route path="/inwards" element={<Inwards />} />
+                  <Route path="/outwards" element={<Outwards />} />
+                  <Route path="/" element={<Index />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+            </div>
+          </div>
+        </SidebarProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
