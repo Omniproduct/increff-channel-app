@@ -132,7 +132,7 @@ export const MultipleLocationFlow = ({ onBack }: MultipleLocationFlowProps) => {
               </p>
             </div>
             
-            <div className="bg-slate-50 rounded-lg p-4 w-full">
+            <div className="bg-slate-50 rounded-lg p-4 max-w-md mx-auto">
               <h4 className="font-medium mb-2">Summary:</h4>
               <div className="text-sm space-y-1 text-left">
                 <div>Partner: {createdPartner}</div>
@@ -160,7 +160,7 @@ export const MultipleLocationFlow = ({ onBack }: MultipleLocationFlowProps) => {
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6">
       <div className="flex items-center gap-4 mb-6">
         <Button variant="outline" size="sm" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />

@@ -8,7 +8,7 @@ export const CrossdockingTabs = () => {
   return (
     <Tabs defaultValue="item-crossdocking" className="w-full">
       <div className="border-b bg-gradient-to-r from-blue-50 to-orange-50 px-8 py-6">
-        <TabsList className="grid w-full max-w-lg grid-cols-2 h-12">
+        <TabsList className="grid w-full max-w-md grid-cols-2 h-12">
           <TabsTrigger 
             value="item-crossdocking" 
             className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md flex items-center gap-2 text-sm font-medium"
