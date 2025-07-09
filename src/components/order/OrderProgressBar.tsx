@@ -50,7 +50,7 @@ export const OrderProgressBar = ({ currentStep }: OrderProgressBarProps) => {
                   isCompleted
                     ? "bg-primary border-primary text-primary-foreground animate-scale-in"
                     : isCurrent
-                    ? "bg-background border-primary text-primary shadow-lg ring-4 ring-primary/20 animate-[pulse_5s_ease-in-out_infinite]"
+                    ? "bg-background border-primary text-primary shadow-lg ring-4 ring-primary/20"
                     : "bg-background border-muted-foreground/30 text-muted-foreground hover:border-muted-foreground/50"
                 )}
               >
