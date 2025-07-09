@@ -27,18 +27,21 @@ const navigationItems = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
-  const currentPath = location.pathname;
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className="border-r border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <Sidebar collapsible="icon" className="border-r border-border bg-background">
       <SidebarContent className="p-2">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className="w-full">
+                  <SidebarMenuButton 
+                    asChild 
+                    className="w-full"
+                    tooltip={isCollapsed ? item.title : undefined}
+                  >
                     <NavLink 
                       to={item.url} 
                       className={({ isActive }) =>
@@ -46,11 +49,11 @@ export function AppSidebar() {
                           isActive 
                             ? "bg-primary text-primary-foreground shadow-md" 
                             : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                        }`
+                        } ${isCollapsed ? "justify-center" : ""}`
                       }
                     >
-                      <item.icon className="h-4 w-4 shrink-0" />
-                      <span className="truncate">{item.title}</span>
+                      <item.icon className={`${isCollapsed ? "h-5 w-5" : "h-4 w-4"} shrink-0`} />
+                      {!isCollapsed && <span className="truncate">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
