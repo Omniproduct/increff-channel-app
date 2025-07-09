@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { PartnerCreationForm } from "@/components/partners/PartnerCreationForm";
 import { PartnerLocationForm } from "@/components/partners/PartnerLocationForm";
+import { PartnerCreationSelector } from "@/components/partners/PartnerCreationSelector";
+import { SingleLocationPartnerForm } from "@/components/partners/SingleLocationPartnerForm";
+import { MultipleLocationFlow } from "@/components/partners/MultipleLocationFlow";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MapIcon, ArrowLeft } from "lucide-react";
@@ -8,6 +11,42 @@ import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
 
 const Masters = () => {
+  const [currentView, setCurrentView] = useState<'selection' | 'single' | 'multiple' | 'legacy'>('selection');
+
+  const handleSelectionChange = (selection: 'single' | 'multiple') => {
+    setCurrentView(selection);
+  };
+
+  const handleBackToSelection = () => {
+    setCurrentView('selection');
+  };
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'single':
+        return <SingleLocationPartnerForm onBack={handleBackToSelection} />;
+      case 'multiple':
+        return <MultipleLocationFlow onBack={handleBackToSelection} />;
+      case 'legacy':
+        return (
+          <Tabs defaultValue="partner" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-8">
+              <TabsTrigger value="partner">Partner Creation</TabsTrigger>
+              <TabsTrigger value="location">Partner Location</TabsTrigger>
+            </TabsList>
+            <TabsContent value="partner">
+              <PartnerCreationForm />
+            </TabsContent>
+            <TabsContent value="location">
+              <PartnerLocationForm />
+            </TabsContent>
+          </Tabs>
+        );
+      default:
+        return <PartnerCreationSelector onSelectionChange={handleSelectionChange} />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
@@ -51,19 +90,27 @@ const Masters = () => {
         <ScreenHeader 
           title="Master Data Management"
           subtitle="Create and manage partners and their locations for seamless channel operations"
-        />
-        <Tabs defaultValue="partner" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="partner">Partner Creation</TabsTrigger>
-            <TabsTrigger value="location">Partner Location</TabsTrigger>
-          </TabsList>
-          <TabsContent value="partner">
-            <PartnerCreationForm />
-          </TabsContent>
-          <TabsContent value="location">
-            <PartnerLocationForm />
-          </TabsContent>
-        </Tabs>
+        >
+          {currentView !== 'selection' && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentView('legacy')}
+              className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
+            >
+              Legacy Mode
+            </Button>
+          )}
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
+          >
+            Need Help?
+          </Button>
+        </ScreenHeader>
+        
+        {renderContent()}
       </main>
     </div>
   );
