@@ -38,11 +38,25 @@ export const BasicInfoSection = ({
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1">
+            <Label htmlFor="partner-name" className="text-sm">
+              Partner Name <span className="text-brand-red">*</span>
+            </Label>
+            <Input
+              id="partner-name"
+              name="partnerName"
+              placeholder="Enter partner name"
+              required
+              className="border-gray-200 focus:border-brand-blue h-9"
+            />
+          </div>
+          
+          <div className="space-y-1">
             <Label htmlFor="partner-code" className="text-sm">
               Partner Code <span className="text-brand-red">*</span>
             </Label>
             <Input
               id="partner-code"
+              name="partnerCode"
               placeholder="Enter partner code"
               required
               className="border-gray-200 focus:border-brand-blue h-9"

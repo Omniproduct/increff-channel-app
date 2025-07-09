@@ -40,8 +40,9 @@ export const MultipleLocationFlow = ({ onBack, existingPartner }: MultipleLocati
     }
   }, [existingPartner]);
 
-  const handlePartnerCreated = (partnerCode: string) => {
-    setCreatedPartner(partnerCode);
+  const handlePartnerCreated = (partnerData: { id: string; name: string; code: string }) => {
+    setPartnerData(partnerData);
+    setCreatedPartner(partnerData.code);
     setCurrentStep('locations');
   };
 
@@ -130,11 +131,11 @@ export const MultipleLocationFlow = ({ onBack, existingPartner }: MultipleLocati
               </CardContent>
             </Card>
 
-            {isBulkMode ? renderBulkUpload() : <PartnerCreationForm />}
+            {isBulkMode ? renderBulkUpload() : <PartnerCreationForm onSubmit={handlePartnerCreated} />}
             
             <div className="flex justify-end pt-4">
               <Button 
-                onClick={() => handlePartnerCreated("PARTNER005")} 
+                onClick={() => setCurrentStep('locations')} 
                 className="px-8"
                 disabled={!partnerData && !isBulkMode}
               >

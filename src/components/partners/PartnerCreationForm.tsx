@@ -5,18 +5,44 @@ import { BasicInfoSection } from "./sections/BasicInfoSection";
 import { AddressInfoSection } from "./sections/AddressInfoSection";
 import { FormActions } from "./sections/FormActions";
 
-export const PartnerCreationForm = () => {
+interface PartnerCreationFormProps {
+  onSubmit?: (partnerData: { id: string; name: string; code: string }) => void;
+}
+
+export const PartnerCreationForm = ({ onSubmit }: PartnerCreationFormProps) => {
   const [partnerType, setPartnerType] = useState("supplier");
   const [channel, setChannel] = useState("");
   const [excessGrnAllowed, setExcessGrnAllowed] = useState("no");
+  const [partnerName, setPartnerName] = useState("");
+  const [partnerCode, setPartnerCode] = useState("");
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(e.target as HTMLFormElement);
+    const partnerName = formData.get('partnerName') as string;
+    const partnerCode = formData.get('partnerCode') as string;
+    
+    // Generate ID and create partner data
+    const partnerId = `PARTNER${Date.now().toString().slice(-6)}`;
+    const partnerData = {
+      id: partnerId,
+      name: partnerName || "New Partner",
+      code: partnerCode || `PARTNER${partnerId.slice(-3)}`
+    };
+    
     toast({
       title: "Success",
       description: "Partner created successfully",
     });
+    
+    // Call parent callback if provided
+    if (onSubmit) {
+      onSubmit(partnerData);
+    }
+    
     // Reset form
     (e.target as HTMLFormElement).reset();
     setChannel("");
