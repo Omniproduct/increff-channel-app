@@ -241,7 +241,11 @@ export const InwardOrderActions = () => {
           <Button
             variant={activeAction === 'update' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'update' ? null : 'update')}
-            className="h-10 border-primary text-primary hover:bg-primary hover:text-white"
+            className={`h-10 ${
+              activeAction === 'update' 
+                ? 'bg-primary text-white hover:bg-primary/90' 
+                : 'border-primary text-primary hover:bg-primary hover:text-white'
+            }`}
           >
             <Edit className="h-4 w-4 mr-2" />
             Update Order
@@ -250,7 +254,11 @@ export const InwardOrderActions = () => {
           <Button
             variant={activeAction === 'lock' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'lock' ? null : 'lock')}
-            className="h-10 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+            className={`h-10 ${
+              activeAction === 'lock' 
+                ? 'bg-orange-500 text-white hover:bg-orange-600' 
+                : 'border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white'
+            }`}
           >
             <Lock className="h-4 w-4 mr-2" />
             Lock Order
@@ -259,7 +267,11 @@ export const InwardOrderActions = () => {
           <Button
             variant={activeAction === 'close' ? 'default' : 'outline'}
             onClick={() => setActiveAction(activeAction === 'close' ? null : 'close')}
-            className="h-10 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+            className={`h-10 ${
+              activeAction === 'close' 
+                ? 'bg-red-500 text-white hover:bg-red-600' 
+                : 'border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
+            }`}
           >
             <X className="h-4 w-4 mr-2" />
             Close Order
