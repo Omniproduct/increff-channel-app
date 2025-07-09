@@ -4,6 +4,8 @@ import { PartnerLocationForm } from "@/components/partners/PartnerLocationForm";
 import { PartnerCreationSelector } from "@/components/partners/PartnerCreationSelector";
 import { SingleLocationPartnerForm } from "@/components/partners/SingleLocationPartnerForm";
 import { MultipleLocationFlow } from "@/components/partners/MultipleLocationFlow";
+import { PartnersList } from "@/components/masters/PartnersList";
+import { PartnerLocations } from "@/components/masters/PartnerLocations";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
@@ -13,7 +15,8 @@ import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
 
 const Masters = () => {
-  const [currentView, setCurrentView] = useState<'selection' | 'single' | 'multiple' | 'legacy'>('selection');
+  const [currentView, setCurrentView] = useState<'list' | 'locations' | 'selection' | 'single' | 'multiple' | 'legacy'>('list');
+  const [selectedPartner, setSelectedPartner] = useState<{id: string, name: string} | null>(null);
 
   const handleSelectionChange = (selection: 'single' | 'multiple') => {
     setCurrentView(selection);
@@ -23,8 +26,38 @@ const Masters = () => {
     setCurrentView('selection');
   };
 
+  const handleViewLocations = (partnerId: string, partnerName: string) => {
+    setSelectedPartner({ id: partnerId, name: partnerName });
+    setCurrentView('locations');
+  };
+
+  const handleBackToList = () => {
+    setSelectedPartner(null);
+    setCurrentView('list');
+  };
+
+  const handleCreatePartner = () => {
+    setCurrentView('selection');
+  };
+
+  const handleAddLocation = () => {
+    // Navigate to location creation form
+    setCurrentView('legacy'); // or create dedicated location form
+  };
+
   const renderContent = () => {
     switch (currentView) {
+      case 'list':
+        return <PartnersList onViewLocations={handleViewLocations} onCreatePartner={handleCreatePartner} />;
+      case 'locations':
+        return selectedPartner ? (
+          <PartnerLocations 
+            partnerId={selectedPartner.id}
+            partnerName={selectedPartner.name}
+            onBack={handleBackToList}
+            onAddLocation={handleAddLocation}
+          />
+        ) : null;
       case 'single':
         return <SingleLocationPartnerForm onBack={handleBackToSelection} />;
       case 'multiple':
@@ -44,8 +77,10 @@ const Masters = () => {
             </TabsContent>
           </Tabs>
         );
-      default:
+      case 'selection':
         return <PartnerCreationSelector onSelectionChange={handleSelectionChange} />;
+      default:
+        return <PartnersList onViewLocations={handleViewLocations} onCreatePartner={handleCreatePartner} />;
     }
   };
 
@@ -93,7 +128,7 @@ const Masters = () => {
           title="Master Data Management"
           subtitle="Create and manage partners and their locations for seamless channel operations"
         >
-          {currentView !== 'selection' && (
+          {currentView !== 'list' && currentView !== 'locations' && (
             <div className="flex items-center gap-3">
               <Label htmlFor="legacy-mode" className="text-sm font-medium">
                 Legacy Mode
