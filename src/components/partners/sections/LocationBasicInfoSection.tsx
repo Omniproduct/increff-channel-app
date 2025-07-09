@@ -28,7 +28,7 @@ export const LocationBasicInfoSection = ({
   channelOptions
 }: LocationBasicInfoSectionProps) => {
   return (
-    <div className="bg-slate-50/50 rounded-lg p-4">
+    <div className="bg-slate-50/50 rounded-lg p-4 border border-gray-200">
       <h3 className="text-lg font-semibold mb-4 text-foreground">Basic Information</h3>
       <div className="space-y-4">
         <div className="space-y-1">
