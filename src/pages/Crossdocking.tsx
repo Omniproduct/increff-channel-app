@@ -38,7 +38,7 @@ const Crossdocking = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-7xl">
+      <main className="w-full px-[8%] py-8">
         <ScreenHeader 
           title="Crossdocking Operations"
           subtitle="Create and manage crossdocking plans for efficient item and box transfers across your warehouse operations"

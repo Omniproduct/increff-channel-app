@@ -32,7 +32,7 @@ export const OrderCreationTabs = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full max-w-none mx-auto space-y-6">
       <Card className="border-blue-200 shadow-sm">
         <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50">
           <CardTitle>Order Configuration</CardTitle>

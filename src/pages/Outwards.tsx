@@ -125,7 +125,7 @@ const Outwards = () => {
         </div>
       </header>
       
-      <main className="container py-6">
+      <main className="w-full px-[8%] py-6">
         <ScreenHeader 
           title="Outward Order Management"
           subtitle="Create and manage B2C and B2B outward orders for sales and distribution"
@@ -139,7 +139,7 @@ const Outwards = () => {
           </Button>
         </ScreenHeader>
         
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full max-w-none mx-auto">
           <Tabs defaultValue="order-creation" className="w-full">
             <div className="border-b bg-gradient-to-r from-blue-50 to-orange-50 px-6 py-4 rounded-t-lg">
               <TabsList className="grid w-full max-w-lg grid-cols-2 h-12">

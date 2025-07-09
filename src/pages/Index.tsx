@@ -94,7 +94,7 @@ const Index = () => {
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-none mx-auto px-[10%]">
           <FeatureCard
             icon={Inbox}
             title="Inwards"

@@ -98,7 +98,7 @@ const Inwards = () => {
           </Button>
         </ScreenHeader>
         
-        <div className="max-w-7xl mx-auto space-y-6">
+        <div className="w-full max-w-none mx-auto px-[8%] space-y-6">
           <Tabs defaultValue="order-creation" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="order-creation">Order Creation</TabsTrigger>

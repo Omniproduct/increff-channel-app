@@ -88,7 +88,7 @@ const Masters = () => {
           </div>
         </div>
       </header>
-      <main className="container py-6">
+      <main className="w-full px-[8%] py-6">
         <ScreenHeader 
           title="Master Data Management"
           subtitle="Create and manage partners and their locations for seamless channel operations"
