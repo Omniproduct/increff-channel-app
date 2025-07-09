@@ -315,8 +315,8 @@ export const MultipleLocationFlow = ({ onBack, existingPartner }: MultipleLocati
               <Button variant="outline" onClick={onBack}>
                 Create Another Partner
               </Button>
-              <Button onClick={() => window.location.reload()}>
-                Go to Dashboard
+              <Button onClick={onBack}>
+                Back to Dashboard
               </Button>
             </div>
           </div>
