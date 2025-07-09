@@ -47,7 +47,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header with Logo */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm sticky top-0 z-50">
-        <div className="container flex h-16 items-center justify-between">
+        <div className="w-full px-[8%] flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative">
               <img 
@@ -77,7 +77,7 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container py-12 space-y-12">
+      <main className="w-full px-[8%] py-12 space-y-12">
         {/* Animated Hero Icons */}
         <div className="text-center">
           <div className="flex justify-center items-center gap-8 mb-8">

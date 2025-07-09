@@ -16,7 +16,7 @@ export const PartnerCreationSelector = ({ onSelectionChange }: PartnerCreationSe
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full space-y-6">
       <div className="text-center space-y-2 mb-8">
         <h2 className="text-2xl font-bold text-foreground">Choose Your Partner Creation Flow</h2>
         <p className="text-muted-foreground">Select the option that best fits your needs</p>

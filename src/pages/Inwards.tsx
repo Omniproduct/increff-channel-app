@@ -47,7 +47,7 @@ const Inwards = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
-        <div className="container flex h-16 items-center">
+        <div className="w-full px-[8%] flex h-16 items-center">
           <div className="flex items-center gap-4">
             <Link to="/main">
               <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white">
@@ -84,7 +84,7 @@ const Inwards = () => {
         </div>
       </header>
       
-      <main className="container py-6">
+      <main className="w-full px-[8%] py-6">
         <ScreenHeader 
           title="Inward Order Management"
           subtitle="Create and manage B2B inward orders for purchase, returns, and open PO operations"
@@ -98,7 +98,7 @@ const Inwards = () => {
           </Button>
         </ScreenHeader>
         
-        <div className="w-full max-w-none mx-auto px-[8%] space-y-6">
+        <div className="w-full max-w-none mx-auto space-y-6">
           <Tabs defaultValue="order-creation" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="order-creation">Order Creation</TabsTrigger>
