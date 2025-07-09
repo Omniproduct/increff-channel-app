@@ -27,15 +27,15 @@ const Index = () => {
     className: string; 
   }) => (
     <Link to={to} className="group transition-all duration-300 hover:scale-105">
-      <Card className="h-full border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-white">
-        <CardHeader className="text-center pb-4">
-          <div className={`${className} rounded-full p-4 inline-flex mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-            <Icon className="h-8 w-8" />
+      <Card className="h-full border-2 hover:border-primary/20 hover:shadow-xl transition-all duration-300 bg-white min-h-[280px]">
+        <CardHeader className="text-center pb-6 pt-8">
+          <div className={`${className} rounded-full p-6 inline-flex mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+            <Icon className="h-10 w-10" />
           </div>
-          <CardTitle className="text-xl font-semibold text-foreground">{title}</CardTitle>
+          <CardTitle className="text-2xl font-bold text-foreground mb-2">{title}</CardTitle>
         </CardHeader>
-        <CardContent>
-          <CardDescription className="text-center text-muted-foreground leading-relaxed">
+        <CardContent className="px-8 pb-8">
+          <CardDescription className="text-center text-muted-foreground leading-relaxed text-base">
             {description}
           </CardDescription>
         </CardContent>
@@ -94,11 +94,11 @@ const Index = () => {
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-none mx-auto px-[10%]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mx-auto px-[5%]">
           <FeatureCard
             icon={Inbox}
             title="Inwards"
-            description="Create and manage B2B inward orders for purchase, returns, and open PO operations"
+            description="Create and manage B2B inward orders for purchase, returns, and open PO operations with comprehensive tracking and monitoring capabilities"
             to="/inwards"
             className="bg-blue-100 text-blue-600 border-2 border-blue-200"
           />
@@ -106,7 +106,7 @@ const Index = () => {
           <FeatureCard
             icon={Send}
             title="Outwards"
-            description="Create and manage B2C and B2B outward orders for sales and distribution"
+            description="Create and manage B2C and B2B outward orders for sales and distribution with real-time status updates and delivery tracking"
             to="/outwards"
             className="bg-green-100 text-green-600 border-2 border-green-200"
           />
@@ -114,7 +114,7 @@ const Index = () => {
           <FeatureCard
             icon={Users}
             title="Masters"
-            description="Manage master data including partner relationships and location creation"
+            description="Manage master data including partner relationships and location creation with complete address and configuration management"
             to="/masters"
             className="bg-purple-100 text-purple-600 border-2 border-purple-200"
           />
