@@ -57,7 +57,7 @@ export const OrderProgressBar = ({ currentStep }: OrderProgressBarProps) => {
                 {isCompleted ? (
                   <Check className="w-5 h-5" />
                 ) : (
-                  <Icon className="w-5 h-5" />
+                  <Icon className={cn("w-5 h-5", isCurrent && "animate-[pulse_5s_ease-in-out_infinite]")} />
                 )}
               </div>
               
