@@ -16,9 +16,11 @@ export const InwardOrderActions = () => {
   const [orderID, setOrderID] = useState("");
   const [locationName, setLocationName] = useState("");
   const [updateFields, setUpdateFields] = useState({
-    orderID: false,
-    location: false,
-    items: false
+    items: false,
+    qcStatus: false,
+    paymentType: false,
+    poolStrategy: false,
+    sla: false
   });
   const [showPOAmendmentCheck, setShowPOAmendmentCheck] = useState(false);
   const { toast } = useToast();
@@ -44,23 +46,11 @@ export const InwardOrderActions = () => {
       <div className="space-y-3 mt-3 p-3 border border-blue-200 rounded-lg bg-blue-50/30">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="space-y-2">
-            {activeAction === 'update' && (
-              <div className="flex items-center space-x-2 mb-1">
-                <Checkbox
-                  id="update-order-id"
-                  checked={updateFields.orderID}
-                  onCheckedChange={(checked) => handleFieldUpdate('orderID', checked as boolean)}
-                />
-                <Label htmlFor="update-order-id" className="text-xs text-muted-foreground">
-                  Update Order ID
-                </Label>
-              </div>
-            )}
-            <Label htmlFor="action-order-id" className="text-sm font-medium">Order ID</Label>
+            <Label htmlFor="action-order-id" className="text-sm font-medium">Order ID <span className="text-destructive">*</span></Label>
             <Select 
               value={orderID} 
               onValueChange={setOrderID}
-              disabled={activeAction === 'update' && !updateFields.orderID}
+              required
             >
               <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
                 <SelectValue placeholder="Search & Select Order" />
@@ -74,23 +64,11 @@ export const InwardOrderActions = () => {
             </Select>
           </div>
           <div className="space-y-2">
-            {activeAction === 'update' && (
-              <div className="flex items-center space-x-2 mb-1">
-                <Checkbox
-                  id="update-location"
-                  checked={updateFields.location}
-                  onCheckedChange={(checked) => handleFieldUpdate('location', checked as boolean)}
-                />
-                <Label htmlFor="update-location" className="text-xs text-muted-foreground">
-                  Update Location
-                </Label>
-              </div>
-            )}
-            <Label htmlFor="action-location" className="text-sm font-medium">Location</Label>
+            <Label htmlFor="action-location" className="text-sm font-medium">Location <span className="text-destructive">*</span></Label>
             <Select 
               value={locationName} 
               onValueChange={setLocationName}
-              disabled={activeAction === 'update' && !updateFields.location}
+              required
             >
               <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
                 <SelectValue placeholder="Select Location" />
@@ -105,28 +83,131 @@ export const InwardOrderActions = () => {
         </div>
 
         {activeAction === 'update' && (
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 mb-1">
-              <Checkbox
-                id="update-items"
-                checked={updateFields.items}
-                onCheckedChange={(checked) => handleFieldUpdate('items', checked as boolean)}
-              />
-              <Label htmlFor="update-items" className="text-xs text-muted-foreground">
-                Update Item Details
-              </Label>
+          <>
+            {/* Additional Update Fields */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2 mb-1">
+                  <Checkbox
+                    id="update-qc-status"
+                    checked={updateFields.qcStatus}
+                    onCheckedChange={(checked) => handleFieldUpdate('qcStatus', checked as boolean)}
+                  />
+                  <Label htmlFor="update-qc-status" className="text-xs text-muted-foreground">
+                    Update QC Status
+                  </Label>
+                </div>
+                <Label htmlFor="qc-status" className="text-sm font-medium">QC Status</Label>
+                <Select disabled={!updateFields.qcStatus}>
+                  <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
+                    <SelectValue placeholder="Select QC Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="in_progress">In Progress</SelectItem>
+                    <SelectItem value="passed">Passed</SelectItem>
+                    <SelectItem value="failed">Failed</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2 mb-1">
+                  <Checkbox
+                    id="update-payment-type"
+                    checked={updateFields.paymentType}
+                    onCheckedChange={(checked) => handleFieldUpdate('paymentType', checked as boolean)}
+                  />
+                  <Label htmlFor="update-payment-type" className="text-xs text-muted-foreground">
+                    Update Payment Type
+                  </Label>
+                </div>
+                <Label htmlFor="payment-type" className="text-sm font-medium">Payment Type</Label>
+                <Select disabled={!updateFields.paymentType}>
+                  <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
+                    <SelectValue placeholder="Select Payment Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="prepaid">Prepaid</SelectItem>
+                    <SelectItem value="cod">Cash on Delivery</SelectItem>
+                    <SelectItem value="credit">Credit</SelectItem>
+                    <SelectItem value="net_banking">Net Banking</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2 mb-1">
+                  <Checkbox
+                    id="update-pool-strategy"
+                    checked={updateFields.poolStrategy}
+                    onCheckedChange={(checked) => handleFieldUpdate('poolStrategy', checked as boolean)}
+                  />
+                  <Label htmlFor="update-pool-strategy" className="text-xs text-muted-foreground">
+                    Update Pool Strategy
+                  </Label>
+                </div>
+                <Label htmlFor="pool-strategy" className="text-sm font-medium">Pool Strategy</Label>
+                <Select disabled={!updateFields.poolStrategy}>
+                  <SelectTrigger className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary">
+                    <SelectValue placeholder="Select Pool Strategy" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="fifo">First In First Out (FIFO)</SelectItem>
+                    <SelectItem value="lifo">Last In First Out (LIFO)</SelectItem>
+                    <SelectItem value="fefo">First Expired First Out (FEFO)</SelectItem>
+                    <SelectItem value="random">Random</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2 mb-1">
+                  <Checkbox
+                    id="update-sla"
+                    checked={updateFields.sla}
+                    onCheckedChange={(checked) => handleFieldUpdate('sla', checked as boolean)}
+                  />
+                  <Label htmlFor="update-sla" className="text-xs text-muted-foreground">
+                    Update SLA
+                  </Label>
+                </div>
+                <Label htmlFor="sla" className="text-sm font-medium">SLA</Label>
+                <div className={!updateFields.sla ? "opacity-50 pointer-events-none" : ""}>
+                  <Input
+                    id="sla"
+                    placeholder="Enter SLA in hours"
+                    type="number"
+                    className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary"
+                  />
+                </div>
+              </div>
             </div>
-            <div className={!updateFields.items ? "opacity-50 pointer-events-none" : ""}>
-              <Card className="border-blue-200">
-                <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 py-2">
-                  <CardTitle className="text-sm">Item Details</CardTitle>
-                </CardHeader>
-                <CardContent className="p-3">
-                  <OrderCSVUploadSection />
-                </CardContent>
-              </Card>
+
+            {/* Item Details Section */}
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 mb-1">
+                <Checkbox
+                  id="update-items"
+                  checked={updateFields.items}
+                  onCheckedChange={(checked) => handleFieldUpdate('items', checked as boolean)}
+                />
+                <Label htmlFor="update-items" className="text-xs text-muted-foreground">
+                  Update Item Details
+                </Label>
+              </div>
+              <div className={!updateFields.items ? "opacity-50 pointer-events-none" : ""}>
+                <Card className="border-blue-200">
+                  <CardHeader className="bg-gradient-to-r from-blue-50 to-orange-50 py-2">
+                    <CardTitle className="text-sm">Item Details</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-3">
+                    <OrderCSVUploadSection />
+                  </CardContent>
+                </Card>
+              </div>
             </div>
-          </div>
+          </>
         )}
 
         {activeAction === 'lock' && (
