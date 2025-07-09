@@ -6,6 +6,7 @@ import { SingleLocationPartnerForm } from "@/components/partners/SingleLocationP
 import { MultipleLocationFlow } from "@/components/partners/MultipleLocationFlow";
 import { PartnersList } from "@/components/masters/PartnersList";
 import { PartnerLocations } from "@/components/masters/PartnerLocations";
+import { MastersHelpDrawer } from "@/components/help/MastersHelpDrawer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
@@ -17,6 +18,7 @@ import { ScreenHeader } from "@/components/ui/screen-header";
 const Masters = () => {
   const [currentView, setCurrentView] = useState<'list' | 'locations' | 'selection' | 'single' | 'multiple' | 'legacy'>('list');
   const [selectedPartner, setSelectedPartner] = useState<{id: string, name: string, code?: string} | null>(null);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
 
   const handleSelectionChange = (selection: 'single' | 'multiple') => {
     setCurrentView(selection);
@@ -161,6 +163,7 @@ const Masters = () => {
             variant="outline"
             size="sm"
             className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
+            onClick={() => setIsHelpOpen(true)}
           >
             Need Help?
           </Button>
@@ -168,6 +171,11 @@ const Masters = () => {
         
         {renderContent()}
       </main>
+      
+      <MastersHelpDrawer 
+        isOpen={isHelpOpen} 
+        onClose={() => setIsHelpOpen(false)} 
+      />
     </div>
   );
 };

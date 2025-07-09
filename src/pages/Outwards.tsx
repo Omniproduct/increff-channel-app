@@ -12,6 +12,7 @@ import { BulkUploadToggle } from "@/components/order/BulkUploadToggle";
 import { BulkUploadForm } from "@/components/order/BulkUploadForm";
 import { ItemCrossdockingForm } from "@/components/crossdocking/ItemCrossdockingForm";
 import { BoxCrossdockingForm } from "@/components/crossdocking/BoxCrossdockingForm";
+import { OutwardHelpDrawer } from "@/components/help/OutwardHelpDrawer";
 import { MapIcon, ArrowLeft, Package, Box, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
@@ -20,6 +21,7 @@ const Outwards = () => {
   const [orderType, setOrderType] = useState("b2c");
   const [isBulkUpload, setIsBulkUpload] = useState(false);
   const [purpose, setPurpose] = useState("");
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [progressState, setProgressState] = useState({
     orderInfo: false,
     channelLocation: false,
@@ -134,6 +136,7 @@ const Outwards = () => {
             variant="outline"
             size="sm"
             className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
+            onClick={() => setIsHelpOpen(true)}
           >
             Need Help?
           </Button>
@@ -187,6 +190,11 @@ const Outwards = () => {
           </Tabs>
         </div>
       </main>
+      
+      <OutwardHelpDrawer 
+        isOpen={isHelpOpen} 
+        onClose={() => setIsHelpOpen(false)} 
+      />
     </div>
   );
 };

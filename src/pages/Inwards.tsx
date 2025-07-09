@@ -8,6 +8,7 @@ import { BulkUploadForm } from "@/components/order/BulkUploadForm";
 import { ASNManagement } from "@/components/order/ASNManagement";
 import { InwardOrderActions } from "@/components/order/InwardOrderActions";
 import { OrderProgressBar } from "@/components/order/OrderProgressBar";
+import { InwardHelpDrawer } from "@/components/help/InwardHelpDrawer";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
@@ -15,6 +16,7 @@ import { ScreenHeader } from "@/components/ui/screen-header";
 const Inwards = () => {
   const [isBulkUpload, setIsBulkUpload] = useState(false);
   const [purpose, setPurpose] = useState("");
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [progressState, setProgressState] = useState({
     orderInfo: false,
     channelLocation: false,
@@ -93,6 +95,7 @@ const Inwards = () => {
             variant="outline"
             size="sm"
             className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
+            onClick={() => setIsHelpOpen(true)}
           >
             Need Help?
           </Button>
@@ -132,6 +135,11 @@ const Inwards = () => {
           </Tabs>
         </div>
       </main>
+      
+      <InwardHelpDrawer 
+        isOpen={isHelpOpen} 
+        onClose={() => setIsHelpOpen(false)} 
+      />
     </div>
   );
 };
