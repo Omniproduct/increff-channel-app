@@ -14,8 +14,16 @@ const steps = [
 ];
 
 export const OrderProgressBar = ({ currentStep }: OrderProgressBarProps) => {
+  const progress = ((Math.min(currentStep, steps.length) - 1) / (steps.length - 1)) * 100;
+  
   return (
     <div className="w-full px-4 py-6">
+      {/* Progress percentage */}
+      <div className="flex justify-between text-sm mb-4">
+        <span>Progress</span>
+        <span>{Math.round(progress)}% Complete</span>
+      </div>
+      
       <div className="flex items-center justify-between relative">
         {/* Progress line background */}
         <div className="absolute top-6 left-0 right-0 h-0.5 bg-muted mx-6"></div>
