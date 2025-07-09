@@ -46,12 +46,12 @@ export const OrderProgressBar = ({ currentStep }: OrderProgressBarProps) => {
               {/* Step circle */}
               <div
                 className={cn(
-                  "w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-300",
+                  "w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-300 hover:scale-110",
                   isCompleted
-                    ? "bg-primary border-primary text-primary-foreground"
+                    ? "bg-primary border-primary text-primary-foreground animate-scale-in"
                     : isCurrent
-                    ? "bg-background border-primary text-primary shadow-lg ring-4 ring-primary/20"
-                    : "bg-background border-muted-foreground/30 text-muted-foreground"
+                    ? "bg-background border-primary text-primary shadow-lg ring-4 ring-primary/20 animate-pulse"
+                    : "bg-background border-muted-foreground/30 text-muted-foreground hover:border-muted-foreground/50"
                 )}
               >
                 {isCompleted ? (
