@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AppSidebar } from "./components/AppSidebar";
 import Index from "./pages/Index";
 import OrderUpload from "./pages/OrderUpload";
@@ -17,36 +17,69 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Routes that should show the sidebar
+const sidebarRoutes = ["/inwards", "/outwards", "/masters"];
+
+const AppContent = () => {
+  const location = useLocation();
+  const showSidebar = sidebarRoutes.includes(location.pathname);
+
+  if (!showSidebar) {
+    return (
+      <div className="min-h-screen w-full">
+        <main className="flex-1">
+          <Routes>
+            <Route path="/main" element={<Index />} />
+            <Route path="/order-upload" element={<OrderUpload />} />
+            <Route path="/journey" element={<OrderJourney />} />
+            <Route path="/masters" element={<Masters />} />
+            <Route path="/crossdocking" element={<Crossdocking />} />
+            <Route path="/inwards" element={<Inwards />} />
+            <Route path="/outwards" element={<Outwards />} />
+            <Route path="/" element={<Index />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
+    );
+  }
+
+  return (
+    <SidebarProvider defaultOpen={false}>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar />
+        <div className="flex-1">
+          <header className="h-14 flex items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
+            <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
+          </header>
+          <main className="flex-1">
+            <Routes>
+              <Route path="/main" element={<Index />} />
+              <Route path="/order-upload" element={<OrderUpload />} />
+              <Route path="/journey" element={<OrderJourney />} />
+              <Route path="/masters" element={<Masters />} />
+              <Route path="/crossdocking" element={<Crossdocking />} />
+              <Route path="/inwards" element={<Inwards />} />
+              <Route path="/outwards" element={<Outwards />} />
+              <Route path="/" element={<Index />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SidebarProvider>
-          <div className="min-h-screen flex w-full">
-            <AppSidebar />
-            <div className="flex-1">
-              <header className="h-14 flex items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
-                <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-              </header>
-              <main className="flex-1">
-                <Routes>
-                  <Route path="/main" element={<Index />} />
-                  <Route path="/order-upload" element={<OrderUpload />} />
-                  <Route path="/journey" element={<OrderJourney />} />
-                  <Route path="/masters" element={<Masters />} />
-                  <Route path="/crossdocking" element={<Crossdocking />} />
-                  <Route path="/inwards" element={<Inwards />} />
-                  <Route path="/outwards" element={<Outwards />} />
-                  <Route path="/" element={<Index />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-            </div>
-          </div>
-        </SidebarProvider>
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
