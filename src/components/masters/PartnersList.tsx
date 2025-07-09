@@ -15,7 +15,7 @@ interface Partner {
 }
 
 interface PartnersListProps {
-  onViewLocations: (partnerId: string, partnerName: string) => void;
+  onViewLocations: (partnerId: string, partnerName: string, partnerCode?: string) => void;
   onCreatePartner: () => void;
 }
 
@@ -98,7 +98,7 @@ export const PartnersList = ({ onViewLocations, onCreatePartner }: PartnersListP
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => onViewLocations(partner.id, partner.name)}
+                      onClick={() => onViewLocations(partner.id, partner.name, partner.code)}
                       className="gap-2"
                     >
                       <Eye className="h-4 w-4" />

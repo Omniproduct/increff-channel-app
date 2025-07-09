@@ -16,7 +16,7 @@ import { ScreenHeader } from "@/components/ui/screen-header";
 
 const Masters = () => {
   const [currentView, setCurrentView] = useState<'list' | 'locations' | 'selection' | 'single' | 'multiple' | 'legacy'>('list');
-  const [selectedPartner, setSelectedPartner] = useState<{id: string, name: string} | null>(null);
+  const [selectedPartner, setSelectedPartner] = useState<{id: string, name: string, code?: string} | null>(null);
 
   const handleSelectionChange = (selection: 'single' | 'multiple') => {
     setCurrentView(selection);
@@ -26,8 +26,8 @@ const Masters = () => {
     setCurrentView('selection');
   };
 
-  const handleViewLocations = (partnerId: string, partnerName: string) => {
-    setSelectedPartner({ id: partnerId, name: partnerName });
+  const handleViewLocations = (partnerId: string, partnerName: string, partnerCode?: string) => {
+    setSelectedPartner({ id: partnerId, name: partnerName, code: partnerCode });
     setCurrentView('locations');
   };
 
@@ -41,8 +41,12 @@ const Masters = () => {
   };
 
   const handleAddLocation = () => {
-    // Navigate to location creation form
-    setCurrentView('legacy'); // or create dedicated location form
+    // Navigate to multiple location flow with existing partner context
+    if (selectedPartner) {
+      setCurrentView('multiple');
+    } else {
+      setCurrentView('legacy'); // fallback to legacy form
+    }
   };
 
   const renderContent = () => {
@@ -61,7 +65,14 @@ const Masters = () => {
       case 'single':
         return <SingleLocationPartnerForm onBack={handleBackToSelection} />;
       case 'multiple':
-        return <MultipleLocationFlow onBack={handleBackToSelection} />;
+        return <MultipleLocationFlow 
+          onBack={selectedPartner ? handleBackToList : handleBackToSelection} 
+          existingPartner={selectedPartner ? { 
+            id: selectedPartner.id, 
+            name: selectedPartner.name, 
+            code: selectedPartner.code || `PARTNER${selectedPartner.id.padStart(3, '0')}` 
+          } : null}
+        />;
       case 'legacy':
         return (
           <Tabs defaultValue="partner" className="w-full">
