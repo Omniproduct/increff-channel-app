@@ -52,9 +52,9 @@ export const AddressSection = ({ title, prefix, onCopyFrom, isHidden = false }: 
 
   if (isHidden) {
     return (
-      <div className="bg-slate-50/50 rounded-lg p-3 border">
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium text-foreground">{title}</h3>
+      <div className="bg-slate-50/50 rounded-lg p-4 border border-gray-200">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
           <div className="flex items-center gap-2">
             <Label htmlFor={`copy-toggle-${prefix}`} className="text-xs text-muted-foreground">
               {getToggleLabel()}
@@ -74,9 +74,9 @@ export const AddressSection = ({ title, prefix, onCopyFrom, isHidden = false }: 
   }
 
   return (
-    <div className="bg-slate-50/50 rounded-lg p-3 border">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-medium text-foreground">{title}</h3>
+    <div className="bg-slate-50/50 rounded-lg p-4 border border-gray-200">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
         <div className="flex items-center gap-2">
           <Label htmlFor={`copy-toggle-${prefix}`} className="text-xs text-muted-foreground">
             {getToggleLabel()}
