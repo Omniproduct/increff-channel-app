@@ -6,6 +6,8 @@ import { SingleLocationPartnerForm } from "@/components/partners/SingleLocationP
 import { MultipleLocationFlow } from "@/components/partners/MultipleLocationFlow";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
@@ -92,14 +94,22 @@ const Masters = () => {
           subtitle="Create and manage partners and their locations for seamless channel operations"
         >
           {currentView !== 'selection' && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setCurrentView('legacy')}
-              className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              Legacy Mode
-            </Button>
+            <div className="flex items-center gap-3">
+              <Label htmlFor="legacy-mode" className="text-sm font-medium">
+                Legacy Mode
+              </Label>
+              <Switch
+                id="legacy-mode"
+                checked={currentView === 'legacy'}
+                onCheckedChange={(checked) => {
+                  if (checked) {
+                    setCurrentView('legacy');
+                  } else {
+                    setCurrentView('selection');
+                  }
+                }}
+              />
+            </div>
           )}
           <Button
             variant="outline"
