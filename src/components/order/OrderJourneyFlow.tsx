@@ -397,18 +397,18 @@ export const OrderJourneyFlow = () => {
         <CardContent className="p-8">
           <div className="grid gap-12 lg:grid-cols-2">
             
-            {/* Partner Creation Flow */}
+            {/* Enhanced Partner with Multiple Locations Flow */}
             <div className="space-y-6 animate-fade-in">
               <div className="text-center">
                 <Badge className="bg-purple-600 text-white px-6 py-3 text-base font-bold shadow-lg hover:scale-105 transition-transform">
-                  👥 Partner Creation Flow
+                  👥 Create Partner with Multiple Locations
                 </Badge>
               </div>
               
               <FlowStep
                 icon={Users}
-                title="Open Partners Screen"
-                description="Navigate to partners screen and select Partner Creation tab"
+                title="Open Masters Screen"
+                description="Navigate to Masters page and select 'Create New Partner' or 'Add Location' from existing partner"
                 stepNumber={1}
               />
               
@@ -416,8 +416,8 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={FileText}
-                title="Basic Information"
-                description="Fill partner name, type, and contact details"
+                title="Step 1: Partner Selection/Creation"
+                description="If from 'Add Location', partner auto-selected. If new, create partner with basic details & address"
                 variant="warning"
                 stepNumber={2}
               />
@@ -426,8 +426,9 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={Building}
-                title="Address Information"
-                description="Complete partner's business address details"
+                title="Step 2: Add Locations"
+                description="Create multiple locations with toggle for bulk upload via CSV. Add locations to live list"
+                variant="warning"
                 stepNumber={3}
               />
               
@@ -435,34 +436,45 @@ export const OrderJourneyFlow = () => {
               
               <FlowStep
                 icon={CheckCircle}
-                title="Review & Create Partner"
-                description="Review all information and create the partner"
+                title="Step 3: Review & Confirm"
+                description="Review partner details and all location codes. Confirm creation of partner with locations"
                 variant="success"
                 stepNumber={4}
+              />
+              
+              <FlowArrow />
+              
+              <FlowStep
+                icon={Upload}
+                title="Bulk Creation (Optional)"
+                description="Use toggle to enable bulk partner & location creation via CSV file upload"
+                variant="warning"
+                isOptional={true}
+                stepNumber={5}
               />
             </div>
 
-            {/* Partner Location Creation Flow */}
+            {/* Single Location Partner Flow */}
             <div className="space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="text-center">
                 <Badge className="bg-indigo-600 text-white px-6 py-3 text-base font-bold shadow-lg hover:scale-105 transition-transform">
-                  📍 Partner Location Creation Flow
+                  📍 Single Location Partner Flow
                 </Badge>
               </div>
               
               <FlowStep
                 icon={Users}
-                title="Open Partners Screen"
-                description="Navigate to partners screen and select Partner Location Creation tab"
+                title="Open Masters Screen"
+                description="Navigate to Masters page and click 'Create New Partner'"
                 stepNumber={1}
               />
               
               <FlowArrow />
               
               <FlowStep
-                icon={Building}
-                title="Select Existing Partner"
-                description="Choose from existing partners or create new partner first"
+                icon={FileText}
+                title="Select Creation Type"
+                description="Choose 'Single Location Partner' from the selection screen"
                 variant="warning"
                 stepNumber={2}
               />
@@ -470,9 +482,9 @@ export const OrderJourneyFlow = () => {
               <FlowArrow />
               
               <FlowStep
-                icon={FileText}
-                title="Location Basic Information"
-                description="Fill location name, code, and operational details"
+                icon={Building}
+                title="Partner & Location Details"
+                description="Fill partner information and location details in unified form"
                 variant="warning"
                 stepNumber={3}
               />
@@ -480,20 +492,11 @@ export const OrderJourneyFlow = () => {
               <FlowArrow />
               
               <FlowStep
-                icon={Building}
-                title="Location Address"
-                description="Complete specific address for this partner location"
-                stepNumber={4}
-              />
-              
-              <FlowArrow />
-              
-              <FlowStep
                 icon={CheckCircle}
-                title="Review & Create Location"
-                description="Review all information and create the partner location"
+                title="Review & Create"
+                description="Review all details and create partner with single location"
                 variant="success"
-                stepNumber={5}
+                stepNumber={4}
               />
             </div>
           </div>
