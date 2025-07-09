@@ -145,7 +145,7 @@ const Outwards = () => {
         <div className="w-full max-w-none mx-auto">
           <Tabs defaultValue="order-creation" className="w-full">
             <div className="border-b bg-gradient-to-r from-blue-50 to-orange-50 px-6 py-4 rounded-t-lg">
-              <TabsList className="grid w-full max-w-lg grid-cols-2 h-12">
+              <TabsList className={`grid w-full max-w-lg h-12 ${purpose === "cross-dock" ? "grid-cols-2" : "grid-cols-1"}`}>
                 <TabsTrigger 
                   value="order-creation" 
                   className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md flex items-center gap-2 text-sm font-medium"
@@ -153,13 +153,15 @@ const Outwards = () => {
                   <ShoppingCart className="h-4 w-4" />
                   Order Creation
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="crossdocking" 
-                  className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md flex items-center gap-2 text-sm font-medium"
-                >
-                  {orderType === "b2c" ? <Package className="h-4 w-4" /> : <Box className="h-4 w-4" />}
-                  {orderType === "b2c" ? "Item Crossdocking" : "Box Crossdocking"}
-                </TabsTrigger>
+                {purpose === "cross-dock" && (
+                  <TabsTrigger 
+                    value="crossdocking" 
+                    className="data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md flex items-center gap-2 text-sm font-medium"
+                  >
+                    {orderType === "b2c" ? <Package className="h-4 w-4" /> : <Box className="h-4 w-4" />}
+                    {orderType === "b2c" ? "Item Crossdocking" : "Box Crossdocking"}
+                  </TabsTrigger>
+                )}
               </TabsList>
             </div>
             
@@ -182,11 +184,13 @@ const Outwards = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="crossdocking" className="mt-0">
-              <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 p-6">
-                {renderCrossdockingForm()}
-              </div>
-            </TabsContent>
+            {purpose === "cross-dock" && (
+              <TabsContent value="crossdocking" className="mt-0">
+                <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 p-6">
+                  {renderCrossdockingForm()}
+                </div>
+              </TabsContent>
+            )}
           </Tabs>
         </div>
       </main>
