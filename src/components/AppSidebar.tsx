@@ -46,11 +46,11 @@ export function AppSidebar() {
                           isActive 
                             ? "bg-primary text-primary-foreground shadow-md" 
                             : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                        } ${isCollapsed ? "justify-center" : ""}`
+                        }`
                       }
                     >
-                      <item.icon className={`${isCollapsed ? "h-5 w-5" : "h-4 w-4"} shrink-0`} />
-                      {!isCollapsed && <span className="truncate">{item.title}</span>}
+                      <item.icon className="h-4 w-4 shrink-0" />
+                      <span className="truncate">{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
