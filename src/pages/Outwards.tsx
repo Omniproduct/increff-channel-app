@@ -143,8 +143,30 @@ const Outwards = () => {
         </ScreenHeader>
         
         <div className="w-full max-w-none mx-auto">
+          {/* Header Card */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-t-xl shadow-lg border border-white/20 border-b-0">
+            <div className="px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold text-foreground">Order Processing Dashboard</h2>
+                  <p className="text-sm text-muted-foreground">Manage outward orders and crossdocking operations</p>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                    {orderType === "b2c" ? "B2C" : "B2B"} Order
+                  </span>
+                  {purpose && (
+                    <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded">
+                      {purpose === "cross-dock" ? "Cross Dock" : "Storage"}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <Tabs defaultValue="order-creation" className="w-full">
-            <div className="border-b bg-gradient-to-r from-blue-50 to-orange-50 px-6 py-4 rounded-t-lg">
+            <div className="bg-white/80 backdrop-blur-sm border-b border-white/20 bg-gradient-to-r from-blue-50 to-orange-50 px-6 py-4">
               <TabsList className={`grid w-full max-w-lg h-12 ${purpose === "cross-dock" ? "grid-cols-2" : "grid-cols-1"}`}>
                 <TabsTrigger 
                   value="order-creation" 
@@ -166,7 +188,7 @@ const Outwards = () => {
             </div>
             
             <TabsContent value="order-creation" className="mt-0">
-              <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 space-y-6">
+              <div className="bg-white/80 backdrop-blur-sm rounded-b-xl border border-white/20 border-t-0 space-y-6">
                 {/* Progress Bar */}
                 <div className="border-b border-blue-200">
                   <OrderProgressBar currentStep={getCurrentStep()} />
@@ -186,7 +208,7 @@ const Outwards = () => {
             
             {purpose === "cross-dock" && (
               <TabsContent value="crossdocking" className="mt-0">
-                <div className="bg-white rounded-b-lg border border-t-0 border-blue-200 p-6">
+                <div className="bg-white/80 backdrop-blur-sm rounded-b-xl border border-white/20 border-t-0 p-6">
                   {renderCrossdockingForm()}
                 </div>
               </TabsContent>

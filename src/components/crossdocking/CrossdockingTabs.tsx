@@ -7,7 +7,7 @@ import { Package, Box } from "lucide-react";
 export const CrossdockingTabs = () => {
   return (
     <Tabs defaultValue="item-crossdocking" className="w-full">
-      <div className="border-b bg-gradient-to-r from-blue-50 to-orange-50 px-8 py-6">
+      <div className="bg-white/80 backdrop-blur-sm border-b border-white/20 bg-gradient-to-r from-blue-50 to-orange-50 px-8 py-6">
         <TabsList className="grid w-full max-w-md grid-cols-2 h-12">
           <TabsTrigger 
             value="item-crossdocking" 

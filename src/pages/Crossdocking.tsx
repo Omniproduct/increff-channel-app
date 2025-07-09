@@ -44,7 +44,24 @@ const Crossdocking = () => {
           subtitle="Create and manage crossdocking plans for efficient item and box transfers across your warehouse operations"
         />
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 overflow-hidden">
+        {/* Header Card */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-t-xl shadow-lg border border-white/20 border-b-0">
+          <div className="px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-foreground">Crossdocking Operations Dashboard</h2>
+                <p className="text-sm text-muted-foreground">Manage item-level and box-level crossdocking processes</p>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                  Active Operations
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white/80 backdrop-blur-sm rounded-b-xl shadow-lg border border-white/20 border-t-0 overflow-hidden">
           <CrossdockingTabs />
         </div>
       </main>
