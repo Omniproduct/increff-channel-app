@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export const AddressInfoSection = () => {
   return (
-    <div className="bg-slate-50/50 rounded-lg p-3">
-      <h3 className="text-sm font-medium mb-3 text-foreground">Address Information</h3>
+    <div className="bg-slate-50/50 rounded-lg p-4 border border-gray-200">
+      <h3 className="text-lg font-semibold mb-4 text-foreground">Address Information</h3>
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-1">
