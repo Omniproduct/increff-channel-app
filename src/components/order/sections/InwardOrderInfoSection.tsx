@@ -29,20 +29,21 @@ export const InwardOrderInfoSection = ({
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="order-id">Order ID</Label>
+          <Label htmlFor="order-id">Order ID <span className="text-destructive">*</span></Label>
           <Input
             id="order-id"
             placeholder="Order Code"
             className="rounded-lg bg-white border-blue-200 focus:border-primary"
             onFocus={onFocus}
             onBlur={onBlur}
+            required
           />
         </div>
       </div>
       
       <div className="space-y-2">
-        <Label htmlFor="purpose">Purpose</Label>
-        <Select value={purpose} onValueChange={setPurpose}>
+        <Label htmlFor="purpose">Purpose <span className="text-destructive">*</span></Label>
+        <Select value={purpose} onValueChange={setPurpose} required>
           <SelectTrigger className="rounded-lg bg-white border-blue-200 focus:border-primary">
             <SelectValue placeholder="Select Purpose" />
           </SelectTrigger>

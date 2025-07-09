@@ -73,7 +73,7 @@ export const ASNManagement = () => {
                   </Label>
                 </div>
               )}
-              <Label htmlFor="asn-code" className="text-sm font-medium">ASN Code</Label>
+              <Label htmlFor="asn-code" className="text-sm font-medium">ASN Code <span className="text-destructive">*</span></Label>
               <Input
                 id="asn-code"
                 placeholder="Enter ASN Code"
@@ -81,6 +81,7 @@ export const ASNManagement = () => {
                 onChange={(e) => setAsnCode(e.target.value)}
                 className="h-9 rounded-lg bg-white border-blue-200 focus:border-primary"
                 disabled={isUpdateMode && !updateFields.asnCode}
+                required
               />
             </div>
           </div>

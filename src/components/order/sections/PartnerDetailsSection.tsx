@@ -30,7 +30,7 @@ export const PartnerDetailsSection = ({ onFocus, onBlur, isB2B, variant }: Partn
   return (
     <div className="space-y-4">
       <OMSDropdown
-        label="Channel"
+        label="Channel *"
         placeholder="Select Channel"
         options={[
           "CHANNEL APP",
@@ -44,7 +44,7 @@ export const PartnerDetailsSection = ({ onFocus, onBlur, isB2B, variant }: Partn
       />
       
       <OMSDropdown
-        label="Location Code"
+        label="Location Code *"
         placeholder="Select Location Code"
         options={["LOC001", "LOC002", "LOC003"]}
         onFocus={onFocus}
@@ -55,9 +55,9 @@ export const PartnerDetailsSection = ({ onFocus, onBlur, isB2B, variant }: Partn
         <>
           <div className="space-y-2">
             <Label>
-              {variant === "inward" ? "Supplier Name" : "Customer Name"}
+              {variant === "inward" ? "Supplier Name" : "Customer Name"} <span className="text-destructive">*</span>
             </Label>
-            <Select>
+            <Select required>
               <SelectTrigger 
                 className="rounded-lg bg-white border-blue-200 focus:border-primary"
                 onFocus={onFocus}

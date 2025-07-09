@@ -130,8 +130,8 @@ export const CSVUploadSection = ({ onError, onFocus, onBlur }: CSVUploadSectionP
         <div className="flex flex-col items-center space-y-4">
           <Upload className="h-10 w-10 text-primary" />
           <div>
-            <p className="text-lg font-medium text-primary">Drop your CSV file here</p>
-            <p className="text-sm text-muted-foreground">or click to browse</p>
+            <p className="text-lg font-medium text-primary">Drop your CSV file here <span className="text-destructive">*</span></p>
+            <p className="text-sm text-muted-foreground">or click to browse (required)</p>
           </div>
           <Button
             variant="outline"
@@ -147,6 +147,7 @@ export const CSVUploadSection = ({ onError, onFocus, onBlur }: CSVUploadSectionP
             accept=".csv"
             className="hidden"
             onChange={(e) => handleFileUpload(e.target.files)}
+            required
           />
         </div>
       </Card>
