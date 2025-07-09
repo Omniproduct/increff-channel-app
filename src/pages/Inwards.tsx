@@ -102,37 +102,15 @@ const Inwards = () => {
         </ScreenHeader>
         
         <div className="w-full max-w-none mx-auto px-[8%] space-y-6">
-          {/* Header Card */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-t-xl shadow-lg border border-white/20 border-b-0">
-            <div className="px-6 py-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-xl font-semibold text-foreground">Inward Operations Dashboard</h2>
-                  <p className="text-sm text-muted-foreground">Manage inward orders, ASN operations, and order actions</p>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
-                    B2B Inward
-                  </span>
-                  {purpose && (
-                    <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded">
-                      {purpose === "cross-dock" ? "Cross Dock" : "Storage"}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          
           <Tabs defaultValue="order-creation" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm border border-white/20 border-b-0 rounded-t-xl">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="order-creation">Order Creation</TabsTrigger>
               <TabsTrigger value="asn-management">ASN Management</TabsTrigger>
               <TabsTrigger value="order-actions">Order Actions</TabsTrigger>
             </TabsList>
             
             <TabsContent value="order-creation" className="space-y-6">
-              <div className="bg-white/80 backdrop-blur-sm rounded-b-xl border border-white/20 border-t-0">
+              <div className="bg-white rounded-lg border border-blue-200">
                 {/* Progress Bar */}
                 <div className="border-b border-blue-200">
                   <OrderProgressBar currentStep={getCurrentStep()} />
@@ -148,15 +126,11 @@ const Inwards = () => {
             </TabsContent>
             
             <TabsContent value="asn-management" className="space-y-6">
-              <div className="bg-white/80 backdrop-blur-sm rounded-b-xl border border-white/20 border-t-0 p-6">
-                <ASNManagement />
-              </div>
+              <ASNManagement />
             </TabsContent>
             
             <TabsContent value="order-actions" className="space-y-6">
-              <div className="bg-white/80 backdrop-blur-sm rounded-b-xl border border-white/20 border-t-0 p-6">
-                <InwardOrderActions />
-              </div>
+              <InwardOrderActions />
             </TabsContent>
           </Tabs>
         </div>
