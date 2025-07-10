@@ -45,10 +45,6 @@ export const B2BOrderForm = ({
 
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-primary">
-        B2B {variant.charAt(0).toUpperCase() + variant.slice(1)} Order
-      </h2>
-
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">
           <Card 
@@ -101,6 +97,18 @@ export const B2BOrderForm = ({
             </CardContent>
           </Card>
 
+          <CustomOrderAttributes 
+            onFocus={() => setFocusedCard("attributes")}
+            onBlur={() => {
+              setFocusedCard(null);
+              if (progressState && setProgressState) {
+                setProgressState(prev => ({ ...prev, customAttributes: true }));
+              }
+            }}
+          />
+        </div>
+
+        <div className="space-y-6">
           <Card 
             className={`transition-all duration-300 border-blue-200 ${
               focusedCard === "order-type" ? "card-focused" : ""
@@ -122,19 +130,6 @@ export const B2BOrderForm = ({
               />
             </CardContent>
           </Card>
-
-          <CustomOrderAttributes 
-            onFocus={() => setFocusedCard("attributes")}
-            onBlur={() => {
-              setFocusedCard(null);
-              if (progressState && setProgressState) {
-                setProgressState(prev => ({ ...prev, customAttributes: true }));
-              }
-            }}
-          />
-        </div>
-
-        <div className="space-y-6">
           <Card 
             className={`transition-all duration-300 border-blue-200 ${
               focusedCard === "order-items" ? "card-focused" : ""
