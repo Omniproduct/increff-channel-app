@@ -14,34 +14,35 @@ import { Label } from "@/components/ui/label";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
-
 const Masters = () => {
   const [currentView, setCurrentView] = useState<'list' | 'locations' | 'selection' | 'single' | 'multiple' | 'legacy'>('list');
-  const [selectedPartner, setSelectedPartner] = useState<{id: string, name: string, code?: string} | null>(null);
+  const [selectedPartner, setSelectedPartner] = useState<{
+    id: string;
+    name: string;
+    code?: string;
+  } | null>(null);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
-
   const handleSelectionChange = (selection: 'single' | 'multiple') => {
     setCurrentView(selection);
   };
-
   const handleBackToSelection = () => {
     setCurrentView('selection');
   };
-
   const handleViewLocations = (partnerId: string, partnerName: string, partnerCode?: string) => {
-    setSelectedPartner({ id: partnerId, name: partnerName, code: partnerCode });
+    setSelectedPartner({
+      id: partnerId,
+      name: partnerName,
+      code: partnerCode
+    });
     setCurrentView('locations');
   };
-
   const handleBackToList = () => {
     setSelectedPartner(null);
     setCurrentView('list');
   };
-
   const handleCreatePartner = () => {
     setCurrentView('selection');
   };
-
   const handleAddLocation = () => {
     // Navigate to multiple location flow with existing partner context
     if (selectedPartner) {
@@ -50,34 +51,22 @@ const Masters = () => {
       setCurrentView('legacy'); // fallback to legacy form
     }
   };
-
   const renderContent = () => {
     switch (currentView) {
       case 'list':
         return <PartnersList onViewLocations={handleViewLocations} onCreatePartner={handleCreatePartner} />;
       case 'locations':
-        return selectedPartner ? (
-          <PartnerLocations 
-            partnerId={selectedPartner.id}
-            partnerName={selectedPartner.name}
-            onBack={handleBackToList}
-            onAddLocation={handleAddLocation}
-          />
-        ) : null;
+        return selectedPartner ? <PartnerLocations partnerId={selectedPartner.id} partnerName={selectedPartner.name} onBack={handleBackToList} onAddLocation={handleAddLocation} /> : null;
       case 'single':
         return <SingleLocationPartnerForm onBack={handleBackToSelection} />;
       case 'multiple':
-        return <MultipleLocationFlow 
-          onBack={selectedPartner ? handleBackToList : handleBackToSelection} 
-          existingPartner={selectedPartner ? { 
-            id: selectedPartner.id, 
-            name: selectedPartner.name, 
-            code: selectedPartner.code || `PARTNER${selectedPartner.id.padStart(3, '0')}` 
-          } : null}
-        />;
+        return <MultipleLocationFlow onBack={selectedPartner ? handleBackToList : handleBackToSelection} existingPartner={selectedPartner ? {
+          id: selectedPartner.id,
+          name: selectedPartner.name,
+          code: selectedPartner.code || `PARTNER${selectedPartner.id.padStart(3, '0')}`
+        } : null} />;
       case 'legacy':
-        return (
-          <Tabs defaultValue="partner" className="w-full">
+        return <Tabs defaultValue="partner" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="partner">Partner Creation</TabsTrigger>
               <TabsTrigger value="location">Partner Location</TabsTrigger>
@@ -88,17 +77,14 @@ const Masters = () => {
             <TabsContent value="location">
               <PartnerLocationForm />
             </TabsContent>
-          </Tabs>
-        );
+          </Tabs>;
       case 'selection':
         return <PartnerCreationSelector onSelectionChange={handleSelectionChange} />;
       default:
         return <PartnersList onViewLocations={handleViewLocations} onCreatePartner={handleCreatePartner} />;
     }
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
+  return <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
         <div className="container flex h-16 items-center">
           <div className="flex items-center gap-4">
@@ -110,15 +96,11 @@ const Masters = () => {
             </Link>
             <div className="flex items-center gap-3">
               <div className="relative">
-                <img 
-                  src="/lovable-uploads/baed4694-6705-4b8a-9c7c-5a711fcda920.png" 
-                  alt="Increff Logo" 
-                  className="h-10 w-10 transition-transform duration-300 hover:scale-110"
-                />
+                <img src="/lovable-uploads/baed4694-6705-4b8a-9c7c-5a711fcda920.png" alt="Increff Logo" className="h-10 w-10 transition-transform duration-300 hover:scale-110" />
                 <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse"></div>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-primary">OMS Console</h1>
+                <h1 className="text-lg font-bold text-primary">Increff OMS Console</h1>
                 <p className="text-xs text-muted-foreground">Master Data Management</p>
               </div>
             </div>
@@ -137,34 +119,20 @@ const Masters = () => {
         </div>
       </header>
       <main className="w-full px-[8%] py-6">
-        <ScreenHeader 
-          title="Master Data Management"
-          subtitle="Create and manage partners and their locations for seamless channel operations"
-        >
-          {currentView !== 'list' && currentView !== 'locations' && (
-            <div className="flex items-center gap-3">
+        <ScreenHeader title="Master Data Management" subtitle="Create and manage partners and their locations for seamless channel operations">
+          {currentView !== 'list' && currentView !== 'locations' && <div className="flex items-center gap-3">
               <Label htmlFor="legacy-mode" className="text-sm font-medium">
                 Legacy Mode
               </Label>
-              <Switch
-                id="legacy-mode"
-                checked={currentView === 'legacy'}
-                onCheckedChange={(checked) => {
-                  if (checked) {
-                    setCurrentView('legacy');
-                  } else {
-                    setCurrentView('selection');
-                  }
-                }}
-              />
-            </div>
-          )}
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
-            onClick={() => setIsHelpOpen(true)}
-          >
+              <Switch id="legacy-mode" checked={currentView === 'legacy'} onCheckedChange={checked => {
+            if (checked) {
+              setCurrentView('legacy');
+            } else {
+              setCurrentView('selection');
+            }
+          }} />
+            </div>}
+          <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white" onClick={() => setIsHelpOpen(true)}>
             Need Help?
           </Button>
         </ScreenHeader>
@@ -172,12 +140,7 @@ const Masters = () => {
         {renderContent()}
       </main>
       
-      <MastersHelpDrawer 
-        isOpen={isHelpOpen} 
-        onClose={() => setIsHelpOpen(false)} 
-      />
-    </div>
-  );
+      <MastersHelpDrawer isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
+    </div>;
 };
-
 export default Masters;
