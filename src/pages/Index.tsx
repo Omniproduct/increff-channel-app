@@ -83,7 +83,7 @@ const Index = () => {
             <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1} />
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground">OMS Console</h2>
+            <h2 className="font-bold tracking-tight text-4xl text-blue-500">OMS Console</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Streamline your operations with our comprehensive order management and partner coordination platform
             </p>
