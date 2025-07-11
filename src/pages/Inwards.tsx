@@ -12,7 +12,6 @@ import { InwardHelpDrawer } from "@/components/help/InwardHelpDrawer";
 import { MapIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ScreenHeader } from "@/components/ui/screen-header";
-
 const Inwards = () => {
   const [isBulkUpload, setIsBulkUpload] = useState(false);
   const [purpose, setPurpose] = useState("");
@@ -24,7 +23,6 @@ const Inwards = () => {
     uploadItems: false,
     customAttributes: false
   });
-
   const getCurrentStep = () => {
     if (!progressState.orderInfo) return 1;
     if (!progressState.channelLocation) return 2;
@@ -33,21 +31,13 @@ const Inwards = () => {
     if (!progressState.customAttributes) return 5;
     return 5;
   };
-
   const renderOrderForm = () => {
     if (isBulkUpload) {
       return <BulkUploadForm orderType="b2b-inward" />;
     }
-    return <InwardB2BOrderForm 
-      purpose={purpose} 
-      setPurpose={setPurpose} 
-      progressState={progressState}
-      setProgressState={setProgressState}
-    />;
+    return <InwardB2BOrderForm purpose={purpose} setPurpose={setPurpose} progressState={progressState} setProgressState={setProgressState} />;
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
+  return <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
         <div className="container flex h-16 items-center">
           <div className="flex items-center gap-4">
@@ -59,15 +49,11 @@ const Inwards = () => {
             </Link>
             <div className="flex items-center gap-3">
               <div className="relative">
-                <img 
-                  src="/lovable-uploads/baed4694-6705-4b8a-9c7c-5a711fcda920.png" 
-                  alt="Increff Logo" 
-                  className="h-10 w-10 transition-transform duration-300 hover:scale-110"
-                />
+                <img src="/lovable-uploads/baed4694-6705-4b8a-9c7c-5a711fcda920.png" alt="Increff Logo" className="h-10 w-10 transition-transform duration-300 hover:scale-110" />
                 <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse"></div>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-primary">OMS Console</h1>
+                <h1 className="text-lg font-bold text-primary">Increff OMS Console</h1>
                 <p className="text-xs text-muted-foreground">Inward Order Management</p>
               </div>
             </div>
@@ -87,16 +73,8 @@ const Inwards = () => {
       </header>
       
       <main className="container py-6">
-        <ScreenHeader 
-          title="Inward Order Management"
-          subtitle="Create and manage B2B inward orders for purchase, returns, and open PO operations"
-        >
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white"
-            onClick={() => setIsHelpOpen(true)}
-          >
+        <ScreenHeader title="Inward Order Management" subtitle="Create and manage B2B inward orders for purchase, returns, and open PO operations">
+          <Button variant="outline" size="sm" className="gap-2 hover:scale-105 transition-transform border-primary text-primary hover:bg-primary hover:text-white" onClick={() => setIsHelpOpen(true)}>
             Need Help?
           </Button>
         </ScreenHeader>
@@ -136,12 +114,7 @@ const Inwards = () => {
         </div>
       </main>
       
-      <InwardHelpDrawer 
-        isOpen={isHelpOpen} 
-        onClose={() => setIsHelpOpen(false)} 
-      />
-    </div>
-  );
+      <InwardHelpDrawer isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
+    </div>;
 };
-
 export default Inwards;
