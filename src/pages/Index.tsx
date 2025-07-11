@@ -55,7 +55,7 @@ const Index = () => {
               <div className="absolute inset-0 rounded-lg bg-primary/10 animate-pulse"></div>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-foreground">Increff OMS Console</h1>
+              <h1 className="text-lg font-bold text-blue-500">Increff OMS Console</h1>
               <p className="text-xs text-muted-foreground">Order Management System</p>
             </div>
           </div>
