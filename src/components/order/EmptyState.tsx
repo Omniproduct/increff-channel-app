@@ -17,7 +17,7 @@ export const EmptyState = ({ onStartOrder }: EmptyStateProps) => {
           </div>
           <h2 className="text-2xl font-semibold mb-2">No orders yet – let's fix that!</h2>
           <p className="text-muted-foreground">
-            Create your first order to get started with the Increff Channel App.
+            Create your first order to get started with the OMS Console.
           </p>
         </div>
         <Button onClick={onStartOrder} size="lg" className="w-full bg-primary hover:bg-primary/90">

@@ -58,7 +58,7 @@ const Index = () => {
               <div className="absolute inset-0 rounded-lg bg-primary/10 animate-pulse"></div>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-foreground">Increff Channel App</h1>
+              <h1 className="text-lg font-bold text-foreground">OMS Console</h1>
               <p className="text-xs text-muted-foreground">Order Management System</p>
             </div>
           </div>
@@ -86,7 +86,7 @@ const Index = () => {
             <AnimatedIcon icon={Users} className="bg-purple-100 text-purple-600 shadow-lg border-2 border-purple-200" delay={1} />
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground">Channel Management Hub</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">OMS Console</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Streamline your operations with our comprehensive order management and partner coordination platform
             </p>

@@ -118,7 +118,7 @@ const Masters = () => {
                 <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse"></div>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-primary">Increff Channel App</h1>
+                <h1 className="text-lg font-bold text-primary">OMS Console</h1>
                 <p className="text-xs text-muted-foreground">Master Data Management</p>
               </div>
             </div>
